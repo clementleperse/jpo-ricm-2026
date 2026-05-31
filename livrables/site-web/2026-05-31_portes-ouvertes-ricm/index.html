@@ -104,15 +104,15 @@
   .ribbon::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-  .hero h1{font-size:clamp(44px,13vw,62px);font-weight:700;letter-spacing:.005em}
+  .hero h1{font-size:clamp(44px,13vw,62px);font-weight:700;letter-spacing:.005em;text-align:center}
   .hero h1 .l2{color:var(--sand)}
   .hero .date{
-    display:flex;align-items:center;gap:10px;margin-top:16px;
+    display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;
     font-family:'Oswald';font-weight:500;text-transform:uppercase;letter-spacing:.06em;
     font-size:18px;color:#fff;
   }
   .hero .date svg{flex:none}
-  .hero .place{color:rgba(255,255,255,.78);font-size:15px;margin-top:4px;letter-spacing:.02em}
+  .hero .place{color:rgba(255,255,255,.78);font-size:15px;margin-top:4px;letter-spacing:.02em;text-align:center}
 
   .cta{
     display:flex;align-items:center;justify-content:center;gap:10px;
@@ -130,18 +130,19 @@
     box-shadow:0 2px 12px rgba(0,0,0,.18);
   }
   nav.bar ul{
-    display:flex;max-width:var(--maxw);margin-inline:auto;list-style:none;
+    display:flex;list-style:none;
     overflow-x:auto;scrollbar-width:none;
+    justify-content:space-evenly;
   }
   nav.bar ul::-webkit-scrollbar{display:none}
   nav.bar a{
-    display:block;white-space:nowrap;padding:0 16px;height:var(--nav-h);line-height:var(--nav-h);
-    font-family:'Oswald';font-weight:500;text-transform:uppercase;font-size:13px;letter-spacing:.06em;
+    display:block;white-space:nowrap;padding:0 10px;height:var(--nav-h);line-height:var(--nav-h);
+    font-family:'Oswald';font-weight:500;text-transform:uppercase;font-size:12px;letter-spacing:.05em;
     color:rgba(255,255,255,.62);position:relative;transition:color .15s ease;
   }
   nav.bar a.active,nav.bar a:hover{color:#fff}
   nav.bar a.active::after{
-    content:"";position:absolute;left:16px;right:16px;bottom:0;height:3px;background:var(--red);border-radius:3px 3px 0 0;
+    content:"";position:absolute;left:10px;right:10px;bottom:0;height:3px;background:var(--red);border-radius:3px 3px 0 0;
   }
 
   /* ---------- PROGRAMME ---------- */
@@ -351,9 +352,32 @@
   .menu-row .mr-desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
   .menu-row .mr-price{font-family:'Oswald';font-weight:700;font-size:22px;color:var(--green);white-space:nowrap;}
   /* ---------- BILLETTERIE ---------- */
-  .popotte-grid{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px;}
-  .popotte-pill{font-family:'Oswald';font-weight:700;font-size:17px;background:var(--green-d);color:#fff;padding:9px 16px;border-radius:8px;border:2px solid var(--green-l);}
-  .popotte-coming{font-size:12px;color:var(--ink-soft);margin-top:4px;font-style:italic;}
+  .popotte-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+  .popotte-card{
+    background:var(--white);border:1.5px solid var(--line);border-radius:12px;
+    padding:14px 12px;text-align:center;position:relative;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .popotte-card.bonus{border-color:var(--green);background:linear-gradient(145deg,#f0f5f0,#fff)}
+  .popotte-card.best{border-color:var(--green);border-width:2px;background:linear-gradient(145deg,#e8f0e8,#fff)}
+  .popotte-card .pc-val{
+    font-family:'Oswald';font-weight:700;font-size:28px;color:var(--green-d);line-height:1;
+  }
+  .popotte-card .pc-label{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;font-family:'Oswald'}
+  .popotte-card .pc-bonus{
+    display:inline-flex;align-items:center;gap:4px;
+    margin-top:8px;background:var(--green);color:#fff;
+    font-family:'Oswald';font-weight:600;font-size:11.5px;letter-spacing:.04em;
+    padding:4px 9px;border-radius:20px;
+  }
+  .popotte-card .pc-value-real{
+    font-size:11px;color:var(--green-l);font-weight:600;margin-top:4px;
+  }
+  .popotte-badge-best{
+    position:absolute;top:8px;right:-18px;background:var(--green-d);color:#fff;
+    font-family:'Oswald';font-weight:600;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 22px;transform:rotate(45deg);transform-origin:center;
+  }
   .billet-warn{background:#fae3e6;border:1px solid rgba(200,16,46,.18);border-radius:10px;padding:13px 15px;display:flex;align-items:flex-start;gap:10px;margin-top:4px;}
   .billet-warn svg{flex:none;color:var(--red);margin-top:1px;}
   .billet-warn p{font-size:14px;color:var(--red-d);font-weight:600;line-height:1.4;}
@@ -591,9 +615,9 @@
   <ul class="wrap">
     <li><a href="#programme">Programme</a></li>
     <li><a href="#plan">Plan du site</a></li>
+    <li><a href="#billetterie">Billetterie</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
     <li><a href="#restauration">Restauration</a></li>
-    <li><a href="#billetterie">Billetterie</a></li>
     <li><a href="#infos">Infos pratiques</a></li>
   </ul>
 </nav>
@@ -732,8 +756,76 @@
   <div class="pb-ink"></div>
 </div>
 
+<!-- ============ BILLETTERIE ============ -->
+<section id="billetterie" class="sec sec-pad wrap">
+  <span class="eyebrow">Paiement</span>
+  <h2>Billetterie</h2>
+  <p class="sec-intro">Les activités et restauration fonctionnent avec des tickets popotte.
+    Ces tickets sont à acheter auprès des trois banques présentes.</p>
+
+  <div class="info-grid">
+    <div class="info">
+      <div class="ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M6 10v8M10 10v8M14 10v8M18 10v8"/></svg>
+      </div>
+      <div>
+        <h3>Banques sur site</h3>
+        <p><b>3 banques</b> sont présentes sur le site pour l'achat de billets de popotte. CB et liquide acceptés aux caisses.</p>
+      </div>
+    </div>
+
+    <div class="info" style="display:block;padding:16px">
+      <h3 style="font-family:'Oswald';font-weight:600;text-transform:uppercase;font-size:13.5px;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:4px">Billets de popotte</h3>
+      <p style="font-size:14px;color:var(--ink)">4 valeurs disponibles — achetées aux banques sur site.</p>
+      <div class="popotte-cards">
+
+        <div class="popotte-card">
+          <div class="pc-val">5 €</div>
+          <div class="pc-label">Carnet</div>
+        </div>
+
+        <div class="popotte-card">
+          <div class="pc-val">10 €</div>
+          <div class="pc-label">Carnet</div>
+        </div>
+
+        <div class="popotte-card bonus">
+          <div class="pc-val">20 €</div>
+          <div class="pc-label">Carnet</div>
+          <div class="pc-bonus">+1 case offerte</div>
+          <div class="pc-value-real">Valeur 21 €</div>
+        </div>
+
+        <div class="popotte-card best">
+          <div class="popotte-badge-best">Meilleur</div>
+          <div class="pc-val">30 €</div>
+          <div class="pc-label">Carnet</div>
+          <div class="pc-bonus">+2 cases offertes</div>
+          <div class="pc-value-real">Valeur 32 €</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z"/><path d="M16 3H8l-2 4h12l-2-4Z"/></svg>
+      </div>
+      <div>
+        <h3>Moyens de paiement acceptés</h3>
+        <p><b>Cartes bancaires</b> et <b>espèces</b> sont acceptées aux caisses pour l'achat de billets de popotte.</p>
+      </div>
+    </div>
+
+    <div class="billet-warn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <p>Les carnets de billets ne sont pas remboursables. Pensez à utiliser tous vos billets avant la fermeture du site.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TARIFS ACTIVITÉS ============ -->
-<section id="tarifs" class="sec sec-pad wrap">
+<section id="tarifs" class="sec sec-pad sec-tight wrap">
   <span class="eyebrow">Activités payantes</span>
   <h2>Tarifs des activités</h2>
   <p class="sec-intro">Certaines activités sont payantes, règlement en billets de popotte uniquement. Les activités payantes sont indiquées sur le plan.</p>
@@ -807,58 +899,6 @@
     <div class="menu-row">
       <div class="mr-name">Bière</div>
       <div class="mr-price">2 €</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ BILLETTERIE ============ -->
-<section id="billetterie" class="sec sec-pad sec-tight wrap">
-  <span class="eyebrow">Paiement</span>
-  <h2>Billetterie</h2>
-  <p class="sec-intro">Les activités et restauration fonctionnent avec des tickets popotte. 
-    Ces tickets sont à acheter auprès des trois banques présentes.</p>
-
-  <div class="info-grid">
-    <div class="info">
-      <div class="ic">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M6 10v8M10 10v8M14 10v8M18 10v8"/></svg>
-      </div>
-      <div>
-        <h3>Banques sur site</h3>
-        <p><b>3 banques</b> sont présentes sur le site pour l'achat de billets de popotte. CB et liquide acceptés aux caisses.</p>
-      </div>
-    </div>
-
-    <div class="info">
-      <div class="ic">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="12" rx="1.5"/><path d="M4 10h16"/><circle cx="8" cy="14" r="1"/></svg>
-      </div>
-      <div>
-        <h3>Billets de popotte</h3>
-        <p>Valeurs disponibles :</p>
-        <div class="popotte-grid">
-          <div class="popotte-pill">5 €</div>
-          <div class="popotte-pill">10 €</div>
-          <div class="popotte-pill">15 €</div>
-          <div class="popotte-pill">20 €</div>
-        </div>
-        <p class="popotte-coming">Visuels des billets à venir</p>
-      </div>
-    </div>
-
-    <div class="info">
-      <div class="ic">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z"/><path d="M16 3H8l-2 4h12l-2-4Z"/></svg>
-      </div>
-      <div>
-        <h3>Moyens de paiement acceptés</h3>
-        <p><b>Cartes bancaires</b> et <b>espèces</b> sont acceptées aux caisses pour l'achat de billets de popotte.</p>
-      </div>
-    </div>
-
-    <div class="billet-warn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="1.2" fill="currentColor" stroke="none"/></svg>
-      <p>Les carnets de billets ne sont pas remboursables. Pensez à utiliser tous vos billets avant la fermeture du site.</p>
     </div>
   </div>
 </section>
