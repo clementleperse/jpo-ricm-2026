@@ -61,7 +61,7 @@
     position:relative;color:var(--white);
     background:
       linear-gradient(180deg, rgba(31,53,32,.72) 0%, rgba(31,53,32,.92) 100%),
-      url('images/ricm-08.png') center 72%/cover no-repeat;
+      url('images/ricm-08.png') center 60%/cover no-repeat;
     overflow:hidden;
   }
   .hero::after{
@@ -71,14 +71,13 @@
   .hero-inner{position:relative;z-index:2;padding:30px 20px 38px;max-width:var(--maxw);margin-inline:auto}
   /* ---------- INSIGNE HEADER ---------- */
   .insigne-header{
-    background:var(--sand-bg);
     display:flex;flex-direction:column;align-items:center;text-align:center;
     padding:40px 20px 32px;
     border-bottom:2px solid var(--line);
   }
   .insigne-main{
-    width:170px;height:170px;object-fit:contain;
-    display:block;margin:0 auto 20px;
+    width:200px;height:200px;object-fit:contain;
+    display:block;margin:0 auto 6px;
     filter:drop-shadow(0 4px 22px rgba(31,53,32,.18));
   }
   .insigne-name{
@@ -297,6 +296,19 @@
   .cd-block span{font-family:'Oswald',sans-serif;font-weight:700;font-size:28px;color:#fff;display:block;line-height:1;}
   .cd-block small{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);font-family:'Barlow',sans-serif;font-weight:600;margin-top:3px;display:block;}
   .cd-sep{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;color:rgba(255,255,255,.4);padding:0 2px;}
+  /* ---------- PROGRAMME ACCORDÉON ---------- */
+  .ev{cursor:pointer;}
+  .ev:hover{background:rgba(45,74,45,.035);border-radius:8px;margin:0 -8px;padding-left:8px;padding-right:8px;}
+  .ev-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+  .ev-chevron{flex:none;color:var(--ink-soft);transition:transform .22s ease;margin-top:3px;}
+  .ev.open .ev-chevron{transform:rotate(180deg);}
+  .ev-detail{
+    max-height:0;overflow:hidden;
+    transition:max-height .28s ease, padding-top .28s ease;
+    font-size:14px;color:var(--ink-soft);line-height:1.65;
+  }
+  .ev.open .ev-detail{max-height:300px;padding-top:10px;}
+
   /* ---------- PROGRAMME actif ---------- */
   .ev-current{background:rgba(45,74,45,.05);border-radius:10px;position:relative;}
   .ev-current .time{color:var(--red)!important;}
@@ -791,29 +803,48 @@ const CATLABEL = {ceremonie:'Cérémonie',demo:'Démonstration',expo:'Exposition
 
 /* ---- PROGRAMME : SAMEDI 13 JUIN ---- */
 const PROG_SAM = [
-  {h:'10:00', t:"Ouverture des portes & cérémonie des couleurs", cat:'ceremonie', zone:2},
-  {h:'10:30', t:"Démonstration de combat débarqué", cat:'demo', zone:4},
-  {h:'11:00', t:"Exposition de véhicules blindés (Jaguar, VBCI)", cat:'expo', zone:3},
-  {h:'11:30', t:"Mini-parcours du combattant pour les enfants", cat:'enfants', zone:5},
-  {h:'12:00', t:"Visite guidée des stands & traditions du régiment", cat:'visite', zone:7},
-  {h:'14:00', t:"Démonstration cynotechnique (équipes maître-chien)", cat:'demo', zone:4},
-  {h:'15:00', t:"Présentation des matériels & simulateur de tir", cat:'expo', zone:3},
-  {h:'16:00', t:"Concert de la Musique des Troupes de Marine", cat:'musique', zone:2},
-  {h:'17:30', t:"Démonstration finale interarmes", cat:'demo', zone:4},
-  {h:'18:00', t:"Fermeture des portes", cat:'ceremonie', zone:1}
+  {h:'10:00', t:"Ouverture des portes & cérémonie des couleurs", cat:'ceremonie', zone:2,
+   desc:"Hissage solennel des couleurs du régiment en présence des autorités militaires et civiles. Coup d'envoi officiel des journées portes ouvertes."},
+  {h:'10:30', t:"Démonstration de combat débarqué", cat:'demo', zone:4,
+   desc:"Mise en scène d'une action de combat par les fantassins du RICM. Tirs à blanc, fumigènes et techniques d'assaut présentés par les soldats du régiment."},
+  {h:'11:00', t:"Exposition de véhicules blindés (Jaguar, VBCI)", cat:'expo', zone:3,
+   desc:"Découvrez en statique le Jaguar (EBRC) et le VBCI (Véhicule Blindé de Combat d'Infanterie). Montée à bord possible, présentation par les équipages."},
+  {h:'11:30', t:"Mini-parcours du combattant pour les enfants", cat:'enfants', zone:5,
+   desc:"Parcours d'obstacles adapté aux enfants : ramping, franchissement de palissade et tyrolienne. Encadré par des soldats du régiment."},
+  {h:'12:00', t:"Visite guidée des stands & traditions du régiment", cat:'visite', zone:7,
+   desc:"Tour commenté de l'esplanade des traditions avec présentation des fanions, médailles et emblèmes du RICM. Guides disponibles en continu."},
+  {h:'14:00', t:"Démonstration cynotechnique (équipes maître-chien)", cat:'demo', zone:4,
+   desc:"Démonstration des équipes cynophiles du régiment : pistage, mordant et fouille de zone. Présentation et rencontre avec les chiens en service."},
+  {h:'15:00', t:"Présentation des matériels & simulateur de tir", cat:'expo', zone:3,
+   desc:"Prise en main des équipements du fantassin moderne et session sur simulateur de tir. Accessible à partir de 12 ans, sur inscription au stand."},
+  {h:'16:00', t:"Concert de la Musique des Troupes de Marine", cat:'musique', zone:2,
+   desc:"Concert gratuit sur la place d'armes. La Musique des Troupes de Marine interprète un répertoire militaire et populaire. Accès libre, places debout."},
+  {h:'17:30', t:"Démonstration finale interarmes", cat:'demo', zone:4,
+   desc:"Clou du spectacle : coordination infanterie-blindés, appuis feu, fumigènes et manœuvres tactiques à grande échelle. Ne pas manquer."},
+  {h:'18:00', t:"Fermeture des portes", cat:'ceremonie', zone:1,
+   desc:"Fin de la journée du samedi. Merci de rejoindre la sortie. Rendez-vous demain dès 10h pour la dernière journée des portes ouvertes."},
 ];
 
 /* ---- PROGRAMME : DIMANCHE 14 JUIN ---- */
 const PROG_DIM = [
-  {h:'10:00', t:"Ouverture des portes", cat:'ceremonie', zone:1},
-  {h:'10:30', t:"Atelier découverte pour les familles", cat:'enfants', zone:5},
-  {h:'11:00', t:"Démonstration de franchissement & génie", cat:'demo', zone:4},
-  {h:'11:30', t:"Exposition matériels & véhicules de reconnaissance", cat:'expo', zone:3},
-  {h:'12:30', t:"Visite guidée — histoire et traditions du RICM", cat:'visite', zone:7},
-  {h:'14:00', t:"Démonstration de combat & appui feu", cat:'demo', zone:4},
-  {h:'15:00', t:"Aubade de la Musique des Troupes de Marine", cat:'musique', zone:2},
-  {h:'16:00', t:"Cérémonie de clôture & remise des prix", cat:'ceremonie', zone:2},
-  {h:'17:00', t:"Fermeture des portes", cat:'ceremonie', zone:1}
+  {h:'10:00', t:"Ouverture des portes", cat:'ceremonie', zone:1,
+   desc:"Ouverture des portes du quartier Aboville. Récupérez le plan du site au point information (Zone 1) et profitez dès l'ouverture des premiers ateliers."},
+  {h:'10:30', t:"Atelier découverte pour les familles", cat:'enfants', zone:5,
+   desc:"Ateliers interactifs pour petits et grands : camouflage facial, déchiffrage de cartes topographiques et initiation au code morse. Tout le monde est bienvenu."},
+  {h:'11:00', t:"Démonstration de franchissement & génie", cat:'demo', zone:4,
+   desc:"Mise en œuvre de ponts de fortune et de techniques de franchissement d'obstacle par les sapeurs. Présentation du matériel de génie en action."},
+  {h:'11:30', t:"Exposition matériels & véhicules de reconnaissance", cat:'expo', zone:3,
+   desc:"Présentation statique des véhicules de reconnaissance légers, dont le VBL et ses variantes. Explication des missions par les équipages."},
+  {h:'12:30', t:"Visite guidée — histoire et traditions du RICM", cat:'visite', zone:7,
+   desc:"Visite commentée de la salle d'honneur et des traditions du régiment. Retour sur l'histoire du RICM depuis sa création, ses campagnes et décorations."},
+  {h:'14:00', t:"Démonstration de combat & appui feu", cat:'demo', zone:4,
+   desc:"Démonstration dynamique avec appui des éléments blindés. Coordination feu et mouvement en terrain varié. Accès restreint aux abords de la zone."},
+  {h:'15:00', t:"Aubade de la Musique des Troupes de Marine", cat:'musique', zone:2,
+   desc:"Défilé musical et aubade de clôture par la Musique des Troupes de Marine sur la place d'armes. Dernier concert des journées portes ouvertes."},
+  {h:'16:00', t:"Cérémonie de clôture & remise des prix", cat:'ceremonie', zone:2,
+   desc:"Cérémonie officielle de clôture avec remise des prix aux vainqueurs des jeux et challenges. Mot du colonel commandant le régiment."},
+  {h:'17:00', t:"Fermeture des portes", cat:'ceremonie', zone:1,
+   desc:"Fermeture définitive du site pour cette édition 2026. Merci pour votre visite et à la prochaine édition des portes ouvertes du RICM."},
 ];
 
 /* ---- ZONES DU PLAN (légende) ---- */
@@ -832,15 +863,21 @@ const ZONES = [
 /* =====================================================================
    RENDU & INTERACTIONS
    ===================================================================== */
+const CHEVRON = '<svg class="ev-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>';
+
 function evHTML(e){
   return `<div class="ev">
     <div class="time">${e.h.replace(':','h')}</div>
     <div class="body">
-      <h3>${e.t}</h3>
+      <div class="ev-header">
+        <h3>${e.t}</h3>
+        ${CHEVRON}
+      </div>
       <div class="meta">
         <span class="badge c-${e.cat}">${ICON[e.cat]} ${CATLABEL[e.cat]}</span>
         <span class="loc">${PIN} Zone ${e.zone}</span>
       </div>
+      <div class="ev-detail">${e.desc || ''}</div>
     </div>
   </div>`;
 }
@@ -850,6 +887,15 @@ function renderDay(day){
   timeline.innerHTML = data.map(evHTML).join('');
   document.querySelectorAll('#dayTabs button').forEach(b=>b.classList.toggle('active', b.dataset.day===day));
 }
+
+/* accordion : clic sur un événement */
+timeline.addEventListener('click', e=>{
+  const ev = e.target.closest('.ev');
+  if(!ev) return;
+  const isOpen = ev.classList.contains('open');
+  document.querySelectorAll('#timeline .ev.open').forEach(el=>el.classList.remove('open'));
+  if(!isOpen) ev.classList.add('open');
+});
 
 /* day tabs */
 document.querySelectorAll('#dayTabs button').forEach(b=>{
