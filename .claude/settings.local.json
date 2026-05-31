@@ -12,5 +12,19 @@
       "Bash(chmod +x /Users/hanser/.bibi/veille_financiere.sh)",
       "Bash(launchctl unload *)"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // \"\"' | grep -q 'portes-ouvertes-ricm/index.html' && open 'file:///Users/hanser/Desktop/jarvis-starter-kit/livrables/site-web/2026-05-31_portes-ouvertes-ricm/index.html' 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ]
   }
 }

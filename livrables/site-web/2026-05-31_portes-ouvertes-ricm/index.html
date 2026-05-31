@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Portes Ouvertes RICM — 13 & 14 juin 2026</title>
+<meta name="description" content="Journées Portes Ouvertes du Régiment d'Infanterie-Chars de Marine — Poitiers, 13 & 14 juin 2026. Programme, plan, restauration et infos pratiques." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#2D4A2D;
+    --green-d:#1F3520;
+    --green-l:#3E6340;
+    --sand:#C8B89A;
+    --sand-l:#EFE9DD;
+    --sand-bg:#F6F2EA;
+    --red:#C8102E;
+    --red-d:#A50B24;
+    --white:#FFFFFF;
+    --ink:#1C211C;
+    --ink-soft:#4A5249;
+    --line:#E3DCCD;
+    --nav-h:54px;
+    --maxw:560px;
+    --shadow:0 2px 10px rgba(31,53,32,.08);
+    --shadow-lg:0 8px 28px rgba(31,53,32,.14);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Barlow',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--sand-bg);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3,.cond{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.01em;line-height:1.04}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:var(--maxw);margin-inline:auto;width:100%}
+  .sec{padding:44px 20px 8px}
+  .sec-pad{padding-bottom:44px}
+  section{scroll-margin-top:calc(var(--nav-h) + 8px)}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:12.5px;letter-spacing:.16em;color:var(--red);
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--red);display:block}
+  .sec h2{font-size:30px;font-weight:700;color:var(--green);margin:10px 0 4px}
+  .sec-intro{color:var(--ink-soft);font-size:15px;max-width:42ch}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;color:var(--white);
+    background:
+      linear-gradient(180deg, rgba(31,53,32,.72) 0%, rgba(31,53,32,.92) 100%),
+      url('images/ricm-08.png') center 72%/cover no-repeat;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -10%, rgba(200,184,154,.22), transparent 60%);
+  }
+  .hero-inner{position:relative;z-index:2;padding:30px 20px 38px;max-width:var(--maxw);margin-inline:auto}
+  /* ---------- INSIGNE HEADER ---------- */
+  .insigne-header{
+    background:var(--sand-bg);
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding:40px 20px 32px;
+    border-bottom:2px solid var(--line);
+  }
+  .insigne-main{
+    width:170px;height:170px;object-fit:contain;
+    display:block;margin:0 auto 20px;
+    filter:drop-shadow(0 4px 22px rgba(31,53,32,.18));
+  }
+  .insigne-name{
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:40px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--green);line-height:1;
+  }
+  .insigne-regiment{
+    font-family:'Oswald',sans-serif;font-weight:500;font-size:15px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px;
+  }
+  .insigne-troupes{
+    font-family:'Oswald',sans-serif;font-weight:400;font-size:12.5px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+    opacity:.65;margin-top:5px;
+  }
+
+  .ribbon{
+    display:inline-flex;align-items:center;gap:7px;margin:28px 0 18px;
+    background:var(--red);color:#fff;font-family:'Oswald';font-weight:600;
+    text-transform:uppercase;letter-spacing:.12em;font-size:12.5px;
+    padding:7px 14px;border-radius:4px;box-shadow:0 4px 14px rgba(200,16,46,.4);
+  }
+  .ribbon::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  .hero h1{font-size:clamp(44px,13vw,62px);font-weight:700;letter-spacing:.005em}
+  .hero h1 .l2{color:var(--sand)}
+  .hero .date{
+    display:flex;align-items:center;gap:10px;margin-top:16px;
+    font-family:'Oswald';font-weight:500;text-transform:uppercase;letter-spacing:.06em;
+    font-size:18px;color:#fff;
+  }
+  .hero .date svg{flex:none}
+  .hero .place{color:rgba(255,255,255,.78);font-size:15px;margin-top:4px;letter-spacing:.02em}
+
+  .cta{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;margin-top:26px;background:var(--sand);color:var(--green-d);
+    font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+    font-size:16px;padding:16px 20px;border-radius:10px;border:none;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);transition:transform .12s ease, background .15s ease;
+  }
+  .cta:active{transform:translateY(1px)}
+  .cta:hover{background:#d6c8ac}
+
+  /* ---------- STICKY NAV ---------- */
+  nav.bar{
+    position:sticky;top:0;z-index:50;background:var(--green-d);
+    box-shadow:0 2px 12px rgba(0,0,0,.18);
+  }
+  nav.bar ul{
+    display:flex;max-width:var(--maxw);margin-inline:auto;list-style:none;
+    overflow-x:auto;scrollbar-width:none;
+  }
+  nav.bar ul::-webkit-scrollbar{display:none}
+  nav.bar a{
+    display:block;white-space:nowrap;padding:0 16px;height:var(--nav-h);line-height:var(--nav-h);
+    font-family:'Oswald';font-weight:500;text-transform:uppercase;font-size:13px;letter-spacing:.06em;
+    color:rgba(255,255,255,.62);position:relative;transition:color .15s ease;
+  }
+  nav.bar a.active,nav.bar a:hover{color:#fff}
+  nav.bar a.active::after{
+    content:"";position:absolute;left:16px;right:16px;bottom:0;height:3px;background:var(--red);border-radius:3px 3px 0 0;
+  }
+
+  /* ---------- PROGRAMME ---------- */
+  .tabs{display:flex;gap:8px;background:var(--sand-l);padding:6px;border-radius:12px;margin:22px 0 8px}
+  .tabs button{
+    flex:1;border:none;cursor:pointer;background:transparent;border-radius:8px;
+    font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:14px;
+    color:var(--ink-soft);padding:11px 6px;transition:all .16s ease;
+  }
+  .tabs button .d{display:block;font-size:11px;font-weight:500;letter-spacing:.02em;color:inherit;opacity:.7;margin-top:1px}
+  .tabs button.active{background:var(--green);color:#fff;box-shadow:var(--shadow)}
+  .tabs button.active .d{opacity:.85}
+
+  .today-flag{
+    display:inline-flex;align-items:center;gap:7px;margin:14px 0 2px;
+    font-size:12.5px;color:var(--red);font-weight:600;font-family:'Barlow';
+  }
+  .today-flag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red)}
+
+  .timeline{position:relative;margin-top:14px;padding-left:6px}
+  .ev{
+    display:grid;grid-template-columns:60px 1fr;gap:14px;padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .ev:first-child{border-top:none}
+  .ev .time{
+    font-family:'Oswald';font-weight:600;font-size:17px;color:var(--green);
+    letter-spacing:.01em;padding-top:1px;
+  }
+  .ev .time small{display:block;font-size:11px;color:var(--ink-soft);font-weight:400;font-family:'Barlow'}
+  .ev .body h3{font-size:17px;font-weight:600;color:var(--ink);text-transform:none;font-family:'Barlow';line-height:1.25}
+  .ev .meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;
+    padding:4px 9px;border-radius:6px;font-family:'Barlow';white-space:nowrap;
+  }
+  .badge svg{flex:none}
+  .loc{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft)}
+  .loc svg{flex:none;color:var(--red)}
+
+  /* category colors */
+  .c-ceremonie{background:#e7ecdf;color:#3a5a2e}
+  .c-demo{background:#fae3e6;color:var(--red-d)}
+  .c-expo{background:#e9e3d4;color:#7a6536}
+  .c-enfants{background:#fdecd9;color:#a4631a}
+  .c-musique{background:#e2e7ee;color:#3a4f74}
+  .c-visite{background:#e0ece8;color:#2c6450}
+
+  /* ---------- PLAN ---------- */
+  .map-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);margin-top:20px}
+  .map-card svg{width:100%;height:auto;display:block;border-radius:10px}
+  .zone{cursor:pointer;transition:opacity .15s ease}
+  .zone rect, .zone circle{transition:filter .15s ease, stroke-width .15s ease}
+  .zone.dim{opacity:.32}
+  .znum{font-family:'Oswald';font-weight:700;fill:#fff;font-size:15px}
+  .zlbl{font-family:'Barlow';font-weight:600;fill:#1c211c;font-size:11px}
+  .map-road{stroke:#EFE9DD;stroke-width:13;fill:none;stroke-linecap:round}
+  .compass{font-family:'Oswald';font-weight:600;fill:#9aa394;font-size:11px}
+
+  .legend{list-style:none;display:grid;gap:2px;margin-top:16px}
+  .legend li{
+    display:grid;grid-template-columns:30px 1fr;align-items:center;gap:12px;
+    padding:11px 10px;border-radius:10px;cursor:pointer;transition:background .15s ease;
+  }
+  .legend li:hover,.legend li.hi{background:var(--sand-l)}
+  .legend .pin{
+    width:30px;height:30px;border-radius:8px;display:grid;place-items:center;
+    font-family:'Oswald';font-weight:700;color:#fff;font-size:15px;
+  }
+  .legend .lname{font-weight:600;font-size:14.5px;color:var(--ink)}
+  .legend .ldesc{font-size:12.5px;color:var(--ink-soft)}
+
+  /* ---------- RESTAURATION ---------- */
+  .food-grid{display:grid;gap:14px;margin-top:20px}
+  .food{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .food::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--green)}
+  .food .ftop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .food h3{font-family:'Oswald';font-weight:600;text-transform:none;font-size:19px;color:var(--green);line-height:1.1}
+  .food .ftype{font-size:13px;color:var(--ink-soft);margin-top:3px}
+  .food .zpill{
+    flex:none;display:inline-flex;align-items:center;gap:5px;background:var(--sand-l);
+    color:var(--green-d);font-family:'Oswald';font-weight:600;font-size:12px;padding:5px 9px;border-radius:20px;
+  }
+  .food .frow{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+  .food .chip{
+    display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);
+    background:var(--sand-bg);border:1px solid var(--line);padding:6px 10px;border-radius:8px;
+  }
+  .food .chip svg{flex:none;color:var(--green-l)}
+  .food .chip b{font-weight:600}
+
+  /* ---------- INFOS ---------- */
+  .info-grid{display:grid;gap:12px;margin-top:20px}
+  .info{
+    display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;
+    background:var(--white);border:1px solid var(--line);border-radius:12px;padding:15px;box-shadow:var(--shadow);
+  }
+  .info .ic{
+    width:42px;height:42px;border-radius:10px;background:var(--sand-l);color:var(--green);
+    display:grid;place-items:center;flex:none;
+  }
+  .info h3{font-family:'Oswald';font-weight:600;text-transform:uppercase;font-size:13.5px;letter-spacing:.04em;color:var(--ink-soft)}
+  .info p{font-size:15px;margin-top:3px;color:var(--ink)}
+  .info p b{font-weight:600;color:var(--green)}
+  .info .ban{color:var(--red-d)}
+  .hours-2{display:flex;gap:10px;margin-top:6px}
+  .hours-2 .h{flex:1;background:var(--sand-bg);border:1px solid var(--line);border-radius:9px;padding:9px 11px}
+  .hours-2 .h span{font-family:'Oswald';text-transform:uppercase;font-size:11px;letter-spacing:.08em;color:var(--ink-soft);display:block}
+  .hours-2 .h b{font-family:'Oswald';font-weight:600;font-size:18px;color:var(--green)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--green-d);color:#fff;padding:34px 20px 40px;margin-top:36px;position:relative;overflow:hidden}
+  footer::before{content:"";position:absolute;inset:0;background:url('images/ricm-07.png') center 25%/cover no-repeat;filter:saturate(.2) brightness(.18);z-index:0}
+  .foot-inner{max-width:var(--maxw);margin-inline:auto;text-align:center;position:relative;z-index:1}
+  .foot-mark{
+    width:60px;height:60px;border:2px solid var(--sand);border-radius:10px;margin:0 auto 14px;
+    display:grid;place-items:center;background:#fff;overflow:hidden;
+  }
+  footer .fname{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:16px}
+  footer .fsub{color:rgba(255,255,255,.6);font-size:13px;margin-top:4px}
+  footer .flink{
+    display:inline-flex;align-items:center;gap:7px;margin-top:18px;color:var(--sand);
+    font-family:'Oswald';font-weight:500;text-transform:uppercase;font-size:12.5px;letter-spacing:.08em;
+    border:1px solid rgba(200,184,154,.4);padding:9px 16px;border-radius:8px;transition:background .15s ease;
+  }
+  footer .flink:hover{background:rgba(200,184,154,.12)}
+  footer .fcredit{color:rgba(255,255,255,.4);font-size:11.5px;margin-top:22px;line-height:1.6}
+
+  /* back-to-top */
+  .totop{
+    position:fixed;right:16px;bottom:16px;z-index:40;width:46px;height:46px;border-radius:50%;
+    background:var(--green);color:#fff;border:none;display:grid;place-items:center;cursor:pointer;
+    box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transform:translateY(8px);transition:all .2s ease;
+  }
+  .totop.show{opacity:1;pointer-events:auto;transform:none}
+
+  /* ---------- PHOTO BANDS ---------- */
+  .photo-band{width:100%;height:140px;position:relative;overflow:hidden;flex-shrink:0}
+  .photo-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.45) brightness(.42)}
+  .photo-band .pb-ink{position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,53,32,.55) 0%,rgba(31,53,32,.20) 50%,rgba(31,53,32,.55) 100%)}
+
+  /* ---------- HERO WATERMARK ---------- */
+  .hero-watermark{position:absolute;right:-10px;bottom:-30px;z-index:1;opacity:.07;pointer-events:none;width:260px;filter:grayscale(1) brightness(3)}
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown-wrap{margin:28px 0 18px;text-align:center;}
+  .cd-label{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.6);margin-bottom:10px;}
+  .cd-blocks{display:inline-flex;align-items:center;gap:6px;}
+  .cd-block{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 10px;min-width:56px;text-align:center;}
+  .cd-block span{font-family:'Oswald',sans-serif;font-weight:700;font-size:28px;color:#fff;display:block;line-height:1;}
+  .cd-block small{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);font-family:'Barlow',sans-serif;font-weight:600;margin-top:3px;display:block;}
+  .cd-sep{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;color:rgba(255,255,255,.4);padding:0 2px;}
+  /* ---------- PROGRAMME actif ---------- */
+  .ev-current{background:rgba(45,74,45,.05);border-radius:10px;position:relative;}
+  .ev-current .time{color:var(--red)!important;}
+  .ev-current-badge{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 7px;border-radius:4px;}
+  .today-flag.info{color:var(--green-l);}
+  .today-flag.info::before{background:var(--green-l);}
+  /* ---------- MENU RESTAURATION ---------- */
+  .menu-block{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-top:20px;}
+  .menu-block-head{background:var(--green);padding:16px 20px;}
+  .menu-block-head h3{font-family:'Oswald';font-weight:700;font-size:19px;color:#fff;text-transform:none;}
+  .menu-block-head p{font-size:13px;color:rgba(255,255,255,.7);margin-top:3px;}
+  .menu-row{display:flex;justify-content:space-between;align-items:center;padding:13px 20px;border-bottom:1px solid var(--line);gap:16px;}
+  .menu-row:last-child{border-bottom:none;}
+  .menu-row.featured{background:rgba(45,74,45,.04);}
+  .menu-row .mr-name{font-size:15px;font-weight:600;color:var(--ink);}
+  .menu-row .mr-desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .menu-row .mr-price{font-family:'Oswald';font-weight:700;font-size:22px;color:var(--green);white-space:nowrap;}
+  /* ---------- BILLETTERIE ---------- */
+  .popotte-grid{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px;}
+  .popotte-pill{font-family:'Oswald';font-weight:700;font-size:17px;background:var(--green-d);color:#fff;padding:9px 16px;border-radius:8px;border:2px solid var(--green-l);}
+  .popotte-coming{font-size:12px;color:var(--ink-soft);margin-top:4px;font-style:italic;}
+  .billet-warn{background:#fae3e6;border:1px solid rgba(200,16,46,.18);border-radius:10px;padding:13px 15px;display:flex;align-items:flex-start;gap:10px;margin-top:4px;}
+  .billet-warn svg{flex:none;color:var(--red);margin-top:1px;}
+  .billet-warn p{font-size:14px;color:var(--red-d);font-weight:600;line-height:1.4;}
+
+  @media (min-width:600px){
+    .sec{padding-left:28px;padding-right:28px}
+    .hero-inner{padding-left:28px;padding-right:28px}
+  }
+
+  /* ---------- MAP PHOTO + OVERLAY ---------- */
+  .map-photo-container{
+    border-radius:16px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:var(--shadow);margin-top:20px;background:var(--white);
+  }
+  .map-scroll-wrap{
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:var(--sand) transparent;
+  }
+  .map-inner{position:relative;min-width:620px}
+  .map-real-photo{
+    width:100%;height:auto;display:block;
+    filter:sepia(8%) saturate(82%) contrast(1.06) brightness(.96);
+  }
+  .map-overlay{position:absolute;top:0;left:0;width:100%;height:100%}
+  .a-marker{cursor:pointer;outline:none}
+  .a-marker .m-bg{transition:opacity .14s ease,filter .14s ease}
+  .a-marker:hover .m-bg,.a-marker:focus .m-bg{
+    opacity:1!important;
+    filter:drop-shadow(0 2px 10px rgba(0,0,0,.55));
+  }
+  .map-legend-bar{
+    display:flex;flex-wrap:wrap;gap:12px 20px;padding:11px 14px;
+    background:var(--green-d);align-items:center;
+  }
+  .mlb-item{
+    display:flex;align-items:center;gap:7px;
+    font-size:12px;color:rgba(255,255,255,.82);font-weight:500;
+  }
+  .mlb-dot{width:12px;height:12px;border-radius:3px;flex:none}
+
+  /* ---------- ATELIERS ---------- */
+  .atelier-filter-bar{
+    display:flex;gap:6px;flex-wrap:wrap;margin:24px 0 14px;overflow-x:auto;
+    scrollbar-width:none;padding-bottom:2px;
+  }
+  .atelier-filter-bar::-webkit-scrollbar{display:none}
+  .af-btn{
+    flex:none;border:1.5px solid var(--line);background:var(--white);
+    border-radius:20px;font-family:'Barlow',sans-serif;font-size:13px;
+    font-weight:600;color:var(--ink-soft);padding:7px 14px;cursor:pointer;
+    transition:all .14s ease;white-space:nowrap;
+  }
+  .af-btn.active,.af-btn:hover{background:var(--green);border-color:var(--green);color:#fff}
+  .af-btn[data-cat="demo"].active{background:var(--red);border-color:var(--red)}
+  .af-btn[data-cat="kids"].active{background:#C9842A;border-color:#C9842A}
+
+  .atelier-grid{display:grid;gap:9px}
+  .a-card{
+    background:var(--white);border:1px solid var(--line);border-radius:12px;
+    padding:13px 15px;display:grid;grid-template-columns:44px 1fr 20px;
+    align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow);
+    transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .a-card:active{transform:scale(.98)}
+  .a-card:hover{box-shadow:var(--shadow-lg)}
+  .a-card.hidden{display:none}
+  .anum{
+    width:44px;height:44px;border-radius:10px;display:grid;place-items:center;
+    font-family:'Oswald';font-weight:700;font-size:17px;color:#fff;flex:none;
+  }
+  .a-card .aname{font-weight:600;font-size:15px;color:var(--ink);line-height:1.3}
+  .a-card .acat-label{font-size:12px;color:var(--ink-soft);margin-top:2px}
+  .a-card .tbc-pill{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;
+    background:#fdecd9;color:#a4631a;border-radius:4px;padding:1px 5px;margin-left:5px;
+  }
+  .a-card .featured-star{color:var(--red);font-size:14px;line-height:1}
+
+  /* Modal */
+  .atelier-overlay{
+    position:fixed;inset:0;background:rgba(28,33,28,.62);z-index:100;
+    display:grid;place-items:end center;backdrop-filter:blur(4px);
+  }
+  .atelier-overlay[hidden]{display:none}
+  .atelier-modal{
+    background:var(--white);border-radius:22px 22px 0 0;padding:28px 20px 44px;
+    width:100%;max-width:var(--maxw);max-height:82vh;overflow-y:auto;
+    position:relative;animation:slideUp .22s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+  .modal-close{
+    position:absolute;top:16px;right:16px;background:var(--sand-l);border:none;
+    width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+    cursor:pointer;color:var(--ink);
+  }
+  .modal-num{
+    width:58px;height:58px;border-radius:14px;display:grid;place-items:center;
+    font-family:'Oswald';font-weight:700;font-size:26px;color:#fff;margin-bottom:14px;
+  }
+  .modal-title{
+    font-family:'Oswald';font-weight:700;font-size:23px;color:var(--ink);
+    text-transform:none;line-height:1.2;margin-bottom:10px;
+  }
+  .modal-badge{
+    display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
+    border-radius:8px;font-size:13px;font-weight:600;margin-bottom:18px;
+  }
+  .modal-info-box{
+    background:var(--sand-bg);border:1px solid var(--line);border-radius:12px;
+    padding:16px;font-size:14.5px;color:var(--ink-soft);line-height:1.7;
+    margin-top:6px;
+  }
+  .modal-info-box p{margin-bottom:8px}
+  .modal-info-box p:last-child{margin-bottom:0}
+  .modal-info-box b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ============ INSIGNE HEADER ============ -->
+<div class="insigne-header">
+  <img src="images/insigne-ricm.png" class="insigne-main" alt="Insigne RICM" />
+  <div class="insigne-name">RICM</div>
+  <div class="insigne-regiment">Régiment d'Infanterie-Chars de Marine</div>
+  <div class="insigne-troupes">Troupes de Marine</div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <img src="images/insigne-ricm.png" class="hero-watermark" alt="" aria-hidden="true" />
+  <div class="hero-inner">
+    <div class="countdown-wrap" id="countdownWrap">
+      <div class="cd-label">Ouverture dans</div>
+      <div class="cd-blocks">
+        <div class="cd-block"><span id="cdJ">--</span><small>jours</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><span id="cdH">--</span><small>heures</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><span id="cdM">--</span><small>min</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block"><span id="cdS">--</span><small>sec</small></div>
+      </div>
+    </div>
+    <h1>Portes Ouvertes<br /><span class="l2">RICM</span></h1>
+    <div class="date">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+      13 &amp; 14 juin 2026
+    </div>
+    <div class="place">Régiment d'Infanterie-Chars de Marine — Poitiers</div>
+
+    <button class="cta" id="ctaProg">
+      Voir le programme du jour
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ STICKY NAV ============ -->
+<nav class="bar" id="nav">
+  <ul class="wrap">
+    <li><a href="#programme">Programme</a></li>
+    <li><a href="#plan">Plan du site</a></li>
+    <li><a href="#restauration">Restauration</a></li>
+    <li><a href="#billetterie">Billetterie</a></li>
+    <li><a href="#infos">Infos pratiques</a></li>
+  </ul>
+</nav>
+
+<!-- ============ PROGRAMME ============ -->
+<section id="programme" class="sec sec-pad wrap">
+  <span class="eyebrow">Le programme</span>
+  <h2>Deux jours d'animations</h2>
+  <p class="sec-intro">Démonstrations, expositions de matériel, espace familles et cérémonies. Choisissez votre journée.</p>
+
+  <div class="tabs" id="dayTabs">
+    <button data-day="sam" class="active">Samedi<span class="d">13 juin</span></button>
+    <button data-day="dim">Dimanche<span class="d">14 juin</span></button>
+  </div>
+
+  <div id="todayFlag" class="today-flag info">Le RICM vous attend, venez découvrir le programme</div>
+
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<div class="photo-band" aria-hidden="true">
+  <img src="images/ricm-05.png" alt="" style="object-position:center 55%" />
+  <div class="pb-ink"></div>
+</div>
+
+<!-- ============ PLAN DU SITE ============ -->
+<section id="plan" class="sec sec-pad wrap">
+  <span class="eyebrow">S'orienter</span>
+  <h2>Plan du site</h2>
+  <p class="sec-intro">Carte officielle des ateliers. Filtrez par public puis touchez un atelier pour voir ses détails.</p>
+
+  <div class="map-photo-container">
+    <div class="map-scroll-wrap">
+      <div class="map-inner">
+        <img src="images/map.png" class="map-real-photo" alt="Plan des ateliers — JPO RICM 2026" />
+        <svg class="map-overlay" viewBox="0 0 1642 914" xmlns="http://www.w3.org/2000/svg">
+          <!-- Rouge=Démo | Vert=Tout public | Orange=Enfants&Ados -->
+          <!-- Cluster Nord -->
+          <g class="a-marker" data-n="31" tabindex="0" role="button"><circle class="m-bg" cx="575" cy="202" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="575" y="210" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">31</text></g>
+          <g class="a-marker" data-n="32" tabindex="0" role="button"><circle class="m-bg" cx="608" cy="218" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="608" y="226" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">32</text></g>
+          <g class="a-marker" data-n="33" tabindex="0" role="button"><circle class="m-bg" cx="638" cy="200" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="638" y="208" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">33</text></g>
+          <g class="a-marker" data-n="34" tabindex="0" role="button"><circle class="m-bg" cx="664" cy="218" r="22" fill="#C9842A" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="664" y="226" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">34</text></g>
+          <g class="a-marker" data-n="35" tabindex="0" role="button"><circle class="m-bg" cx="682" cy="248" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="682" y="256" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">35</text></g>
+          <g class="a-marker" data-n="36" tabindex="0" role="button"><circle class="m-bg" cx="642" cy="258" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="642" y="266" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">36</text></g>
+          <g class="a-marker" data-n="38" tabindex="0" role="button"><circle class="m-bg" cx="574" cy="280" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="574" y="288" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">38</text></g>
+          <g class="a-marker" data-n="21" tabindex="0" role="button"><circle class="m-bg" cx="820" cy="212" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="820" y="220" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">21</text></g>
+          <g class="a-marker" data-n="22" tabindex="0" role="button"><circle class="m-bg" cx="792" cy="194" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="792" y="202" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">22</text></g>
+          <g class="a-marker" data-n="00" tabindex="0" role="button"><circle class="m-bg" cx="764" cy="298" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="764" y="306" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">00</text></g>
+          <g class="a-marker" data-n="01" tabindex="0" role="button"><circle class="m-bg" cx="736" cy="322" r="22" fill="#2D4A2D" opacity=".65" stroke="#fff" stroke-width="2"/><text x="736" y="330" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">01</text></g>
+          <g class="a-marker" data-n="02" tabindex="0" role="button"><circle class="m-bg" cx="706" cy="302" r="22" fill="#2D4A2D" opacity=".65" stroke="#fff" stroke-width="2"/><text x="706" y="310" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">02</text></g>
+          <!-- Zone 37 — ovale démo -->
+          <g class="a-marker" data-n="37" tabindex="0" role="button"><circle class="m-bg" cx="208" cy="348" r="28" fill="#C8102E" opacity=".9" stroke="#fff" stroke-width="3"/><text x="208" y="358" font-family="Oswald,sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">37</text></g>
+          <!-- Cluster Centre / ETRAC -->
+          <g class="a-marker" data-n="42" tabindex="0" role="button"><circle class="m-bg" cx="462" cy="514" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="462" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">42</text></g>
+          <g class="a-marker" data-n="43" tabindex="0" role="button"><circle class="m-bg" cx="488" cy="498" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="488" y="506" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">43</text></g>
+          <g class="a-marker" data-n="44" tabindex="0" role="button"><circle class="m-bg" cx="516" cy="514" r="22" fill="#C8102E" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="516" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">44</text></g>
+          <g class="a-marker" data-n="45" tabindex="0" role="button"><circle class="m-bg" cx="476" cy="542" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="476" y="550" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">45</text></g>
+          <g class="a-marker" data-n="46" tabindex="0" role="button"><circle class="m-bg" cx="543" cy="498" r="22" fill="#C9842A" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="543" y="506" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">46</text></g>
+          <g class="a-marker" data-n="47" tabindex="0" role="button"><circle class="m-bg" cx="570" cy="514" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="570" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">47</text></g>
+          <g class="a-marker" data-n="48" tabindex="0" role="button"><circle class="m-bg" cx="598" cy="498" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="598" y="506" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">48</text></g>
+          <g class="a-marker" data-n="49" tabindex="0" role="button"><circle class="m-bg" cx="625" cy="514" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="625" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">49</text></g>
+          <g class="a-marker" data-n="71" tabindex="0" role="button"><circle class="m-bg" cx="595" cy="553" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="595" y="561" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">71</text></g>
+          <g class="a-marker" data-n="72" tabindex="0" role="button"><circle class="m-bg" cx="625" cy="553" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="625" y="561" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">72</text></g>
+          <!-- Zone 41 — ovale enfants -->
+          <g class="a-marker" data-n="41" tabindex="0" role="button"><circle class="m-bg" cx="192" cy="612" r="28" fill="#C9842A" opacity=".9" stroke="#fff" stroke-width="3"/><text x="192" y="622" font-family="Oswald,sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">41</text></g>
+          <!-- Cluster ECL / GSC 2 -->
+          <g class="a-marker" data-n="51" tabindex="0" role="button"><circle class="m-bg" cx="848" cy="566" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="848" y="574" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">51</text></g>
+          <g class="a-marker" data-n="52" tabindex="0" role="button"><circle class="m-bg" cx="876" cy="548" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="876" y="556" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">52</text></g>
+          <g class="a-marker" data-n="53" tabindex="0" role="button"><circle class="m-bg" cx="906" cy="566" r="22" fill="#C8102E" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="906" y="574" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">53</text></g>
+          <g class="a-marker" data-n="54" tabindex="0" role="button"><circle class="m-bg" cx="858" cy="595" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="858" y="603" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">54</text></g>
+          <g class="a-marker" data-n="55" tabindex="0" role="button"><circle class="m-bg" cx="882" cy="616" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="882" y="624" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">55</text></g>
+          <g class="a-marker" data-n="56" tabindex="0" role="button"><circle class="m-bg" cx="910" cy="638" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="910" y="646" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">56</text></g>
+          <g class="a-marker" data-n="57" tabindex="0" role="button"><circle class="m-bg" cx="848" cy="638" r="22" fill="#C9842A" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="848" y="646" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">57</text></g>
+        </svg>
+      </div>
+    </div>
+    <div class="map-legend-bar">
+      <div class="mlb-item"><div class="mlb-dot" style="background:#C8102E"></div>Démonstrations</div>
+      <div class="mlb-item"><div class="mlb-dot" style="background:#2D4A2D"></div>Tout public</div>
+      <div class="mlb-item"><div class="mlb-dot" style="background:#C9842A"></div>Enfants &amp; Ados</div>
+      <div class="mlb-item" style="margin-left:auto;opacity:.6;font-size:11px">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+        Glissez pour explorer
+      </div>
+    </div>
+  </div>  </div>
+
+  <div class="atelier-filter-bar" id="filterBar">
+    <button class="af-btn active" data-cat="all">Tous</button>
+    <button class="af-btn" data-cat="demo">Démonstrations</button>
+    <button class="af-btn" data-cat="public">Tout public</button>
+    <button class="af-btn" data-cat="kids">Enfants &amp; Ados</button>
+  </div>
+  <div class="atelier-grid" id="atelierGrid"></div>
+</section>
+
+<!-- ============ MODAL ATELIER ============ -->
+<div class="atelier-overlay" id="atelierOverlay" hidden>
+  <div class="atelier-modal">
+    <button class="modal-close" id="modalClose" aria-label="Fermer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div class="photo-band" aria-hidden="true">
+  <img src="images/ricm-04.png" alt="" style="object-position:center 42%" />
+  <div class="pb-ink"></div>
+</div>
+
+<!-- ============ RESTAURATION ============ -->
+<section id="restauration" class="sec sec-pad wrap">
+  <span class="eyebrow">Pause gourmande</span>
+  <h2>Se restaurer sur place</h2>
+  <p class="sec-intro">La cantine du régiment propose un menu complet et des options à la carte. Paiement en billets de popotte, CB ou espèces.</p>
+  <div class="menu-block">
+    <div class="menu-block-head">
+      <h3>Menu de la Cantine</h3>
+      <p>Zone 6 — village restauration</p>
+    </div>
+    <div class="menu-row featured">
+      <div>
+        <div class="mr-name">Menu complet</div>
+        <div class="mr-desc">Sandwich poulet pané + frite + boisson + glace</div>
+      </div>
+      <div class="mr-price">7 €</div>
+    </div>
+    <div class="menu-row">
+      <div>
+        <div class="mr-name">Sandwich seul</div>
+        <div class="mr-desc">Poulet pané</div>
+      </div>
+      <div class="mr-price">4 €</div>
+    </div>
+    <div class="menu-row">
+      <div class="mr-name">Barquette de frites</div>
+      <div class="mr-price">2 €</div>
+    </div>
+    <div class="menu-row">
+      <div class="mr-name">Dessert</div>
+      <div class="mr-price">1 €</div>
+    </div>
+    <div class="menu-row">
+      <div class="mr-name">Sodas &amp; boissons</div>
+      <div class="mr-price">1 €</div>
+    </div>
+    <div class="menu-row">
+      <div class="mr-name">Bière</div>
+      <div class="mr-price">2 €</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BILLETTERIE ============ -->
+<section id="billetterie" class="sec sec-pad wrap">
+  <span class="eyebrow">Paiement</span>
+  <h2>Billetterie</h2>
+  <p class="sec-intro">La restauration fonctionne avec des billets de popotte. Trois banques sont présentes sur le site pour en acheter.</p>
+
+  <div class="info-grid">
+    <div class="info">
+      <div class="ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 14h4M14 14h1"/></svg>
+      </div>
+      <div>
+        <h3>Banques sur site</h3>
+        <p><b>3 banques</b> sont présentes sur le site pour l'achat de billets de popotte. CB et liquide acceptés aux caisses.</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="12" rx="1.5"/><path d="M4 10h16"/><circle cx="8" cy="14" r="1"/></svg>
+      </div>
+      <div>
+        <h3>Billets de popotte</h3>
+        <p>Valeurs disponibles :</p>
+        <div class="popotte-grid">
+          <div class="popotte-pill">5 €</div>
+          <div class="popotte-pill">10 €</div>
+          <div class="popotte-pill">15 €</div>
+          <div class="popotte-pill">20 €</div>
+        </div>
+        <p class="popotte-coming">Visuels des billets à venir</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z"/><path d="M16 3H8l-2 4h12l-2-4Z"/></svg>
+      </div>
+      <div>
+        <h3>Moyens de paiement acceptés</h3>
+        <p><b>Carte bancaire</b> et <b>espèces</b> sont acceptées aux caisses pour l'achat de billets de popotte.</p>
+      </div>
+    </div>
+
+    <div class="billet-warn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <p>Les carnets de billets ne sont pas remboursables. Pensez à utiliser tous vos billets avant la fermeture du site.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFOS PRATIQUES ============ -->
+<section id="infos" class="sec sec-pad wrap">
+  <span class="eyebrow">Bon à savoir</span>
+  <h2>Infos pratiques</h2>
+
+  <div class="info-grid">
+    <div class="info">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <div>
+        <h3>Horaires d'ouverture</h3>
+        <div class="hours-2">
+          <div class="h"><span>Samedi 13</span><b>10h – 18h</b></div>
+          <div class="h"><span>Dimanche 14</span><b>10h – 17h</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+      <div>
+        <h3>Adresse</h3>
+        <p><b>Quartier Aboville</b><br />Régiment d'Infanterie-Chars de Marine, Poitiers</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="14" rx="2"/><path d="M4 11h16M8 21h8M9 17v4M15 17v4"/></svg></div>
+      <div>
+        <h3>Accès & transports</h3>
+        <p>Bus réseau Vitalis — arrêt à proximité du quartier. En voiture, suivre le fléchage « Portes Ouvertes RICM ».</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13h2a2 2 0 0 1 2 2v2H5z"/><path d="M5 13l2-5a2 2 0 0 1 1.9-1.4H17a2 2 0 0 1 1.9 1.4L21 13v4h-2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></svg></div>
+      <div>
+        <h3>Parking</h3>
+        <p>Parking visiteurs <b>gratuit</b> à l'extérieur du quartier (zone P). Stationnement fléché dès les axes d'arrivée.</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="2.4"/><path d="M5 21l3-9h8l3 9M9.5 12l-2 4M14.5 12l2 4"/></svg></div>
+      <div>
+        <h3>Accès PMR</h3>
+        <p><b>Site accessible</b> aux personnes à mobilité réduite. Cheminements adaptés et accompagnement possible au point info.</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
+      <div>
+        <h3>Objets interdits</h3>
+        <p class="ban">Armes, drones, glacières volumineuses et animaux (sauf chiens d'assistance). Contrôle visuel possible à l'entrée.</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a7 7 0 0 0-7 7c0 1.5.5 2.7 1.4 4L12 21l5.6-7c.9-1.3 1.4-2.5 1.4-4a7 7 0 0 0-7-7Z"/><circle cx="12" cy="10" r="2.2"/></svg></div>
+      <div>
+        <h3>Contact sur place</h3>
+        <p><b>Point information</b> à l'entrée principale (zone 1). Personnel à votre disposition tout au long de la visite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mark"><img src="images/insigne-ricm.png" alt="Insigne RICM" style="width:52px;height:52px;object-fit:contain" /></div>
+    <div class="fname">Régiment d'Infanterie-Chars de Marine</div>
+    <div class="fsub">Poitiers — Troupes de Marine</div>
+    <a class="flink" href="https://www.sengager.fr/decouvrir-l-armee-de-terre" target="_blank" rel="noopener">
+      Armée de Terre
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+    <div class="fcredit">Journées Portes Ouvertes — 13 &amp; 14 juin 2026<br />Entrée libre et gratuite</div>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" aria-label="Haut de page">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script>
+/* =====================================================================
+   DONNÉES ÉDITABLES — modifiez librement le contenu ci-dessous.
+   ===================================================================== */
+
+/* ---- Icônes de catégorie (formes simples) ---- */
+const ICON = {
+  ceremonie:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 22V3M6 4h11l-2.5 3.5L17 11H6"/></svg>',
+  demo:'<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.3 6.9.5-5.3 4.4 1.7 6.6L12 16.8 6.1 20.3l1.7-6.6L2.5 8.8l6.9-.5z"/></svg>',
+  expo:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>',
+  enfants:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/><path d="M8.5 15a4 4 0 0 0 7 0"/></svg>',
+  musique:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
+  visite:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
+};
+const PIN = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>';
+const CATLABEL = {ceremonie:'Cérémonie',demo:'Démonstration',expo:'Exposition',enfants:'Espace enfants',musique:'Musique',visite:'Visite'};
+
+/* ---- PROGRAMME : SAMEDI 13 JUIN ---- */
+const PROG_SAM = [
+  {h:'10:00', t:"Ouverture des portes & cérémonie des couleurs", cat:'ceremonie', zone:2},
+  {h:'10:30', t:"Démonstration de combat débarqué", cat:'demo', zone:4},
+  {h:'11:00', t:"Exposition de véhicules blindés (Jaguar, VBCI)", cat:'expo', zone:3},
+  {h:'11:30', t:"Mini-parcours du combattant pour les enfants", cat:'enfants', zone:5},
+  {h:'12:00', t:"Visite guidée des stands & traditions du régiment", cat:'visite', zone:7},
+  {h:'14:00', t:"Démonstration cynotechnique (équipes maître-chien)", cat:'demo', zone:4},
+  {h:'15:00', t:"Présentation des matériels & simulateur de tir", cat:'expo', zone:3},
+  {h:'16:00', t:"Concert de la Musique des Troupes de Marine", cat:'musique', zone:2},
+  {h:'17:30', t:"Démonstration finale interarmes", cat:'demo', zone:4},
+  {h:'18:00', t:"Fermeture des portes", cat:'ceremonie', zone:1}
+];
+
+/* ---- PROGRAMME : DIMANCHE 14 JUIN ---- */
+const PROG_DIM = [
+  {h:'10:00', t:"Ouverture des portes", cat:'ceremonie', zone:1},
+  {h:'10:30', t:"Atelier découverte pour les familles", cat:'enfants', zone:5},
+  {h:'11:00', t:"Démonstration de franchissement & génie", cat:'demo', zone:4},
+  {h:'11:30', t:"Exposition matériels & véhicules de reconnaissance", cat:'expo', zone:3},
+  {h:'12:30', t:"Visite guidée — histoire et traditions du RICM", cat:'visite', zone:7},
+  {h:'14:00', t:"Démonstration de combat & appui feu", cat:'demo', zone:4},
+  {h:'15:00', t:"Aubade de la Musique des Troupes de Marine", cat:'musique', zone:2},
+  {h:'16:00', t:"Cérémonie de clôture & remise des prix", cat:'ceremonie', zone:2},
+  {h:'17:00', t:"Fermeture des portes", cat:'ceremonie', zone:1}
+];
+
+/* ---- ZONES DU PLAN (légende) ---- */
+const ZONES = [
+  {n:1, c:'#C8102E', name:"Entrée principale", desc:"Accueil, billetterie, point information"},
+  {n:2, c:'#2D4A2D', name:"Place d'armes", desc:"Cérémonies, concerts et grands rassemblements"},
+  {n:3, c:'#8A7338', name:"Esplanade matériel", desc:"Exposition de véhicules et matériels"},
+  {n:4, c:'#C8102E', name:"Zone de démonstration", desc:"Démonstrations dynamiques (combat, cyno…)"},
+  {n:5, c:'#C9842A', name:"Espace familles", desc:"Animations et ateliers pour les enfants"},
+  {n:6, c:'#3E6340', name:"Village restauration", desc:"Stands, food-trucks et buvette"},
+  {n:7, c:'#5C7A4E', name:"Stands & expositions", desc:"Traditions, recrutement, partenaires"},
+  {n:'P', c:'#B7AE99', name:"Parking visiteurs", desc:"Stationnement gratuit à l'extérieur", z:8}
+];
+
+
+/* =====================================================================
+   RENDU & INTERACTIONS
+   ===================================================================== */
+function evHTML(e){
+  return `<div class="ev">
+    <div class="time">${e.h.replace(':','h')}</div>
+    <div class="body">
+      <h3>${e.t}</h3>
+      <div class="meta">
+        <span class="badge c-${e.cat}">${ICON[e.cat]} ${CATLABEL[e.cat]}</span>
+        <span class="loc">${PIN} Zone ${e.zone}</span>
+      </div>
+    </div>
+  </div>`;
+}
+const timeline = document.getElementById('timeline');
+function renderDay(day){
+  const data = day==='dim' ? PROG_DIM : PROG_SAM;
+  timeline.innerHTML = data.map(evHTML).join('');
+  document.querySelectorAll('#dayTabs button').forEach(b=>b.classList.toggle('active', b.dataset.day===day));
+}
+
+/* day tabs */
+document.querySelectorAll('#dayTabs button').forEach(b=>{
+  b.addEventListener('click',()=>renderDay(b.dataset.day));
+});
+
+/* highlight de l'activité en cours dans le programme */
+function highlightCurrentEvent(prog){
+  const now = new Date();
+  const nowMin = now.getHours()*60+now.getMinutes();
+  const evEls = document.querySelectorAll('#timeline .ev');
+  evEls.forEach((el,i)=>{
+    const [h,m]=prog[i].h.split(':').map(Number);
+    const start=h*60+m;
+    const next=i<prog.length-1?(()=>{const[nh,nm]=prog[i+1].h.split(':').map(Number);return nh*60+nm;})():24*60;
+    if(nowMin>=start && nowMin<next){
+      el.classList.add('ev-current');
+      const badge=document.createElement('div');
+      badge.className='ev-current-badge';
+      badge.textContent='En cours';
+      el.appendChild(badge);
+    }
+  });
+}
+
+/* auto-détection du jour (13/14 juin 2026) */
+(function(){
+  const now = new Date();
+  const flag = document.getElementById('todayFlag');
+  const isJune2026 = now.getFullYear()===2026 && now.getMonth()===5;
+  const d = now.getDate();
+  let day = 'sam';
+  if(isJune2026 && d===14) day='dim';
+  renderDay(day);
+  if(isJune2026 && d===13){
+    flag.className='today-flag';
+    flag.textContent='Programme du samedi 13 juin :';
+    highlightCurrentEvent(PROG_SAM);
+  } else if(isJune2026 && d===14){
+    flag.className='today-flag';
+    flag.textContent='Programme du dimanche 14 juin :';
+    highlightCurrentEvent(PROG_DIM);
+  } else {
+    flag.className='today-flag info';
+    flag.textContent='Le RICM vous attend, venez découvrir le programme';
+  }
+})();
+
+/* countdown */
+(function(){
+  const target=new Date('2026-06-13T10:00:00');
+  function update(){
+    const diff=target-new Date();
+    if(diff<=0){
+      const wrap=document.getElementById('countdownWrap');
+      if(wrap) wrap.style.display='none';
+      return;
+    }
+    const j=Math.floor(diff/86400000);
+    const h=Math.floor((diff%86400000)/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    document.getElementById('cdJ').textContent=String(j).padStart(2,'0');
+    document.getElementById('cdH').textContent=String(h).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(m).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+  }
+  update();
+  setInterval(update,1000);
+})();
+
+/* =====================================================================
+   ATELIERS — données et interactivité
+   ===================================================================== */
+const ATELIERS = [
+  {n:'21', name:'Parcours drone',                        cat:'public', featured:false},
+  {n:'22', name:'Atelier photo / vidéos',                cat:'public', featured:true},
+  {n:'31', name:'Tir air soft',                          cat:'public', featured:false},
+  {n:'32', name:'Présentation petits matériels',         cat:'public', featured:false},
+  {n:'33', name:'Parcours OB / évasion',                 cat:'public', featured:true},
+  {n:'34', name:'Parcours Cdo enfant',                   cat:'kids',   featured:false},
+  {n:'35', name:'Atelier DRI',                           cat:'public', featured:false},
+  {n:'36', name:'Parcours évasion',                      cat:'public', featured:false},
+  {n:'37', name:'Démonstration RRI / BLD',               cat:'demo',   featured:false},
+  {n:'38', name:'Présentations Vhls récents',            cat:'public', featured:false},
+  {n:'41', name:'Parcours VBL',                          cat:'kids',   featured:false},
+  {n:'42', name:'Atelier camouflage',                    cat:'public', featured:false},
+  {n:'43', name:'Parcours C4',                           cat:'public', featured:false},
+  {n:'44', name:'Démonstration C4',                      cat:'demo',   featured:false},
+  {n:'45', name:'Atelier SC1',                           cat:'public', featured:false},
+  {n:'46', name:'Parcours Cdo 2 (adolescents)',          cat:'kids',   featured:false},
+  {n:'47', name:'Tir à la grenade factice',              cat:'public', featured:false},
+  {n:'48', name:'Atelier vision nocturne',               cat:'public', featured:true},
+  {n:'49', name:'Parcours PLO',                          cat:'public', featured:false},
+  {n:'71', name:'Atelier pistolet laser',                cat:'public', featured:false},
+  {n:'72', name:'Course d\'orientation',                 cat:'public', featured:false},
+  {n:'51', name:'Challenge VBS',                         cat:'public', featured:true},
+  {n:'52', name:'Présentation CO / PC',                  cat:'public', featured:false},
+  {n:'53', name:'Démonstration Cdo + Cyno',              cat:'demo',   featured:false},
+  {n:'54', name:'Démonstrations AKA + Danse tahitienne', cat:'public', featured:false},
+  {n:'55', name:'Présentations dépannage',               cat:'public', featured:false},
+  {n:'56', name:'Atelier salle d\'honneur',              cat:'public', featured:true},
+  {n:'57', name:'Structures gonflables',                 cat:'kids',   featured:true},
+  {n:'00', name:'Présentation Vhls anciens',             cat:'public', featured:false},
+  {n:'01', name:'Cage à drone',                          cat:'public', featured:false, tbc:true},
+  {n:'02', name:'Parcours détermination',                cat:'public', featured:false, tbc:true},
+];
+
+const CAT_META = {
+  demo:   {label:'Démonstration',  color:'#C8102E', bg:'#fae3e6', fg:'#a50b24'},
+  public: {label:'Tout public',    color:'#2D4A2D', bg:'#e7ecdf', fg:'#2D4A2D'},
+  kids:   {label:'Enfants & Ados', color:'#C9842A', bg:'#fdecd9', fg:'#a4631a'},
+};
+
+function renderAteliers(filterCat){
+  const grid = document.getElementById('atelierGrid');
+  grid.innerHTML = ATELIERS.map((a,i)=>{
+    const m = CAT_META[a.cat];
+    const hide = filterCat !== 'all' && a.cat !== filterCat ? ' hidden' : '';
+    return `<div class="a-card${hide}" data-idx="${i}" role="button" tabindex="0">
+      <div class="anum" style="background:${m.color}">${a.n}</div>
+      <div>
+        <div class="aname">${a.name}${a.tbc ? '<span class="tbc-pill">TBC</span>' : ''}</div>
+        <div class="acat-label">${m.label}</div>
+      </div>
+      ${a.featured ? '<div class="featured-star">★</div>' : '<div></div>'}
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.a-card').forEach(el=>{
+    el.addEventListener('click',()=>openModal(+el.dataset.idx));
+    el.addEventListener('keydown',e=>{if(e.key==='Enter')openModal(+el.dataset.idx)});
+  });
+}
+
+function openModal(idx){
+  const a = ATELIERS[idx];
+  const m = CAT_META[a.cat];
+  const overlay = document.getElementById('atelierOverlay');
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-num" style="background:${m.color}">${a.n}</div>
+    <div class="modal-title">${a.name}${a.tbc ? ' <span class="tbc-pill" style="font-size:13px">TBC</span>' : ''}</div>
+    <span class="modal-badge" style="background:${m.bg};color:${m.fg}">${m.label}</span>
+    ${a.featured ? '<div style="color:var(--red);font-size:13px;font-weight:600;margin-bottom:14px">★ Atelier incontournable</div>' : ''}
+    <div class="modal-info-box">
+      <p><b>Numéro d'atelier :</b> ${a.n}</p>
+      <p><b>Catégorie :</b> ${m.label}</p>
+      <p>Repérez le numéro <strong>${a.n}</strong> sur la carte ci-dessus pour localiser cet atelier sur le site.</p>
+    </div>`;
+  overlay.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('atelierOverlay').hidden = true;
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('atelierOverlay').addEventListener('click', e=>{
+  if(e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e=>{if(e.key==='Escape') closeModal()});
+
+/* Filtres */
+document.getElementById('filterBar').addEventListener('click', e=>{
+  const btn = e.target.closest('.af-btn');
+  if(!btn) return;
+  document.querySelectorAll('.af-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAteliers(btn.dataset.cat);
+});
+
+renderAteliers('all');
+
+/* Clic sur les marqueurs SVG de la carte */
+document.querySelectorAll('.a-marker').forEach(el=>{
+  const open = ()=>{
+    const idx = ATELIERS.findIndex(a=>a.n===el.dataset.n);
+    if(idx!==-1) openModal(idx);
+  };
+  el.addEventListener('click', open);
+  el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') open(); });
+});
+
+
+/* CTA -> programme */
+document.getElementById('ctaProg').addEventListener('click',()=>{
+  document.getElementById('programme').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* nav actif (scroll spy) */
+const navLinks = [...document.querySelectorAll('#nav a')];
+const secs = navLinks.map(a=>document.querySelector(a.getAttribute('href')));
+const spy = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const id = '#'+en.target.id;
+      navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px', threshold:0});
+secs.forEach(s=>s&&spy.observe(s));
+
+/* back to top */
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll',()=>{
+  toTop.classList.toggle('show', window.scrollY>600);
+},{passive:true});
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
