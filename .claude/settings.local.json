@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(curl -s \"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true&include_24hr_high=true&include_24hr_low=true\")",
+      "Bash(claude --version)",
+      "Bash(crontab -l)",
+      "Bash(launchctl load *)",
+      "Bash(launchctl start *)",
+      "Bash(mkdir -p /Users/hanser/.bibi)",
+      "Bash(cp /Users/hanser/Desktop/jarvis-starter-kit/scripts/veille_financiere.sh /Users/hanser/.bibi/veille_financiere.sh)",
+      "Bash(chmod +x /Users/hanser/.bibi/veille_financiere.sh)",
+      "Bash(launchctl unload *)"
+    ]
+  }
+}
