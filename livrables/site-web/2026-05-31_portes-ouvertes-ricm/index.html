@@ -178,8 +178,6 @@
     padding:4px 9px;border-radius:6px;font-family:'Barlow';white-space:nowrap;
   }
   .badge svg{flex:none}
-  .loc{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-soft)}
-  .loc svg{flex:none;color:var(--red)}
 
   /* category colors */
   .c-ceremonie{background:#e7ecdf;color:#3a5a2e}
@@ -192,14 +190,6 @@
   /* ---------- PLAN ---------- */
   .map-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);margin-top:20px}
   .map-card svg{width:100%;height:auto;display:block;border-radius:10px}
-  .zone{cursor:pointer;transition:opacity .15s ease}
-  .zone rect, .zone circle{transition:filter .15s ease, stroke-width .15s ease}
-  .zone.dim{opacity:.32}
-  .znum{font-family:'Oswald';font-weight:700;fill:#fff;font-size:15px}
-  .zlbl{font-family:'Barlow';font-weight:600;fill:#1c211c;font-size:11px}
-  .map-road{stroke:#EFE9DD;stroke-width:13;fill:none;stroke-linecap:round}
-  .compass{font-family:'Oswald';font-weight:600;fill:#9aa394;font-size:11px}
-
   .legend{list-style:none;display:grid;gap:2px;margin-top:16px}
   .legend li{
     display:grid;grid-template-columns:30px 1fr;align-items:center;gap:12px;
@@ -223,10 +213,6 @@
   .food .ftop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
   .food h3{font-family:'Oswald';font-weight:600;text-transform:none;font-size:19px;color:var(--green);line-height:1.1}
   .food .ftype{font-size:13px;color:var(--ink-soft);margin-top:3px}
-  .food .zpill{
-    flex:none;display:inline-flex;align-items:center;gap:5px;background:var(--sand-l);
-    color:var(--green-d);font-family:'Oswald';font-weight:600;font-size:12px;padding:5px 9px;border-radius:20px;
-  }
   .food .frow{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
   .food .chip{
     display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);
@@ -282,8 +268,8 @@
 
   /* ---------- PHOTO BANDS ---------- */
   .photo-band{width:100%;height:140px;position:relative;overflow:hidden;flex-shrink:0}
-  .photo-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.45) brightness(.42)}
-  .photo-band .pb-ink{position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,53,32,.55) 0%,rgba(31,53,32,.20) 50%,rgba(31,53,32,.55) 100%)}
+  .photo-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.75)}
+  .photo-band .pb-ink{position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,53,32,.3) 0%,rgba(31,53,32,.05) 50%,rgba(31,53,32,.3) 100%)}
 
   /* ---------- HERO WATERMARK ---------- */
   .hero-watermark{position:absolute;right:-10px;bottom:-30px;z-index:1;opacity:.07;pointer-events:none;width:260px;filter:grayscale(1) brightness(3)}
@@ -345,16 +331,15 @@
     box-shadow:var(--shadow);margin-top:20px;background:var(--white);
   }
   .map-scroll-wrap{
-    overflow-x:auto;-webkit-overflow-scrolling:touch;
-    scrollbar-width:thin;scrollbar-color:var(--sand) transparent;
+    overflow:hidden;
   }
-  .map-inner{position:relative;min-width:620px}
+  .map-inner{position:relative}
   .map-real-photo{
     width:100%;height:auto;display:block;
-    filter:sepia(8%) saturate(82%) contrast(1.06) brightness(.96);
+    filter:none;
   }
   .map-overlay{position:absolute;top:0;left:0;width:100%;height:100%}
-  .a-marker{cursor:pointer;outline:none}
+  .a-marker{cursor:pointer;outline:none;pointer-events:all}
   .a-marker .m-bg{transition:opacity .14s ease,filter .14s ease}
   .a-marker:hover .m-bg,.a-marker:focus .m-bg{
     opacity:1!important;
@@ -362,7 +347,7 @@
   }
   .map-legend-bar{
     display:flex;flex-wrap:wrap;gap:12px 20px;padding:11px 14px;
-    background:var(--green-d);align-items:center;
+    background:var(--green-d);align-items:center;justify-content:center;
   }
   .mlb-item{
     display:flex;align-items:center;gap:7px;
@@ -372,7 +357,7 @@
 
   /* ---------- ATELIERS ---------- */
   .atelier-filter-bar{
-    display:flex;gap:6px;flex-wrap:wrap;margin:24px 0 14px;overflow-x:auto;
+    display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:24px 0 14px;overflow-x:auto;
     scrollbar-width:none;padding-bottom:2px;
   }
   .atelier-filter-bar::-webkit-scrollbar{display:none}
@@ -411,15 +396,15 @@
   /* Modal */
   .atelier-overlay{
     position:fixed;inset:0;background:rgba(28,33,28,.62);z-index:100;
-    display:grid;place-items:end center;backdrop-filter:blur(4px);
+    display:grid;place-items:center;padding:20px;backdrop-filter:blur(4px);
   }
   .atelier-overlay[hidden]{display:none}
   .atelier-modal{
-    background:var(--white);border-radius:22px 22px 0 0;padding:28px 20px 44px;
+    background:var(--white);border-radius:22px;padding:28px 20px 32px;
     width:100%;max-width:var(--maxw);max-height:82vh;overflow-y:auto;
-    position:relative;animation:slideUp .22s ease;
+    position:relative;animation:fadeScale .2s ease;
   }
-  @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+  @keyframes fadeScale{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
   .modal-close{
     position:absolute;top:16px;right:16px;background:var(--sand-l);border:none;
     width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
@@ -515,7 +500,7 @@
 </section>
 
 <div class="photo-band" aria-hidden="true">
-  <img src="images/ricm-05.png" alt="" style="object-position:center 55%" />
+  <img src="images/ricm-05.png" alt="" style="object-position:center 38%" />
   <div class="pb-ink"></div>
 </div>
 
@@ -529,44 +514,38 @@
     <div class="map-scroll-wrap">
       <div class="map-inner">
         <img src="images/map.png" class="map-real-photo" alt="Plan des ateliers — JPO RICM 2026" />
-        <svg class="map-overlay" viewBox="0 0 1642 914" xmlns="http://www.w3.org/2000/svg">
-          <!-- Rouge=Démo | Vert=Tout public | Orange=Enfants&Ados -->
-          <!-- Cluster Nord -->
-          <g class="a-marker" data-n="31" tabindex="0" role="button"><circle class="m-bg" cx="575" cy="202" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="575" y="210" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">31</text></g>
-          <g class="a-marker" data-n="32" tabindex="0" role="button"><circle class="m-bg" cx="608" cy="218" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="608" y="226" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">32</text></g>
-          <g class="a-marker" data-n="33" tabindex="0" role="button"><circle class="m-bg" cx="638" cy="200" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="638" y="208" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">33</text></g>
-          <g class="a-marker" data-n="34" tabindex="0" role="button"><circle class="m-bg" cx="664" cy="218" r="22" fill="#C9842A" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="664" y="226" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">34</text></g>
-          <g class="a-marker" data-n="35" tabindex="0" role="button"><circle class="m-bg" cx="682" cy="248" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="682" y="256" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">35</text></g>
-          <g class="a-marker" data-n="36" tabindex="0" role="button"><circle class="m-bg" cx="642" cy="258" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="642" y="266" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">36</text></g>
-          <g class="a-marker" data-n="38" tabindex="0" role="button"><circle class="m-bg" cx="574" cy="280" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="574" y="288" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">38</text></g>
-          <g class="a-marker" data-n="21" tabindex="0" role="button"><circle class="m-bg" cx="820" cy="212" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="820" y="220" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">21</text></g>
-          <g class="a-marker" data-n="22" tabindex="0" role="button"><circle class="m-bg" cx="792" cy="194" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="792" y="202" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">22</text></g>
-          <g class="a-marker" data-n="00" tabindex="0" role="button"><circle class="m-bg" cx="764" cy="298" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="764" y="306" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">00</text></g>
-          <g class="a-marker" data-n="01" tabindex="0" role="button"><circle class="m-bg" cx="736" cy="322" r="22" fill="#2D4A2D" opacity=".65" stroke="#fff" stroke-width="2"/><text x="736" y="330" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">01</text></g>
-          <g class="a-marker" data-n="02" tabindex="0" role="button"><circle class="m-bg" cx="706" cy="302" r="22" fill="#2D4A2D" opacity=".65" stroke="#fff" stroke-width="2"/><text x="706" y="310" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">02</text></g>
-          <!-- Zone 37 — ovale démo -->
-          <g class="a-marker" data-n="37" tabindex="0" role="button"><circle class="m-bg" cx="208" cy="348" r="28" fill="#C8102E" opacity=".9" stroke="#fff" stroke-width="3"/><text x="208" y="358" font-family="Oswald,sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">37</text></g>
-          <!-- Cluster Centre / ETRAC -->
-          <g class="a-marker" data-n="42" tabindex="0" role="button"><circle class="m-bg" cx="462" cy="514" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="462" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">42</text></g>
-          <g class="a-marker" data-n="43" tabindex="0" role="button"><circle class="m-bg" cx="488" cy="498" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="488" y="506" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">43</text></g>
-          <g class="a-marker" data-n="44" tabindex="0" role="button"><circle class="m-bg" cx="516" cy="514" r="22" fill="#C8102E" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="516" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">44</text></g>
-          <g class="a-marker" data-n="45" tabindex="0" role="button"><circle class="m-bg" cx="476" cy="542" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="476" y="550" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">45</text></g>
-          <g class="a-marker" data-n="46" tabindex="0" role="button"><circle class="m-bg" cx="543" cy="498" r="22" fill="#C9842A" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="543" y="506" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">46</text></g>
-          <g class="a-marker" data-n="47" tabindex="0" role="button"><circle class="m-bg" cx="570" cy="514" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="570" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">47</text></g>
-          <g class="a-marker" data-n="48" tabindex="0" role="button"><circle class="m-bg" cx="598" cy="498" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="598" y="506" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">48</text></g>
-          <g class="a-marker" data-n="49" tabindex="0" role="button"><circle class="m-bg" cx="625" cy="514" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="625" y="522" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">49</text></g>
-          <g class="a-marker" data-n="71" tabindex="0" role="button"><circle class="m-bg" cx="595" cy="553" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="595" y="561" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">71</text></g>
-          <g class="a-marker" data-n="72" tabindex="0" role="button"><circle class="m-bg" cx="625" cy="553" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="625" y="561" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">72</text></g>
-          <!-- Zone 41 — ovale enfants -->
-          <g class="a-marker" data-n="41" tabindex="0" role="button"><circle class="m-bg" cx="192" cy="612" r="28" fill="#C9842A" opacity=".9" stroke="#fff" stroke-width="3"/><text x="192" y="622" font-family="Oswald,sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">41</text></g>
-          <!-- Cluster ECL / GSC 2 -->
-          <g class="a-marker" data-n="51" tabindex="0" role="button"><circle class="m-bg" cx="848" cy="566" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="848" y="574" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">51</text></g>
-          <g class="a-marker" data-n="52" tabindex="0" role="button"><circle class="m-bg" cx="876" cy="548" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="876" y="556" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">52</text></g>
-          <g class="a-marker" data-n="53" tabindex="0" role="button"><circle class="m-bg" cx="906" cy="566" r="22" fill="#C8102E" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="906" y="574" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">53</text></g>
-          <g class="a-marker" data-n="54" tabindex="0" role="button"><circle class="m-bg" cx="858" cy="595" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="858" y="603" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">54</text></g>
-          <g class="a-marker" data-n="55" tabindex="0" role="button"><circle class="m-bg" cx="882" cy="616" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="882" y="624" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">55</text></g>
-          <g class="a-marker" data-n="56" tabindex="0" role="button"><circle class="m-bg" cx="910" cy="638" r="22" fill="#2D4A2D" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="910" y="646" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">56</text></g>
-          <g class="a-marker" data-n="57" tabindex="0" role="button"><circle class="m-bg" cx="848" cy="638" r="22" fill="#C9842A" opacity=".88" stroke="#fff" stroke-width="2.5"/><text x="848" y="646" font-family="Oswald,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">57</text></g>
+        <svg class="map-overlay" viewBox="0 0 1034 764" xmlns="http://www.w3.org/2000/svg">
+          <g class="a-marker" data-n="21" tabindex="0" role="button"><circle class="m-bg" cx="368" cy="301" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="22" tabindex="0" role="button"><circle class="m-bg" cx="620" cy="198" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="31" tabindex="0" role="button"><circle class="m-bg" cx="517" cy="141" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="32" tabindex="0" role="button"><circle class="m-bg" cx="613" cy="440" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="33" tabindex="0" role="button"><circle class="m-bg" cx="464" cy="223" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="34" tabindex="0" role="button"><circle class="m-bg" cx="383" cy="256" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="35" tabindex="0" role="button"><circle class="m-bg" cx="519" cy="217" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="36" tabindex="0" role="button"><circle class="m-bg" cx="549" cy="138" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="37" tabindex="0" role="button"><circle class="m-bg" cx="169" cy="209" r="18" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="38" tabindex="0" role="button"><circle class="m-bg" cx="705" cy="495" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="41" tabindex="0" role="button"><circle class="m-bg" cx="120" cy="326" r="18" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="42" tabindex="0" role="button"><circle class="m-bg" cx="692" cy="432" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="43" tabindex="0" role="button"><circle class="m-bg" cx="496" cy="306" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="44" tabindex="0" role="button"><circle class="m-bg" cx="480" cy="282" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="45" tabindex="0" role="button"><circle class="m-bg" cx="394" cy="329" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="46" tabindex="0" role="button"><circle class="m-bg" cx="325" cy="334" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="47" tabindex="0" role="button"><circle class="m-bg" cx="408" cy="218" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="48" tabindex="0" role="button"><circle class="m-bg" cx="564" cy="199" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="49" tabindex="0" role="button"><circle class="m-bg" cx="572" cy="164" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="51" tabindex="0" role="button"><circle class="m-bg" cx="614" cy="166" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="52" tabindex="0" role="button"><circle class="m-bg" cx="594" cy="202" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="53" tabindex="0" role="button"><circle class="m-bg" cx="450" cy="291" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="54" tabindex="0" role="button"><circle class="m-bg" cx="416" cy="287" r="16" fill="#C8102E" opacity=".95" stroke="#fff" stroke-width="2" pointer-events="all"/><text x="416" y="293" font-family="Oswald,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">54</text></g>
+          <g class="a-marker" data-n="55" tabindex="0" role="button"><circle class="m-bg" cx="325" cy="240" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="56" tabindex="0" role="button"><circle class="m-bg" cx="678" cy="476" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="57" tabindex="0" role="button"><circle class="m-bg" cx="489" cy="356" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="71" tabindex="0" role="button"><circle class="m-bg" cx="574" cy="359" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="72" tabindex="0" role="button"><circle class="m-bg" cx="657" cy="435" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="00" tabindex="0" role="button"><circle class="m-bg" cx="586" cy="258" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="01" tabindex="0" role="button"><circle class="m-bg" cx="592" cy="414" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="02" tabindex="0" role="button"><circle class="m-bg" cx="428" cy="325" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
         </svg>
       </div>
     </div>
@@ -574,20 +553,21 @@
       <div class="mlb-item"><div class="mlb-dot" style="background:#C8102E"></div>Démonstrations</div>
       <div class="mlb-item"><div class="mlb-dot" style="background:#2D4A2D"></div>Tout public</div>
       <div class="mlb-item"><div class="mlb-dot" style="background:#C9842A"></div>Enfants &amp; Ados</div>
-      <div class="mlb-item" style="margin-left:auto;opacity:.6;font-size:11px">
+      <div class="mlb-item" style="opacity:.6;font-size:11px">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
-        Glissez pour explorer
       </div>
     </div>
   </div>  </div>
 
   <div class="atelier-filter-bar" id="filterBar">
-    <button class="af-btn active" data-cat="all">Tous</button>
+    <button class="af-btn" data-cat="all">Tous</button>
     <button class="af-btn" data-cat="demo">Démonstrations</button>
     <button class="af-btn" data-cat="public">Tout public</button>
     <button class="af-btn" data-cat="kids">Enfants &amp; Ados</button>
   </div>
-  <div class="atelier-grid" id="atelierGrid"></div>
+  <div class="atelier-grid" id="atelierGrid">
+    <p id="atelierPlaceholder" style="color:var(--ink-soft);font-size:14px;text-align:center;padding:18px 0">Choisissez une catégorie pour afficher les ateliers.</p>
+  </div>
 </section>
 
 <!-- ============ MODAL ATELIER ============ -->
@@ -601,7 +581,7 @@
 </div>
 
 <div class="photo-band" aria-hidden="true">
-  <img src="images/ricm-04.png" alt="" style="object-position:center 42%" />
+  <img src="images/ricm-01.png" alt="" style="object-position:center 30%" />
   <div class="pb-ink"></div>
 </div>
 
@@ -613,7 +593,6 @@
   <div class="menu-block">
     <div class="menu-block-head">
       <h3>Menu de la Cantine</h3>
-      <p>Zone 6 — village restauration</p>
     </div>
     <div class="menu-row featured">
       <div>
@@ -652,7 +631,8 @@
 <section id="billetterie" class="sec sec-pad wrap">
   <span class="eyebrow">Paiement</span>
   <h2>Billetterie</h2>
-  <p class="sec-intro">La restauration fonctionne avec des billets de popotte. Trois banques sont présentes sur le site pour en acheter.</p>
+  <p class="sec-intro">Les activités et restauration fonctionne avec des billets de popotte. 
+    Les tickets sont à acheter auprès des trois banques présentes.</p>
 
   <div class="info-grid">
     <div class="info">
@@ -720,28 +700,29 @@
       <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
       <div>
         <h3>Adresse</h3>
-        <p><b>Quartier Aboville</b><br />Régiment d'Infanterie-Chars de Marine, Poitiers</p>
+        <p><b>46 bis rue Jean Mermoz - Quartier Aboville</b><br />Régiment d'Infanterie-Chars de Marine, Poitiers</p>
       </div>
     </div>
 
     <div class="info">
-      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="14" rx="2"/><path d="M4 11h16M8 21h8M9 17v4M15 17v4"/></svg></div>
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
       <div>
         <h3>Accès & transports</h3>
-        <p>Bus réseau Vitalis — arrêt à proximité du quartier. En voiture, suivre le fléchage « Portes Ouvertes RICM ».</p>
+        <p> Bus Vitalis arrêt Capitaine Bès ou 5 minutes à pied depuis la gare <p> 
+        <p>En voiture, suivre le fléchage 'Parking JPO'</p>
       </div>
     </div>
 
     <div class="info">
-      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13h2a2 2 0 0 1 2 2v2H5z"/><path d="M5 13l2-5a2 2 0 0 1 1.9-1.4H17a2 2 0 0 1 1.9 1.4L21 13v4h-2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></svg></div>
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9" stroke-linecap="round"/></svg></div>
       <div>
         <h3>Parking</h3>
-        <p>Parking visiteurs <b>gratuit</b> à l'extérieur du quartier (zone P). Stationnement fléché dès les axes d'arrivée.</p>
+        <p>Parking visiteurs <b>gratuit</b> à l'extérieur du quartier. Stationnement fléché dès les axes d'arrivée.</p>
       </div>
     </div>
 
     <div class="info">
-      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="2.4"/><path d="M5 21l3-9h8l3 9M9.5 12l-2 4M14.5 12l2 4"/></svg></div>
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg></div>
       <div>
         <h3>Accès PMR</h3>
         <p><b>Site accessible</b> aux personnes à mobilité réduite. Cheminements adaptés et accompagnement possible au point info.</p>
@@ -749,18 +730,10 @@
     </div>
 
     <div class="info">
-      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
-      <div>
-        <h3>Objets interdits</h3>
-        <p class="ban">Armes, drones, glacières volumineuses et animaux (sauf chiens d'assistance). Contrôle visuel possible à l'entrée.</p>
-      </div>
-    </div>
-
-    <div class="info">
-      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a7 7 0 0 0-7 7c0 1.5.5 2.7 1.4 4L12 21l5.6-7c.9-1.3 1.4-2.5 1.4-4a7 7 0 0 0-7-7Z"/><circle cx="12" cy="10" r="2.2"/></svg></div>
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.925 20.056a6 6 0 0 0-11.851.001"/><circle cx="12" cy="11" r="4"/><circle cx="12" cy="12" r="10"/></svg></div>
       <div>
         <h3>Contact sur place</h3>
-        <p><b>Point information</b> à l'entrée principale (zone 1). Personnel à votre disposition tout au long de la visite.</p>
+        <p><b>Point information</b> à l'entrée principale. Personnel à votre disposition tout au long de la journée.</p>
       </div>
     </div>
   </div>
@@ -772,10 +745,6 @@
     <div class="foot-mark"><img src="images/insigne-ricm.png" alt="Insigne RICM" style="width:52px;height:52px;object-fit:contain" /></div>
     <div class="fname">Régiment d'Infanterie-Chars de Marine</div>
     <div class="fsub">Poitiers — Troupes de Marine</div>
-    <a class="flink" href="https://www.sengager.fr/decouvrir-l-armee-de-terre" target="_blank" rel="noopener">
-      Armée de Terre
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg>
-    </a>
     <div class="fcredit">Journées Portes Ouvertes — 13 &amp; 14 juin 2026<br />Entrée libre et gratuite</div>
   </div>
 </footer>
@@ -798,65 +767,52 @@ const ICON = {
   musique:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
   visite:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
 };
-const PIN = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>';
 const CATLABEL = {ceremonie:'Cérémonie',demo:'Démonstration',expo:'Exposition',enfants:'Espace enfants',musique:'Musique',visite:'Visite'};
 
 /* ---- PROGRAMME : SAMEDI 13 JUIN ---- */
 const PROG_SAM = [
-  {h:'10:00', t:"Ouverture des portes & cérémonie des couleurs", cat:'ceremonie', zone:2,
+  {h:'10:00', t:"Ouverture des portes & cérémonie des couleurs", cat:'ceremonie',
    desc:"Hissage solennel des couleurs du régiment en présence des autorités militaires et civiles. Coup d'envoi officiel des journées portes ouvertes."},
-  {h:'10:30', t:"Démonstration de combat débarqué", cat:'demo', zone:4,
+  {h:'10:30', t:"Démonstration de combat débarqué", cat:'demo',
    desc:"Mise en scène d'une action de combat par les fantassins du RICM. Tirs à blanc, fumigènes et techniques d'assaut présentés par les soldats du régiment."},
-  {h:'11:00', t:"Exposition de véhicules blindés (Jaguar, VBCI)", cat:'expo', zone:3,
+  {h:'11:00', t:"Exposition de véhicules blindés (Jaguar, VBCI)", cat:'expo',
    desc:"Découvrez en statique le Jaguar (EBRC) et le VBCI (Véhicule Blindé de Combat d'Infanterie). Montée à bord possible, présentation par les équipages."},
-  {h:'11:30', t:"Mini-parcours du combattant pour les enfants", cat:'enfants', zone:5,
+  {h:'11:30', t:"Mini-parcours du combattant pour les enfants", cat:'enfants',
    desc:"Parcours d'obstacles adapté aux enfants : ramping, franchissement de palissade et tyrolienne. Encadré par des soldats du régiment."},
-  {h:'12:00', t:"Visite guidée des stands & traditions du régiment", cat:'visite', zone:7,
+  {h:'12:00', t:"Visite guidée des stands & traditions du régiment", cat:'visite',
    desc:"Tour commenté de l'esplanade des traditions avec présentation des fanions, médailles et emblèmes du RICM. Guides disponibles en continu."},
-  {h:'14:00', t:"Démonstration cynotechnique (équipes maître-chien)", cat:'demo', zone:4,
+  {h:'14:00', t:"Démonstration cynotechnique (équipes maître-chien)", cat:'demo',
    desc:"Démonstration des équipes cynophiles du régiment : pistage, mordant et fouille de zone. Présentation et rencontre avec les chiens en service."},
-  {h:'15:00', t:"Présentation des matériels & simulateur de tir", cat:'expo', zone:3,
+  {h:'15:00', t:"Présentation des matériels & simulateur de tir", cat:'expo',
    desc:"Prise en main des équipements du fantassin moderne et session sur simulateur de tir. Accessible à partir de 12 ans, sur inscription au stand."},
-  {h:'16:00', t:"Concert de la Musique des Troupes de Marine", cat:'musique', zone:2,
+  {h:'16:00', t:"Concert de la Musique des Troupes de Marine", cat:'musique',
    desc:"Concert gratuit sur la place d'armes. La Musique des Troupes de Marine interprète un répertoire militaire et populaire. Accès libre, places debout."},
-  {h:'17:30', t:"Démonstration finale interarmes", cat:'demo', zone:4,
+  {h:'17:30', t:"Démonstration finale interarmes", cat:'demo',
    desc:"Clou du spectacle : coordination infanterie-blindés, appuis feu, fumigènes et manœuvres tactiques à grande échelle. Ne pas manquer."},
-  {h:'18:00', t:"Fermeture des portes", cat:'ceremonie', zone:1,
+  {h:'18:00', t:"Fermeture des portes", cat:'ceremonie',
    desc:"Fin de la journée du samedi. Merci de rejoindre la sortie. Rendez-vous demain dès 10h pour la dernière journée des portes ouvertes."},
 ];
 
 /* ---- PROGRAMME : DIMANCHE 14 JUIN ---- */
 const PROG_DIM = [
-  {h:'10:00', t:"Ouverture des portes", cat:'ceremonie', zone:1,
-   desc:"Ouverture des portes du quartier Aboville. Récupérez le plan du site au point information (Zone 1) et profitez dès l'ouverture des premiers ateliers."},
-  {h:'10:30', t:"Atelier découverte pour les familles", cat:'enfants', zone:5,
+  {h:'10:00', t:"Ouverture des portes", cat:'ceremonie',
+   desc:"Ouverture des portes du quartier Aboville. Récupérez le plan du site au point information à l'entrée et profitez dès l'ouverture des premiers ateliers."},
+  {h:'10:30', t:"Atelier découverte pour les familles", cat:'enfants',
    desc:"Ateliers interactifs pour petits et grands : camouflage facial, déchiffrage de cartes topographiques et initiation au code morse. Tout le monde est bienvenu."},
-  {h:'11:00', t:"Démonstration de franchissement & génie", cat:'demo', zone:4,
+  {h:'11:00', t:"Démonstration de franchissement & génie", cat:'demo',
    desc:"Mise en œuvre de ponts de fortune et de techniques de franchissement d'obstacle par les sapeurs. Présentation du matériel de génie en action."},
-  {h:'11:30', t:"Exposition matériels & véhicules de reconnaissance", cat:'expo', zone:3,
+  {h:'11:30', t:"Exposition matériels & véhicules de reconnaissance", cat:'expo',
    desc:"Présentation statique des véhicules de reconnaissance légers, dont le VBL et ses variantes. Explication des missions par les équipages."},
-  {h:'12:30', t:"Visite guidée — histoire et traditions du RICM", cat:'visite', zone:7,
+  {h:'12:30', t:"Visite guidée — histoire et traditions du RICM", cat:'visite',
    desc:"Visite commentée de la salle d'honneur et des traditions du régiment. Retour sur l'histoire du RICM depuis sa création, ses campagnes et décorations."},
-  {h:'14:00', t:"Démonstration de combat & appui feu", cat:'demo', zone:4,
-   desc:"Démonstration dynamique avec appui des éléments blindés. Coordination feu et mouvement en terrain varié. Accès restreint aux abords de la zone."},
-  {h:'15:00', t:"Aubade de la Musique des Troupes de Marine", cat:'musique', zone:2,
+  {h:'14:00', t:"Démonstration de combat & appui feu", cat:'demo',
+   desc:"Démonstration dynamique avec appui des éléments blindés. Coordination feu et mouvement en terrain varié. Accès restreint aux abords de la zone de tir."},
+  {h:'15:00', t:"Aubade de la Musique des Troupes de Marine", cat:'musique',
    desc:"Défilé musical et aubade de clôture par la Musique des Troupes de Marine sur la place d'armes. Dernier concert des journées portes ouvertes."},
-  {h:'16:00', t:"Cérémonie de clôture & remise des prix", cat:'ceremonie', zone:2,
+  {h:'16:00', t:"Cérémonie de clôture & remise des prix", cat:'ceremonie',
    desc:"Cérémonie officielle de clôture avec remise des prix aux vainqueurs des jeux et challenges. Mot du colonel commandant le régiment."},
-  {h:'17:00', t:"Fermeture des portes", cat:'ceremonie', zone:1,
+  {h:'17:00', t:"Fermeture des portes", cat:'ceremonie',
    desc:"Fermeture définitive du site pour cette édition 2026. Merci pour votre visite et à la prochaine édition des portes ouvertes du RICM."},
-];
-
-/* ---- ZONES DU PLAN (légende) ---- */
-const ZONES = [
-  {n:1, c:'#C8102E', name:"Entrée principale", desc:"Accueil, billetterie, point information"},
-  {n:2, c:'#2D4A2D', name:"Place d'armes", desc:"Cérémonies, concerts et grands rassemblements"},
-  {n:3, c:'#8A7338', name:"Esplanade matériel", desc:"Exposition de véhicules et matériels"},
-  {n:4, c:'#C8102E', name:"Zone de démonstration", desc:"Démonstrations dynamiques (combat, cyno…)"},
-  {n:5, c:'#C9842A', name:"Espace familles", desc:"Animations et ateliers pour les enfants"},
-  {n:6, c:'#3E6340', name:"Village restauration", desc:"Stands, food-trucks et buvette"},
-  {n:7, c:'#5C7A4E', name:"Stands & expositions", desc:"Traditions, recrutement, partenaires"},
-  {n:'P', c:'#B7AE99', name:"Parking visiteurs", desc:"Stationnement gratuit à l'extérieur", z:8}
 ];
 
 
@@ -875,7 +831,6 @@ function evHTML(e){
       </div>
       <div class="meta">
         <span class="badge c-${e.cat}">${ICON[e.cat]} ${CATLABEL[e.cat]}</span>
-        <span class="loc">${PIN} Zone ${e.zone}</span>
       </div>
       <div class="ev-detail">${e.desc || ''}</div>
     </div>
@@ -971,37 +926,68 @@ function highlightCurrentEvent(prog){
    ATELIERS — données et interactivité
    ===================================================================== */
 const ATELIERS = [
-  {n:'21', name:'Parcours drone',                        cat:'public', featured:false},
-  {n:'22', name:'Atelier photo / vidéos',                cat:'public', featured:true},
-  {n:'31', name:'Tir air soft',                          cat:'public', featured:false},
-  {n:'32', name:'Présentation petits matériels',         cat:'public', featured:false},
-  {n:'33', name:'Parcours OB / évasion',                 cat:'public', featured:true},
-  {n:'34', name:'Parcours Cdo enfant',                   cat:'kids',   featured:false},
-  {n:'35', name:'Atelier DRI',                           cat:'public', featured:false},
-  {n:'36', name:'Parcours évasion',                      cat:'public', featured:false},
-  {n:'37', name:'Démonstration RRI / BLD',               cat:'demo',   featured:false},
-  {n:'38', name:'Présentations Vhls récents',            cat:'public', featured:false},
-  {n:'41', name:'Parcours VBL',                          cat:'kids',   featured:false},
-  {n:'42', name:'Atelier camouflage',                    cat:'public', featured:false},
-  {n:'43', name:'Parcours C4',                           cat:'public', featured:false},
-  {n:'44', name:'Démonstration C4',                      cat:'demo',   featured:false},
-  {n:'45', name:'Atelier SC1',                           cat:'public', featured:false},
-  {n:'46', name:'Parcours Cdo 2 (adolescents)',          cat:'kids',   featured:false},
-  {n:'47', name:'Tir à la grenade factice',              cat:'public', featured:false},
-  {n:'48', name:'Atelier vision nocturne',               cat:'public', featured:true},
-  {n:'49', name:'Parcours PLO',                          cat:'public', featured:false},
-  {n:'71', name:'Atelier pistolet laser',                cat:'public', featured:false},
-  {n:'72', name:'Course d\'orientation',                 cat:'public', featured:false},
-  {n:'51', name:'Challenge VBS',                         cat:'public', featured:true},
-  {n:'52', name:'Présentation CO / PC',                  cat:'public', featured:false},
-  {n:'53', name:'Démonstration Cdo + Cyno',              cat:'demo',   featured:false},
-  {n:'54', name:'Démonstrations AKA + Danse tahitienne', cat:'public', featured:false},
-  {n:'55', name:'Présentations dépannage',               cat:'public', featured:false},
-  {n:'56', name:'Atelier salle d\'honneur',              cat:'public', featured:true},
-  {n:'57', name:'Structures gonflables',                 cat:'kids',   featured:true},
-  {n:'00', name:'Présentation Vhls anciens',             cat:'public', featured:false},
-  {n:'01', name:'Cage à drone',                          cat:'public', featured:false, tbc:true},
-  {n:'02', name:'Parcours détermination',                cat:'public', featured:false, tbc:true},
+  {n:'21', name:'Parcours drone',                        cat:'public',   featured:false,
+   desc:"Découvrez les drones militaires légers utilisés par le RICM pour la reconnaissance et l'observation. Présentation des capacités, démonstration de vol et initiation au pilotage encadrée par les opérateurs du régiment."},
+  {n:'22', name:'Atelier photo / vidéos',                cat:'public', featured:true,
+   desc:"Réalisez vos photos et vidéos souvenirs dans un décor militaire authentique. Soldats en tenue, véhicules et matériels à disposition. Les clichés les plus réussis seront partagés sur les réseaux du régiment."},
+  {n:'31', name:'Tir air soft',                          cat:'public', featured:false,
+   desc:"Initiez-vous aux techniques de tir avec des répliques d'armes en air soft. Posture, visée et sécurité armement sont présentés par les instructeurs du régiment avant chaque session sur cibles."},
+  {n:'32', name:'Présentation petits matériels',         cat:'public', featured:false,
+   desc:"Découvrez et manipulez l'équipement individuel du fantassin : gilet pare-éclats, casque, radio CONTACT, jumelles et matériel de soin de combat. Présentation commentée par les soldats du régiment."},
+  {n:'33', name:'Parcours OB / évasion',                 cat:'public', featured:true,
+   desc:"Testez-vous sur ce parcours d'obstacles et d'évasion inspiré de l'entraînement commando. Ramping, franchissement de palissade, portage et défis physiques dans un dispositif entièrement sécurisé."},
+  {n:'34', name:'Parcours Cdo enfant',                   cat:'kids',   featured:true,
+   desc:"Version ludique du parcours commando, spécialement conçue pour les enfants. Obstacles colorés, sauts, ramping et tyrolienne adaptés. Encadrement permanent par les soldats du régiment. À partir de 6 ans."},
+  {n:'35', name:'Atelier DRI',                           cat:'public', featured:false,
+   desc:"Découverte des techniques de Défense Rapprochée en Intervention. Démonstrations de prises de contrôle, de désarmement et de techniques de protection par les instructeurs qualifiés du RICM."},
+  {n:'36', name:'Parcours évasion',                      cat:'public', featured:false,
+   desc:"Parcours à obstacles chronométré pour tester votre résistance physique et votre agilité. Chaque passage est encadré par les soldats du régiment, avec classement en temps réel affiché sur le site."},
+  {n:'37', name:'Démonstration RRI / BLD',               cat:'demo',   featured:true,
+   desc:"Démonstration en situation des équipes de Renseignement et de Recherche en Infanterie en coordination avec les blindés légers. Présentation des tactiques d'engagement et de la coordination interarmes."},
+  {n:'38', name:'Présentations Vhls récents',            cat:'public', featured:false,
+   desc:"Découvrez les derniers véhicules blindés en dotation au RICM : Griffon, Jaguar et leurs variantes. Présentation statique par les équipages avec explication des missions, capacités et anecdotes de terrain."},
+  {n:'41', name:'Parcours VBL',                          cat:'public',   featured:false,
+   desc:"Montez à bord d'un Véhicule Blindé Léger et explorez son habitacle. Simulation de poste de conduite et découverte des équipements d'observation et de communication. Encadré par l'équipage."},
+  {n:'42', name:'Atelier camouflage',                    cat:'kids', featured:false,
+   desc:"Apprenez les techniques de camouflage utilisées par les fantassins : maquillage tactique, intégration au terrain naturel et confection de filets de camouflage. Atelier pratique, pour tous les âges."},
+  {n:'43', name:'Parcours C4',                           cat:'public', featured:false,
+   desc:"Parcours physique inspiré de l'entraînement des unités de combat du RICM. Enchaînement d'épreuves individuelles et collectives avec chronomètre. Accessible à tous les niveaux, progressif par paliers."},
+  {n:'44', name:'Démonstration C4',                      cat:'demo',   featured:true,
+   desc:"Présentation dynamique des capacités de la compagnie de commandement, de combat et de soutien. Matériels, modes d'action et techniques d'engagement présentés par les soldats de la compagnie."},
+  {n:'45', name:'Atelier SC1',                           cat:'kids', featured:false,
+   desc:"Initiation aux gestes de premier secours en situation de combat : pose de garrot, pansement compressif et mise en position d'attente. Formateurs militaires qualifiés. Accessible à partir de 12 ans."},
+  {n:'46', name:'Parcours Cdo 2 (adolescents)',          cat:'kids',   featured:false,
+   desc:"Parcours commando niveau 2, conçu pour les adolescents. Obstacles plus techniques, épreuves en équipe et défis d'endurance pour tester vos limites dans un cadre encadré et bienveillant. À partir de 12 ans."},
+  {n:'47', name:'Tir à la grenade factice',              cat:'public', featured:false,
+   desc:"Initiez-vous au lancer de grenade d'exercice sur cibles à différentes distances. Technique de lancer, prise en main et consignes de sécurité expliquées par les instructeurs. À partir de 14 ans."},
+  {n:'48', name:'Atelier vision nocturne',               cat:'public', featured:true,
+   desc:"Plongez dans l'obscurité et découvrez les équipements optroniques du fantassin moderne : lunettes de vision nocturne, désignateurs laser et caméras thermiques. Démonstration en espace obscurci sur le site."},
+  {n:'49', name:'Parcours PLO',                          cat:'public', featured:false,
+   desc:"Initiation aux techniques de Premiers Secours en milieu opérationnel. Gestes d'urgence, conditionnement du blessé et simulation d'évacuation sous contrainte, animés par les secouristes militaires du régiment."},
+  {n:'71', name:'Atelier pistolet laser',                cat:'public', featured:false,
+   desc:"Entraînement au tir de précision avec système laser sur cibles réactives. Les instructeurs du régiment vous transmettent postures, gestion du stress et maîtrise du geste technique. Sessions de 5 minutes."},
+  {n:'72', name:'Course d\'orientation',                 cat:'kids', featured:true,
+   desc:"Navigation à la carte et à la boussole dans l'enceinte du quartier Aboville. Retrouvez les balises disséminées sur le site, seul ou en équipe. Matériel fourni, briefing navigation assuré au départ."},
+  {n:'51', name:'Challenge VBS',                         cat:'public', featured:true,
+   desc:"Immergez-vous dans le simulateur de combat virtuel VBS (Virtual Battle Space). Missions tactiques en coopération, prise de décision sous pression et coordination d'unité dans un environnement numérique haute-fidélité."},
+  {n:'52', name:'Présentation CO / PC',                  cat:'public', featured:false,
+   desc:"Découverte du poste de commandement opérationnel et des outils de coordination au combat. Cartes opérationnelles, systèmes de communication numérique et processus de décision présentés par les officiers du RICM."},
+  {n:'53', name:'Démonstration CDO + CYNO',              cat:'demo',   featured:true,
+   desc:"Démonstration conjointe des équipes commando et cynotechniques du régiment : techniques d'intervention rapide, pistage sur piste et démonstration de mordant par les chiens militaires en service actif."},
+  {n:'54', name:'Démonstrations AKA & Danse tahitienne', cat:'demo', featured:true,
+   desc:"Démonstration d'arts martiaux militaires (AKA) par les instructeurs du régiment, suivie d'une prestation de danse traditionnelle tahitienne par les soldats originaires d'outre-mer. Un moment fort et coloré."},
+  {n:'55', name:'Présentations dépannage',               cat:'public', featured:false,
+   desc:"Découvrez les techniques de dépannage et de remorquage des véhicules blindés en conditions opérationnelles. Présentation du matériel de dépannage lourd et des méthodes de récupération sur le terrain."},
+  {n:'56', name:'Atelier salle d\'honneur',              cat:'public', featured:true,
+   desc:"Visite guidée de la salle d'honneur du RICM : emblèmes, décorations, fanions de campagne et objets de collection retraçant l'histoire du régiment depuis sa création jusqu'aux opérations les plus récentes."},
+  {n:'57', name:'Structures gonflables',                 cat:'kids',   featured:true,
+   desc:"Châteaux gonflables et structures de jeux aux couleurs du régiment pour les plus petits. Espace entièrement sécurisé, surveillance permanente par les soldats du RICM. Accès libre et gratuit, sans inscription."},
+  {n:'00', name:'Présentation Vhls anciens',             cat:'public', featured:false,
+   desc:"Exposition statique de véhicules blindés ayant équipé les Troupes de Marine au fil des décennies. AMX-10, ERC 90, AML et autres blindés emblématiques à découvrir, avec fiches historiques et anecdotes d'équipages."},
+  {n:'01', name:'Cage à drone',                          cat:'public', featured:false,
+   desc:"Expérience de vol en cage sécurisée avec drones de loisir et de reconnaissance. Prise en main guidée, découverte des capacités de captation et initiation au pilotage. Détails et modalités en cours de confirmation."},
+  {n:'02', name:'Parcours détermination',                cat:'public', featured:false,
+   desc:"Épreuve physique et mentale inspirée des tests de sélection militaires. Portage de charges, obstacles enchaînés et défis collectifs pour mesurer votre détermination. Détails et modalités en cours de confirmation."},
 ];
 
 const CAT_META = {
@@ -1012,6 +998,8 @@ const CAT_META = {
 
 function renderAteliers(filterCat){
   const grid = document.getElementById('atelierGrid');
+  const placeholder = document.getElementById('atelierPlaceholder');
+  if(placeholder) placeholder.remove();
   grid.innerHTML = ATELIERS.map((a,i)=>{
     const m = CAT_META[a.cat];
     const hide = filterCat !== 'all' && a.cat !== filterCat ? ' hidden' : '';
@@ -1040,9 +1028,7 @@ function openModal(idx){
     <span class="modal-badge" style="background:${m.bg};color:${m.fg}">${m.label}</span>
     ${a.featured ? '<div style="color:var(--red);font-size:13px;font-weight:600;margin-bottom:14px">★ Atelier incontournable</div>' : ''}
     <div class="modal-info-box">
-      <p><b>Numéro d'atelier :</b> ${a.n}</p>
-      <p><b>Catégorie :</b> ${m.label}</p>
-      <p>Repérez le numéro <strong>${a.n}</strong> sur la carte ci-dessus pour localiser cet atelier sur le site.</p>
+      <p>${a.desc || ''}</p>
     </div>`;
   overlay.hidden = false;
   document.body.style.overflow = 'hidden';
@@ -1063,12 +1049,16 @@ document.addEventListener('keydown', e=>{if(e.key==='Escape') closeModal()});
 document.getElementById('filterBar').addEventListener('click', e=>{
   const btn = e.target.closest('.af-btn');
   if(!btn) return;
+  if(btn.classList.contains('active')){
+    btn.classList.remove('active');
+    const grid = document.getElementById('atelierGrid');
+    grid.innerHTML = '<p id="atelierPlaceholder" style="color:var(--ink-soft);font-size:14px;text-align:center;padding:18px 0">Choisissez une catégorie pour afficher les ateliers.</p>';
+    return;
+  }
   document.querySelectorAll('.af-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderAteliers(btn.dataset.cat);
 });
-
-renderAteliers('all');
 
 /* Clic sur les marqueurs SVG de la carte */
 document.querySelectorAll('.a-marker').forEach(el=>{

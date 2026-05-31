@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<title>Éditeur Plan — JPO RICM 2026</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #1a1a2e; color: #fff; }
+#toolbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: #16213e; padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,.5);
+}
+#toolbar h1 { font-size: 15px; color: #e2b714; margin-right: 8px; }
+.btn {
+  padding: 7px 14px; border: none; border-radius: 6px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.btn-export { background: #2D4A2D; color: #fff; }
+.btn-reset  { background: #555; color: #fff; }
+.btn-help   { background: #333; color: #aaa; }
+#info { font-size: 12px; color: #aaa; }
+#selected-info { font-size: 13px; color: #e2b714; font-weight: 600; min-width: 180px; }
+
+#canvas-wrap {
+  margin-top: 52px;
+  position: relative; display: inline-block;
+  cursor: default;
+}
+#map-img { display: block; max-width: 100vw; }
+#overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+.marker {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px; color: #fff;
+  cursor: grab; pointer-events: all; user-select: none;
+  border: 2.5px solid rgba(255,255,255,0.9);
+  box-shadow: 0 2px 6px rgba(0,0,0,.6);
+  transition: transform .1s, box-shadow .1s;
+}
+.marker:hover { transform: translate(-50%,-50%) scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,.8); }
+.marker.dragging { cursor: grabbing; transform: translate(-50%,-50%) scale(1.2); z-index: 50; }
+.marker.selected { outline: 3px solid #e2b714; outline-offset: 2px; }
+
+#export-box {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,.8);
+  z-index: 200; place-items: center;
+}
+#export-box.open { display: grid; }
+#export-inner {
+  background: #1a1a2e; border: 1px solid #444; border-radius: 12px;
+  padding: 24px; max-width: 700px; width: 90%;
+}
+#export-inner h2 { color: #e2b714; margin-bottom: 12px; font-size: 16px; }
+#export-inner p  { font-size: 13px; color: #aaa; margin-bottom: 10px; }
+#export-code {
+  width: 100%; height: 180px; background: #0d0d1a; color: #7ec8e3;
+  border: 1px solid #333; border-radius: 6px; padding: 10px;
+  font-family: monospace; font-size: 11px; resize: vertical;
+}
+.btn-copy { background: #e2b714; color: #000; margin-top: 10px; }
+.btn-close { background: #444; color: #fff; margin-top: 10px; margin-left: 8px; }
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+  <h1>✏️ Éditeur Plan JPO RICM</h1>
+  <span id="selected-info">Glisse un cercle pour le repositionner</span>
+  <button class="btn btn-export" onclick="exportCoords()">📋 Exporter les coordonnées</button>
+  <button class="btn btn-reset" onclick="resetAll()">↩ Réinitialiser</button>
+  <span id="info">Clic droit sur un cercle pour le cacher | Double-clic pour le remettre</span>
+</div>
+
+<div id="canvas-wrap">
+  <img id="map-img" src="images/map.png" alt="Plan"/>
+  <div id="overlay"></div>
+</div>
+
+<div id="export-box">
+  <div id="export-inner">
+    <h2>Coordonnées exportées</h2>
+    <p>Copie ce bloc et envoie-le à Claude pour mettre à jour le site :</p>
+    <textarea id="export-code" readonly></textarea>
+    <br>
+    <button class="btn btn-copy" onclick="copyCode()">📋 Copier</button>
+    <button class="btn btn-close" onclick="closeExport()">Fermer</button>
+  </div>
+</div>
+
+<script>
+const ATELIERS = [
+  {n:'21',name:'Parcours drone',cat:'public'},
+  {n:'22',name:'Atelier photo/vidéos ★',cat:'public'},
+  {n:'31',name:'Tir air soft',cat:'public'},
+  {n:'32',name:'Présentation petits matériels',cat:'public'},
+  {n:'33',name:'Parcours OB/évasion ★',cat:'public'},
+  {n:'34',name:'Parcours Cdo enfant',cat:'kids'},
+  {n:'35',name:'Atelier DRI',cat:'public'},
+  {n:'36',name:'Parcours évasion',cat:'public'},
+  {n:'37',name:'Démonstration RRI/BLD',cat:'demo'},
+  {n:'38',name:'Présentations Vhls récents',cat:'public'},
+  {n:'41',name:'Parcours VBL',cat:'kids'},
+  {n:'42',name:'Atelier camouflage',cat:'public'},
+  {n:'43',name:'Parcours C4',cat:'public'},
+  {n:'44',name:'Démonstration C4',cat:'demo'},
+  {n:'45',name:'Atelier SC1',cat:'public'},
+  {n:'46',name:'Parcours Cdo 2 (ados)',cat:'kids'},
+  {n:'47',name:'Tir à la grenade factice',cat:'public'},
+  {n:'48',name:'Atelier vision nocturne ★',cat:'public'},
+  {n:'49',name:'Parcours PLO',cat:'public'},
+  {n:'51',name:'Challenge VBS ★',cat:'public'},
+  {n:'52',name:'Présentation CO/PC',cat:'public'},
+  {n:'53',name:'Démonstration Cdo+Cyno',cat:'demo'},
+  {n:'54',name:'Démonstrations AKA+Danse',cat:'public'},
+  {n:'55',name:'Présentations dépannage',cat:'public'},
+  {n:'56',name:'Atelier salle d\'honneur ★',cat:'public'},
+  {n:'57',name:'Structures gonflables ★',cat:'kids'},
+  {n:'71',name:'Atelier pistolet laser',cat:'public'},
+  {n:'72',name:'Course d\'orientation',cat:'public'},
+  {n:'00',name:'Présentation Vhls anciens',cat:'public'},
+  {n:'01',name:'Cage à drone',cat:'public'},
+  {n:'02',name:'Parcours détermination',cat:'public'},
+];
+
+const CAT_COLOR = {demo:'#C8102E', public:'#2D4A2D', kids:'#C9842A'};
+
+// Positions initiales (cx, cy en pixels sur l'image originale 1034x764)
+const DEFAULT_POS = {
+  '37':[148,254],'41':[153,332],
+  '31':[524,141],'36':[544,146],
+  '49':[580,196],'51':[606,180],
+  '48':[473,212],'52':[604,191],
+  '22':[520,216],'00':[553,237],
+  '47':[400,221],'55':[325,240],
+  '33':[479,221],'35':[579,258],
+  '34':[391,258],
+  '21':[382,303],'54':[410,299],
+  '53':[472,297],'44':[442,298],
+  '43':[484,308],
+  '45':[430,318],'02':[460,331],
+  '46':[334,340],'57':[494,335],
+  '71':[687,374],'01':[674,430],
+  '32':[672,455],'72':[714,452],
+  '42':[734,445],'56':[771,482],
+  '38':[684,468],
+};
+
+let positions = JSON.parse(JSON.stringify(DEFAULT_POS));
+let imgW = 1034, imgH = 764;
+let markers = {};
+
+function getScale() {
+  const img = document.getElementById('map-img');
+  return { sx: img.offsetWidth / imgW, sy: img.offsetHeight / imgH };
+}
+
+function createMarkers() {
+  const overlay = document.getElementById('overlay');
+  overlay.innerHTML = '';
+  markers = {};
+
+  ATELIERS.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'marker';
+    div.id = 'marker-' + a.n;
+    div.dataset.n = a.n;
+    div.textContent = a.n;
+    div.style.background = CAT_COLOR[a.cat];
+    div.title = a.name;
+
+    makeDraggable(div, a.n);
+    div.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      div.style.opacity = div.style.opacity === '0.2' ? '1' : '0.2';
+    });
+
+    overlay.appendChild(div);
+    markers[a.n] = div;
+  });
+  updatePositions();
+}
+
+function updatePositions() {
+  const {sx, sy} = getScale();
+  ATELIERS.forEach(a => {
+    const el = markers[a.n];
+    if (!el) return;
+    const [x, y] = positions[a.n] || [100, 100];
+    el.style.left = (x * sx) + 'px';
+    el.style.top  = (y * sy) + 'px';
+  });
+}
+
+function makeDraggable(el, n) {
+  let startX, startY, startLeft, startTop;
+
+  el.addEventListener('mousedown', e => {
+    e.preventDefault();
+    el.classList.add('dragging');
+    document.getElementById('selected-info').textContent =
+      `${n} — ${ATELIERS.find(a=>a.n===n)?.name||''}`;
+
+    const rect = el.parentElement.getBoundingClientRect();
+    startX = e.clientX;
+    startY = e.clientY;
+    const {sx, sy} = getScale();
+    startLeft = positions[n][0] * sx;
+    startTop  = positions[n][1] * sy;
+
+    function onMove(e2) {
+      const dx = e2.clientX - startX;
+      const dy = e2.clientY - startY;
+      const newLeft = startLeft + dx;
+      const newTop  = startTop  + dy;
+      el.style.left = newLeft + 'px';
+      el.style.top  = newTop  + 'px';
+      const {sx, sy} = getScale();
+      positions[n] = [Math.round(newLeft / sx), Math.round(newTop / sy)];
+    }
+
+    function onUp() {
+      el.classList.remove('dragging');
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    }
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+}
+
+function resetAll() {
+  if (confirm('Réinitialiser toutes les positions ?')) {
+    positions = JSON.parse(JSON.stringify(DEFAULT_POS));
+    updatePositions();
+  }
+}
+
+function exportCoords() {
+  let lines = [];
+  ATELIERS.forEach(a => {
+    const [cx, cy] = positions[a.n] || [0, 0];
+    lines.push(`${a.n}:${cx},${cy}`);
+  });
+  document.getElementById('export-code').value = lines.join('\n');
+  document.getElementById('export-box').classList.add('open');
+}
+
+function copyCode() {
+  const ta = document.getElementById('export-code');
+  ta.select();
+  document.execCommand('copy');
+  alert('Copié !');
+}
+
+function closeExport() {
+  document.getElementById('export-box').classList.remove('open');
+}
+
+window.addEventListener('load', () => {
+  const img = document.getElementById('map-img');
+  imgW = img.naturalWidth || 1034;
+  imgH = img.naturalHeight || 764;
+  createMarkers();
+  window.addEventListener('resize', updatePositions);
+});
+</script>
+</body>
+</html>
