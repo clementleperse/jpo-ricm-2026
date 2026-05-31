@@ -1,0 +1,21 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Netlify
+        run: |
+          zip -r deploy.zip . -x "*.git*" -x ".github/*"
+          curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.NETLIFY_TOKEN }}" \
+            -H "Content-Type: application/zip" \
+            --data-binary @deploy.zip \
+            "https://api.netlify.com/api/v1/sites/${{ secrets.NETLIFY_SITE_ID }}/deploys" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print('State:', d.get('state')); print('URL:', d.get('ssl_url',''))"

@@ -45,16 +45,17 @@
   .wrap{max-width:var(--maxw);margin-inline:auto;width:100%}
   .sec{padding:44px 20px 8px}
   .sec-pad{padding-bottom:44px}
+  .sec-tight{padding-top:16px}
   section{scroll-margin-top:calc(var(--nav-h) + 8px)}
 
   .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
+    display:flex;align-items:center;gap:12px;
     font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
-    font-size:12.5px;letter-spacing:.16em;color:var(--red);
+    font-size:16px;letter-spacing:.16em;color:var(--red);
   }
-  .eyebrow::before{content:"";width:22px;height:2px;background:var(--red);display:block}
-  .sec h2{font-size:30px;font-weight:700;color:var(--green);margin:10px 0 4px}
-  .sec-intro{color:var(--ink-soft);font-size:15px;max-width:42ch}
+  .eyebrow::before,.eyebrow::after{content:"";flex:1;height:2px;background:var(--red);display:block}
+  .sec h2{font-size:30px;font-weight:700;color:var(--green);margin:10px 0 4px;text-align:center}
+  .sec-intro{color:var(--ink-soft);font-size:15px;text-align:center}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -257,6 +258,13 @@
   }
   footer .flink:hover{background:rgba(200,184,154,.12)}
   footer .fcredit{color:rgba(255,255,255,.4);font-size:11.5px;margin-top:22px;line-height:1.6}
+  .foot-social{display:flex;gap:12px;justify-content:center;margin-top:20px}
+  .foot-social a{
+    width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+    color:rgba(255,255,255,.75);transition:background .15s ease,color .15s ease;
+  }
+  .foot-social a:hover{background:rgba(255,255,255,.22);color:#fff}
 
   /* back-to-top */
   .totop{
@@ -301,6 +309,36 @@
   .ev-current-badge{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 7px;border-radius:4px;}
   .today-flag.info{color:var(--green-l);}
   .today-flag.info::before{background:var(--green-l);}
+  /* ---------- TARIFS ACTIVITÉS ---------- */
+  .tarif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+  .tarif-card{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;
+    padding:18px 14px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .tarif-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--green)}
+  .tarif-price{
+    font-family:'Oswald';font-weight:700;font-size:32px;color:var(--green);line-height:1;
+  }
+  .tarif-price small{display:block;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;font-family:'Barlow'}
+  .tarif-items{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:6px}
+  .tarif-items li{font-size:13px;color:var(--ink-soft);padding:6px 0;border-top:1px solid var(--line);line-height:1.3}
+  .tarif-items li:first-child{border-top:none}
+  .tarif-forfait{
+    margin-top:16px;background:var(--green-d);border-radius:14px;padding:20px;
+    display:flex;align-items:center;gap:18px;box-shadow:var(--shadow-lg);
+  }
+  .tarif-forfait-price{
+    font-family:'Oswald';font-weight:700;font-size:42px;color:var(--sand);line-height:1;
+    flex:none;min-width:72px;text-align:center;
+  }
+  .tarif-forfait-title{font-family:'Oswald';font-weight:600;font-size:16px;color:#fff;text-transform:uppercase;letter-spacing:.04em}
+  .tarif-forfait-desc{font-size:13px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.5}
+  .tarif-forfait-badge{
+    display:inline-flex;align-items:center;gap:5px;margin-top:8px;
+    background:var(--red);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;padding:3px 9px;border-radius:4px;
+  }
+
   /* ---------- MENU RESTAURATION ---------- */
   .menu-block{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-top:20px;}
   .menu-block-head{background:var(--green);padding:16px 20px;}
@@ -329,7 +367,83 @@
   .map-photo-container{
     border-radius:16px;overflow:hidden;border:1px solid var(--line);
     box-shadow:var(--shadow);margin-top:20px;background:var(--white);
+    position:relative;
   }
+  .map-zoom-btn{
+    position:absolute;top:10px;right:10px;z-index:10;
+    background:rgba(31,53,32,.88);color:#fff;border:none;border-radius:8px;
+    padding:8px 11px;cursor:pointer;display:flex;align-items:center;gap:6px;
+    font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;
+    backdrop-filter:blur(4px);transition:background .15s;box-shadow:0 2px 8px rgba(0,0,0,.3);
+  }
+  .map-zoom-btn:hover{background:rgba(31,53,32,1)}
+  .map-zoom-btn svg{flex:none}
+
+  /* ---------- FULLSCREEN MAP ---------- */
+  .map-fs-overlay{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(0,0,0,.88);
+    display:grid;place-items:center;
+    backdrop-filter:blur(6px);
+  }
+  .map-fs-overlay[hidden]{display:none}
+  .map-fs-wrap{
+    position:relative;
+    width:96vw;max-width:1200px;
+    max-height:92vh;
+    border-radius:14px;overflow:hidden;
+    background:#fff;
+    box-shadow:0 24px 80px rgba(0,0,0,.6);
+    display:flex;flex-direction:column;
+  }
+  .map-fs-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 14px;background:var(--green-d);flex-shrink:0;
+  }
+  .map-fs-title{
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:13px;letter-spacing:.08em;color:#fff;
+  }
+  .map-fs-close{
+    background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;
+    width:34px;height:34px;display:grid;place-items:center;cursor:pointer;
+    transition:background .15s;
+  }
+  .map-fs-close:hover{background:rgba(255,255,255,.3)}
+  .map-fs-viewport{
+    overflow:hidden;flex:1;cursor:grab;position:relative;
+  }
+  .map-fs-viewport.dragging{cursor:grabbing}
+  .map-fs-content{
+    position:relative;transform-origin:0 0;
+    will-change:transform;transition:none;
+    display:inline-block;
+  }
+  .map-fs-content img{display:block;width:100%}
+  .map-fs-content .map-overlay{position:absolute;top:0;left:0;width:100%;height:100%}
+  .map-fs-controls{
+    position:absolute;bottom:12px;right:12px;z-index:10;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .map-fs-ctrl-btn{
+    background:rgba(31,53,32,.88);color:#fff;border:none;
+    border-radius:8px;width:38px;height:38px;
+    cursor:pointer;font-size:20px;font-weight:700;
+    display:grid;place-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.35);
+    transition:background .15s;
+  }
+  .map-fs-ctrl-btn:hover{background:rgba(31,53,32,1)}
+  .map-fs-legend{
+    display:flex;flex-wrap:wrap;gap:10px 18px;padding:8px 14px;
+    background:var(--green-d);flex-shrink:0;
+  }
+  .map-fs-hint{
+    font-size:11px;color:rgba(255,255,255,.5);
+    text-align:center;padding:4px;background:var(--green-d);flex-shrink:0;
+    font-family:'Barlow',sans-serif;
+  }
+
   .map-scroll-wrap{
     overflow:hidden;
   }
@@ -395,7 +509,7 @@
 
   /* Modal */
   .atelier-overlay{
-    position:fixed;inset:0;background:rgba(28,33,28,.62);z-index:100;
+    position:fixed;inset:0;background:rgba(28,33,28,.62);z-index:300;
     display:grid;place-items:center;padding:20px;backdrop-filter:blur(4px);
   }
   .atelier-overlay[hidden]{display:none}
@@ -477,6 +591,7 @@
   <ul class="wrap">
     <li><a href="#programme">Programme</a></li>
     <li><a href="#plan">Plan du site</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
     <li><a href="#restauration">Restauration</a></li>
     <li><a href="#billetterie">Billetterie</a></li>
     <li><a href="#infos">Infos pratiques</a></li>
@@ -511,8 +626,12 @@
   <p class="sec-intro">Carte officielle des ateliers. Filtrez par public puis touchez un atelier pour voir ses détails.</p>
 
   <div class="map-photo-container">
+    <button class="map-zoom-btn" id="mapZoomBtn" aria-label="Agrandir la carte">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+      Agrandir la carte
+    </button>
     <div class="map-scroll-wrap">
-      <div class="map-inner">
+      <div class="map-inner" id="mapInline">
         <img src="images/map.png" class="map-real-photo" alt="Plan des ateliers — JPO RICM 2026" />
         <svg class="map-overlay" viewBox="0 0 1034 764" xmlns="http://www.w3.org/2000/svg">
           <g class="a-marker" data-n="21" tabindex="0" role="button"><circle class="m-bg" cx="368" cy="301" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
@@ -526,10 +645,10 @@
           <g class="a-marker" data-n="37" tabindex="0" role="button"><circle class="m-bg" cx="169" cy="209" r="18" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="38" tabindex="0" role="button"><circle class="m-bg" cx="705" cy="495" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="41" tabindex="0" role="button"><circle class="m-bg" cx="120" cy="326" r="18" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
-          <g class="a-marker" data-n="42" tabindex="0" role="button"><circle class="m-bg" cx="692" cy="432" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="42" tabindex="0" role="button"><circle class="m-bg" cx="692" cy="432" r="16" fill="#C9842A" opacity=".95" stroke="#fff" stroke-width="2" pointer-events="all"/><text x="692" y="438" font-family="Oswald,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">42</text></g>
           <g class="a-marker" data-n="43" tabindex="0" role="button"><circle class="m-bg" cx="496" cy="306" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="44" tabindex="0" role="button"><circle class="m-bg" cx="480" cy="282" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
-          <g class="a-marker" data-n="45" tabindex="0" role="button"><circle class="m-bg" cx="394" cy="329" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="45" tabindex="0" role="button"><circle class="m-bg" cx="394" cy="329" r="16" fill="#C9842A" opacity=".95" stroke="#fff" stroke-width="2" pointer-events="all"/><text x="394" y="335" font-family="Oswald,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">45</text></g>
           <g class="a-marker" data-n="46" tabindex="0" role="button"><circle class="m-bg" cx="325" cy="334" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="47" tabindex="0" role="button"><circle class="m-bg" cx="408" cy="218" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="48" tabindex="0" role="button"><circle class="m-bg" cx="564" cy="199" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
@@ -542,7 +661,7 @@
           <g class="a-marker" data-n="56" tabindex="0" role="button"><circle class="m-bg" cx="678" cy="476" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="57" tabindex="0" role="button"><circle class="m-bg" cx="489" cy="356" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="71" tabindex="0" role="button"><circle class="m-bg" cx="574" cy="359" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
-          <g class="a-marker" data-n="72" tabindex="0" role="button"><circle class="m-bg" cx="657" cy="435" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
+          <g class="a-marker" data-n="72" tabindex="0" role="button"><circle class="m-bg" cx="657" cy="435" r="16" fill="#C9842A" opacity=".95" stroke="#fff" stroke-width="2" pointer-events="all"/><text x="657" y="441" font-family="Oswald,sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">72</text></g>
           <g class="a-marker" data-n="00" tabindex="0" role="button"><circle class="m-bg" cx="586" cy="258" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="01" tabindex="0" role="button"><circle class="m-bg" cx="592" cy="414" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
           <g class="a-marker" data-n="02" tabindex="0" role="button"><circle class="m-bg" cx="428" cy="325" r="16" fill="rgba(0,0,0,0.01)" stroke="rgba(0,0,0,0)" pointer-events="all"/></g>
@@ -571,6 +690,34 @@
 </section>
 
 <!-- ============ MODAL ATELIER ============ -->
+<!-- ============ FULLSCREEN MAP ============ -->
+<div class="map-fs-overlay" id="mapFsOverlay" hidden>
+  <div class="map-fs-wrap">
+    <div class="map-fs-header">
+      <span class="map-fs-title">Plan des ateliers — JPO RICM 2026</span>
+      <button class="map-fs-close" id="mapFsClose" aria-label="Fermer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="map-fs-viewport" id="mapFsViewport">
+      <div class="map-fs-content" id="mapFsContent">
+        <!-- Contenu injecté dynamiquement -->
+      </div>
+      <div class="map-fs-controls">
+        <button class="map-fs-ctrl-btn" id="mapFsZoomIn" aria-label="Zoom +">+</button>
+        <button class="map-fs-ctrl-btn" id="mapFsReset" aria-label="Réinitialiser" style="font-size:14px">⟳</button>
+        <button class="map-fs-ctrl-btn" id="mapFsZoomOut" aria-label="Zoom −">−</button>
+      </div>
+    </div>
+    <div class="map-fs-legend">
+      <div class="mlb-item"><div class="mlb-dot" style="background:#C8102E;width:12px;height:12px;border-radius:3px;flex:none"></div><span style="font-size:12px;color:rgba(255,255,255,.82);font-weight:500">Démonstrations</span></div>
+      <div class="mlb-item"><div class="mlb-dot" style="background:#2D4A2D;width:12px;height:12px;border-radius:3px;flex:none"></div><span style="font-size:12px;color:rgba(255,255,255,.82);font-weight:500">Tout public</span></div>
+      <div class="mlb-item"><div class="mlb-dot" style="background:#C9842A;width:12px;height:12px;border-radius:3px;flex:none"></div><span style="font-size:12px;color:rgba(255,255,255,.82);font-weight:500">Enfants &amp; Ados</span></div>
+    </div>
+    <div class="map-fs-hint">Molette ou pincement pour zoomer · Glisser pour déplacer</div>
+  </div>
+</div>
+
 <div class="atelier-overlay" id="atelierOverlay" hidden>
   <div class="atelier-modal">
     <button class="modal-close" id="modalClose" aria-label="Fermer">
@@ -585,8 +732,45 @@
   <div class="pb-ink"></div>
 </div>
 
+<!-- ============ TARIFS ACTIVITÉS ============ -->
+<section id="tarifs" class="sec sec-pad wrap">
+  <span class="eyebrow">Activités payantes</span>
+  <h2>Tarifs des activités</h2>
+  <p class="sec-intro">Certaines activités sont payantes, règlement en billets de popotte uniquement. Les activités payantes sont indiquées sur le plan.</p>
+
+  <div class="tarif-grid">
+    <div class="tarif-card">
+      <div class="tarif-price">1 €<small>par activité</small></div>
+      <ul class="tarif-items">
+        <li>À compléter</li>
+      </ul>
+    </div>
+    <div class="tarif-card">
+      <div class="tarif-price">2 €<small>par activité</small></div>
+      <ul class="tarif-items">
+        <li>À compléter</li>
+      </ul>
+    </div>
+    <div class="tarif-card">
+      <div class="tarif-price">4 €<small>par activité</small></div>
+      <ul class="tarif-items">
+        <li>À compléter</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tarif-forfait">
+    <div class="tarif-forfait-price">10 €</div>
+    <div>
+      <div class="tarif-forfait-title">Forfait tout inclus</div>
+      <div class="tarif-forfait-desc">Accès illimité à l'ensemble des activités payantes de la journée, sans restriction de nombre de passages.</div>
+      <div class="tarif-forfait-badge">Réservé aux moins de 18 ans</div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ RESTAURATION ============ -->
-<section id="restauration" class="sec sec-pad wrap">
+<section id="restauration" class="sec sec-pad sec-tight wrap">
   <span class="eyebrow">Pause gourmande</span>
   <h2>Se restaurer sur place</h2>
   <p class="sec-intro">La cantine du régiment propose un menu complet et des options à la carte. Paiement en billets de popotte, CB ou espèces.</p>
@@ -628,16 +812,16 @@
 </section>
 
 <!-- ============ BILLETTERIE ============ -->
-<section id="billetterie" class="sec sec-pad wrap">
+<section id="billetterie" class="sec sec-pad sec-tight wrap">
   <span class="eyebrow">Paiement</span>
   <h2>Billetterie</h2>
-  <p class="sec-intro">Les activités et restauration fonctionne avec des billets de popotte. 
-    Les tickets sont à acheter auprès des trois banques présentes.</p>
+  <p class="sec-intro">Les activités et restauration fonctionnent avec des tickets popotte. 
+    Ces tickets sont à acheter auprès des trois banques présentes.</p>
 
   <div class="info-grid">
     <div class="info">
       <div class="ic">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 14h4M14 14h1"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M6 10v8M10 10v8M14 10v8M18 10v8"/></svg>
       </div>
       <div>
         <h3>Banques sur site</h3>
@@ -668,19 +852,19 @@
       </div>
       <div>
         <h3>Moyens de paiement acceptés</h3>
-        <p><b>Carte bancaire</b> et <b>espèces</b> sont acceptées aux caisses pour l'achat de billets de popotte.</p>
+        <p><b>Cartes bancaires</b> et <b>espèces</b> sont acceptées aux caisses pour l'achat de billets de popotte.</p>
       </div>
     </div>
 
     <div class="billet-warn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="1.2" fill="currentColor" stroke="none"/></svg>
       <p>Les carnets de billets ne sont pas remboursables. Pensez à utiliser tous vos billets avant la fermeture du site.</p>
     </div>
   </div>
 </section>
 
 <!-- ============ INFOS PRATIQUES ============ -->
-<section id="infos" class="sec sec-pad wrap">
+<section id="infos" class="sec sec-pad sec-tight wrap">
   <span class="eyebrow">Bon à savoir</span>
   <h2>Infos pratiques</h2>
 
@@ -745,6 +929,14 @@
     <div class="foot-mark"><img src="images/insigne-ricm.png" alt="Insigne RICM" style="width:52px;height:52px;object-fit:contain" /></div>
     <div class="fname">Régiment d'Infanterie-Chars de Marine</div>
     <div class="fsub">Poitiers — Troupes de Marine</div>
+    <div class="foot-social">
+      <a href="https://fr.linkedin.com/in/ricm-officiel-790809252?trk=public_profile_browsemap" target="_blank" rel="noopener" aria-label="LinkedIn du RICM">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.instagram.com/ricm_officiel/" target="_blank" rel="noopener" aria-label="Instagram du RICM">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
     <div class="fcredit">Journées Portes Ouvertes — 13 &amp; 14 juin 2026<br />Entrée libre et gratuite</div>
   </div>
 </footer>
@@ -1095,6 +1287,143 @@ window.addEventListener('scroll',()=>{
   toTop.classList.toggle('show', window.scrollY>600);
 },{passive:true});
 toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* =====================================================================
+   FULLSCREEN MAP — zoom, pan, clics ateliers
+   ===================================================================== */
+(function(){
+  let fsScale=1, fsPanX=0, fsPanY=0;
+  let isDrag=false, dragSX=0, dragSY=0, panSX=0, panSY=0;
+  let pinchDist=null;
+
+  const overlay  = document.getElementById('mapFsOverlay');
+  const viewport = document.getElementById('mapFsViewport');
+  const content  = document.getElementById('mapFsContent');
+
+  function applyTransform(smooth){
+    content.style.transition = smooth ? 'transform .22s ease' : 'none';
+    content.style.transform  = `translate(${fsPanX}px,${fsPanY}px) scale(${fsScale})`;
+  }
+
+  function clamp(v, mn, mx){ return Math.min(mx, Math.max(mn, v)); }
+
+  function zoomTo(newScale, originX, originY){
+    const vr = viewport.getBoundingClientRect();
+    const ox = (originX || vr.width/2) - vr.left;
+    const oy = (originY || vr.height/2) - vr.top;
+    const prev = fsScale;
+    fsScale = clamp(newScale, .6, 5);
+    fsPanX = ox - (ox - fsPanX) * (fsScale / prev);
+    fsPanY = oy - (oy - fsPanY) * (fsScale / prev);
+    applyTransform(false);
+  }
+
+  function openFs(){
+    // Copier le contenu de la map inline à sa taille naturelle (1034px)
+    const src = document.getElementById('mapInline');
+    content.innerHTML = src.innerHTML;
+    content.style.width = '1034px'; // largeur naturelle de map.png
+
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    // Calculer l'échelle pour que la carte remplisse le viewport du popup
+    requestAnimationFrame(()=>{
+      const vw = viewport.clientWidth;
+      const vh = viewport.clientHeight;
+      const imgW = 1034, imgH = 764;
+      const scaleW = vw / imgW;
+      const scaleH = vh / imgH;
+      fsScale = Math.min(scaleW, scaleH) * 0.97; // légère marge
+
+      // Centrer
+      const scaledW = imgW * fsScale;
+      const scaledH = imgH * fsScale;
+      fsPanX = (vw - scaledW) / 2;
+      fsPanY = (vh - scaledH) / 2;
+      applyTransform(false);
+    });
+
+    // Brancher les clics sur les marqueurs de la version fullscreen
+    content.querySelectorAll('.a-marker').forEach(el=>{
+      el.addEventListener('click', e=>{
+        e.stopPropagation();
+        const idx = ATELIERS.findIndex(a=>a.n===el.dataset.n);
+        if(idx!==-1) openModal(idx);
+      });
+    });
+  }
+
+  function closeFs(){
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('mapZoomBtn').addEventListener('click', openFs);
+  document.getElementById('mapFsClose').addEventListener('click', closeFs);
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) closeFs(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !overlay.hidden) closeFs(); });
+
+  // Boutons zoom
+  document.getElementById('mapFsZoomIn').addEventListener('click',  ()=>{ zoomTo(fsScale*1.35); applyTransform(true); });
+  document.getElementById('mapFsZoomOut').addEventListener('click', ()=>{ zoomTo(fsScale/1.35); applyTransform(true); });
+  document.getElementById('mapFsReset').addEventListener('click',   ()=>{ fsScale=1; fsPanX=0; fsPanY=0; applyTransform(true); });
+
+  // Molette
+  viewport.addEventListener('wheel', e=>{
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? .88 : 1.14;
+    zoomTo(fsScale * delta, e.clientX, e.clientY);
+  },{passive:false});
+
+  // Drag souris
+  viewport.addEventListener('mousedown', e=>{
+    if(e.target.closest('.map-fs-ctrl-btn,.map-fs-close')) return;
+    isDrag=true; dragSX=e.clientX; dragSY=e.clientY; panSX=fsPanX; panSY=fsPanY;
+    viewport.classList.add('dragging');
+  });
+  document.addEventListener('mousemove', e=>{
+    if(!isDrag) return;
+    fsPanX = panSX+(e.clientX-dragSX);
+    fsPanY = panSY+(e.clientY-dragSY);
+    applyTransform(false);
+  });
+  document.addEventListener('mouseup', ()=>{ isDrag=false; viewport.classList.remove('dragging'); });
+
+  // Touch — pinch zoom + pan
+  viewport.addEventListener('touchstart', e=>{
+    if(e.touches.length===2){
+      pinchDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    } else if(e.touches.length===1){
+      isDrag=true;
+      dragSX=e.touches[0].clientX; dragSY=e.touches[0].clientY;
+      panSX=fsPanX; panSY=fsPanY;
+    }
+  },{passive:true});
+
+  viewport.addEventListener('touchmove', e=>{
+    if(e.touches.length===2 && pinchDist){
+      e.preventDefault();
+      const newDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const cx = (e.touches[0].clientX + e.touches[1].clientX)/2;
+      const cy = (e.touches[0].clientY + e.touches[1].clientY)/2;
+      zoomTo(fsScale*(newDist/pinchDist), cx, cy);
+      pinchDist=newDist;
+    } else if(e.touches.length===1 && isDrag){
+      fsPanX = panSX+(e.touches[0].clientX-dragSX);
+      fsPanY = panSY+(e.touches[0].clientY-dragSY);
+      applyTransform(false);
+    }
+  },{passive:false});
+
+  viewport.addEventListener('touchend', ()=>{ isDrag=false; pinchDist=null; });
+})();
 </script>
 </body>
 </html>
