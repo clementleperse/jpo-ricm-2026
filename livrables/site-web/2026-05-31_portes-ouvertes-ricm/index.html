@@ -307,7 +307,7 @@
   /* ---------- PROGRAMME actif ---------- */
   .ev-current{background:rgba(45,74,45,.05);border-radius:10px;position:relative;}
   .ev-current .time{color:var(--red)!important;}
-  .ev-current-badge{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 7px;border-radius:4px;}
+  .ev-current-badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 7px;border-radius:4px;vertical-align:middle;margin-left:8px;}
   .today-flag.info{color:var(--green-l);}
   .today-flag.info::before{background:var(--green-l);}
   /* ---------- TARIFS ACTIVITÉS ---------- */
@@ -976,7 +976,7 @@
       <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
       <div>
         <h3>Accès & transports</h3>
-        <p> Bus Vitalis arrêt Capitaine Bès ou 5 minutes à pied depuis la gare <p> 
+        <p>Bus Vitalis arrêt Capitaine Bès ou 5 minutes à pied depuis la gare.</p> 
         <p>En voiture, suivre le fléchage 'Parking JPO'</p>
       </div>
     </div>
@@ -1048,31 +1048,31 @@ const CATLABEL = {ceremonie:'Cérémonie',demo:'Démonstration',expo:'Exposition
 /* ---- PROGRAMME : SAMEDI 13 JUIN ---- */
 const PROG_SAM = [
   {h:'10:00', t:"Ouverture du régiment au public & Haka", cat:'ceremonie', zone:2,
-   desc:"Ouverture officielle des portes du régiment, suivie d'un Haka exécuté par les soldats des Troupes de Marine sur la place d'armes. Coup d'envoi des journées portes ouvertes."},
+   desc:"Ouverture officielle des portes du régiment, suivie d'un Haka d'officialisation du début des portes ouvertes."},
   {h:'10:30', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
-   desc:"Démonstration du Groupement de Cavalerie Aéromobile et des équipes cynotechniques (maître-chien). Techniques de pistage, mordant et appui au sol présentés en situation réelle."},
+   desc:"Démonstration du Groupement Commando Amphibie et des équipes cynotechniques (maître-chien). Techniques de pistage, mordant et appui au sol présentés en situation réelle."},
   {h:'11:00', t:"Dépose moteur", cat:'expo', zone:3,
    desc:"Démonstration technique de dépose et repose de moteur sur véhicule blindé par les mécaniciens du régiment. Une opération de maintenance spectaculaire réalisée en conditions réelles."},
   {h:'11:30', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
-   desc:"Démonstration dynamique des véhicules blindés du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
+   desc:"Démonstration dynamique des JAGUAR ET GRIFFON du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
   {h:'12:00', t:"Danse tahitienne", cat:'musique', zone:2,
-   desc:"Prestation de danse tahitienne par les soldats et familles du régiment sur la place d'armes. Un moment convivial qui célèbre l'identité des Troupes de Marine et leur lien avec l'Outre-mer."},
+   desc:"Prestation de danse tahitienne par les soldats et familles du régiment. Un moment convivial qui célèbre l'identité des Troupes de Marine et leur lien avec l'Outre-mer."},
   {h:'13:00', t:"Présentation C4", cat:'demo', zone:4,
-   desc:"Démonstration des équipes de Combat de Contact et de Close Combat (C4) du RICM. Techniques de combat rapproché, neutralisation de menace et gestion de zone présentées par les instructeurs."},
+   desc:"Démonstration des techniques de combat rapproché. Neutralisation de menace et gestion de zone présentées par les instructeurs."},
   {h:'13:30', t:"Haka", cat:'ceremonie', zone:2,
    desc:"Second Haka de la journée sur la place d'armes. Rituel guerrier des Troupes de Marine, symbole de cohésion et de puissance, exécuté par les soldats du RICM."},
   {h:'14:00', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
-   desc:"Deuxième séance de démonstration dynamique des blindés. Manœuvres, évolutions tactiques et présentation des capacités opérationnelles des véhicules du régiment."},
+   desc:"Démonstration dynamique des JAGUAR ET GRIFFON du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
   {h:'14:30', t:"Dépose moteur", cat:'expo', zone:3,
    desc:"Deuxième démonstration de dépose moteur par les mécaniciens. L'occasion de voir à l'œuvre le savoir-faire technique des maintenanciers du RICM."},
   {h:'15:00', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
-   desc:"Deuxième présentation des équipes GCA et cynotechniques. Démonstration complète des capacités d'appui et de soutien des unités spécialisées du régiment."},
+   desc:"Démonstration du Groupement Commando Amphibie et des équipes cynotechniques (maître-chien). Techniques de pistage, mordant et appui au sol présentés en situation réelle."},
   {h:'15:40', t:"Présentation C4", cat:'demo', zone:4,
-   desc:"Deuxième session de démonstration C4. Techniques de combat rapproché et scénarios d'intervention présentés par les instructeurs du RICM."},
+   desc:"Démonstration des techniques de combat rapproché. Neutralisation de menace et gestion de zone présentées par les instructeurs."},
   {h:'16:15', t:"Danse tahitienne", cat:'musique', zone:2,
    desc:"Dernière prestation de danse tahitienne de la journée. Un spectacle coloré et festif pour clôturer l'après-midi en musique sur la place d'armes."},
   {h:'17:00', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
-   desc:"Dernière démonstration dynamique de la journée. Grand final avec les blindés du RICM en action. Le clou du spectacle avant la fermeture des portes."},
+   desc:"Démonstration dynamique des JAGUAR ET GRIFFON du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
   {h:'18:00', t:"Fermeture du régiment au public", cat:'ceremonie', zone:1,
    desc:"Fin de la journée du samedi. Merci de rejoindre les sorties. Rendez-vous demain dès 10h pour la dernière journée des portes ouvertes du RICM."},
 ];
@@ -1080,31 +1080,31 @@ const PROG_SAM = [
 /* ---- PROGRAMME : DIMANCHE 14 JUIN ---- */
 const PROG_DIM = [
   {h:'10:00', t:"Ouverture du régiment au public", cat:'ceremonie', zone:1,
-   desc:"Ouverture officielle des portes du régiment pour la deuxième journée. Récupérez le plan au point information à l'entrée et profitez des ateliers dès l'ouverture."},
+   desc:"Ouverture officielle des portes du régiment pour la deuxième et dernière journée."},
   {h:'10:30', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
-   desc:"Démonstration du Groupement de Cavalerie Aéromobile et des équipes cynotechniques. Techniques de pistage, mordant et appui au sol en situation réelle."},
+   desc:"Démonstration du Groupement Commando Amphibie et des équipes cynotechniques (maître-chien). Techniques de pistage, mordant et appui au sol présentés en situation réelle."},
   {h:'11:00', t:"Dépose moteur", cat:'expo', zone:3,
    desc:"Démonstration technique de dépose et repose de moteur sur véhicule blindé par les mécaniciens du régiment. Savoir-faire et précision à l'œuvre."},
   {h:'11:30', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
-   desc:"Démonstration dynamique des véhicules blindés du RICM en manœuvre. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
+   desc:"Démonstration dynamique des JAGUAR ET GRIFFON du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
   {h:'12:00', t:"Présentation C4", cat:'demo', zone:4,
-   desc:"Démonstration des équipes de Combat de Contact et de Close Combat. Techniques de combat rapproché et neutralisation de menace présentées par les instructeurs."},
+   desc:"Démonstration des techniques de combat rapproché. Neutralisation de menace et gestion de zone présentées par les instructeurs."},
   {h:'13:00', t:"Danse tahitienne", cat:'musique', zone:2,
    desc:"Prestation de danse tahitienne par les soldats et familles du régiment. Un moment convivial célébrant l'identité des Troupes de Marine et leur lien avec l'Outre-mer."},
   {h:'13:30', t:"Haka", cat:'ceremonie', zone:2,
    desc:"Rituel guerrier des Troupes de Marine, symbole de cohésion et de puissance, exécuté par les soldats du RICM sur la place d'armes."},
   {h:'14:00', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
-   desc:"Deuxième démonstration dynamique des blindés. Manœuvres et évolutions tactiques des véhicules du régiment en terrain varié."},
+   desc:"Démonstration dynamique des JAGUAR ET GRIFFON du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
   {h:'14:30', t:"Dépose moteur", cat:'expo', zone:3,
    desc:"Deuxième démonstration de dépose moteur. L'occasion de voir une seconde fois le savoir-faire technique des maintenanciers du RICM."},
   {h:'15:00', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
-   desc:"Deuxième présentation des équipes GCA et cynotechniques. Démonstration complète des capacités d'appui des unités spécialisées du régiment."},
+   desc:"Démonstration du Groupement Commando Amphibie et des équipes cynotechniques (maître-chien). Techniques de pistage, mordant et appui au sol présentés en situation réelle."},
   {h:'15:30', t:"Présentation C4", cat:'demo', zone:4,
-   desc:"Deuxième session de démonstration C4. Scénarios de combat rapproché et techniques d'intervention présentés par les instructeurs du RICM."},
+   desc:"Démonstration des techniques de combat rapproché. Neutralisation de menace et gestion de zone présentées par les instructeurs."},
   {h:'16:00', t:"Danse tahitienne", cat:'musique', zone:2,
    desc:"Deuxième prestation de danse tahitienne. Un spectacle festif qui célèbre la richesse culturelle des Troupes de Marine."},
   {h:'16:30', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
-   desc:"Dernière démonstration dynamique du week-end. Grand final avec les blindés du RICM en action avant la fermeture des portes."},
+   desc:"Démonstration dynamique des JAGUAR ET GRIFFON du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
   {h:'18:00', t:"Fermeture du régiment au public", cat:'ceremonie', zone:1,
    desc:"Fermeture définitive du site pour cette édition 2026. Merci pour votre visite et à la prochaine édition des portes ouvertes du RICM."},
 ];
@@ -1162,10 +1162,10 @@ function highlightCurrentEvent(prog){
     const next=i<prog.length-1?(()=>{const[nh,nm]=prog[i+1].h.split(':').map(Number);return nh*60+nm;})():24*60;
     if(nowMin>=start && nowMin<next){
       el.classList.add('ev-current');
-      const badge=document.createElement('div');
+      const badge=document.createElement('span');
       badge.className='ev-current-badge';
       badge.textContent='En cours';
-      el.appendChild(badge);
+      el.querySelector('h3').appendChild(badge);
     }
   });
 }
