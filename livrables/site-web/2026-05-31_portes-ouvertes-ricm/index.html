@@ -311,7 +311,7 @@
   .today-flag.info{color:var(--green-l);}
   .today-flag.info::before{background:var(--green-l);}
   /* ---------- TARIFS ACTIVITÉS ---------- */
-  .tarif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+  .tarif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;align-items:start}
   .tarif-card{
     border-radius:14px;overflow:hidden;border:1.5px solid var(--line);
     box-shadow:var(--shadow);
@@ -353,7 +353,7 @@
 
   /* ---------- MENU RESTAURATION ---------- */
   .menu-block{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-top:20px;}
-  .menu-block-head{background:var(--green);padding:16px 20px;}
+  .menu-block-head{background:var(--green);padding:16px 20px;text-align:center;}
   .menu-block-head h3{font-family:'Oswald';font-weight:700;font-size:19px;color:#fff;text-transform:none;}
   .menu-block-head p{font-size:13px;color:rgba(255,255,255,.7);margin-top:3px;}
   .menu-row{display:flex;justify-content:space-between;align-items:center;padding:13px 20px;border-bottom:1px solid var(--line);gap:16px;}
@@ -912,7 +912,7 @@
   <p class="sec-intro">La cantine du régiment propose un menu complet et des options à la carte. Paiement en billets de popotte, CB ou espèces.</p>
   <div class="menu-block">
     <div class="menu-block-head">
-      <h3>Menu de la Cantine</h3>
+      <h3>Menu du jour</h3>
     </div>
     <div class="menu-row featured">
       <div>
