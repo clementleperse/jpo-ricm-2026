@@ -313,17 +313,28 @@
   /* ---------- TARIFS ACTIVITÉS ---------- */
   .tarif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
   .tarif-card{
-    background:var(--white);border:1px solid var(--line);border-radius:14px;
-    padding:18px 14px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    border-radius:14px;overflow:hidden;border:1.5px solid var(--line);
+    box-shadow:var(--shadow);
   }
-  .tarif-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--green)}
+  .tarif-head{
+    background:var(--green-d);padding:14px 12px;text-align:center;
+  }
   .tarif-price{
-    font-family:'Oswald';font-weight:700;font-size:32px;color:var(--green);line-height:1;
+    font-family:'Oswald';font-weight:700;font-size:34px;color:#fff;line-height:1;
   }
-  .tarif-price small{display:block;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;font-family:'Barlow'}
-  .tarif-items{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:6px}
-  .tarif-items li{font-size:13px;color:var(--ink-soft);padding:6px 0;border-top:1px solid var(--line);line-height:1.3}
-  .tarif-items li:first-child{border-top:none}
+  .tarif-price small{
+    display:block;font-size:10px;font-weight:500;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--sand);margin-top:3px;font-family:'Oswald';
+  }
+  .tarif-body{padding:10px 12px;background:var(--white)}
+  .tarif-items{list-style:none;display:flex;flex-direction:column;gap:0}
+  .tarif-items li{
+    font-size:12.5px;color:var(--ink-soft);padding:6px 0;
+    border-bottom:1px dashed var(--line);line-height:1.35;
+    display:flex;align-items:baseline;gap:6px;
+  }
+  .tarif-items li:last-child{border-bottom:none}
+  .tarif-items li b{font-family:'Oswald';font-weight:700;font-size:13px;color:var(--green-d);flex:none}
   .tarif-forfait{
     margin-top:16px;background:var(--green-d);border-radius:14px;padding:20px;
     display:flex;align-items:center;gap:18px;box-shadow:var(--shadow-lg);
@@ -568,6 +579,19 @@
   .modal-info-box p{margin-bottom:8px}
   .modal-info-box p:last-child{margin-bottom:0}
   .modal-info-box b{color:var(--ink);font-weight:600}
+  .modal-price{
+    display:inline-flex;align-items:center;gap:6px;
+    background:#fff8e1;color:#a4631a;border:1.5px solid #f5c96a;
+    font-family:'Oswald';font-weight:700;font-size:15px;
+    padding:5px 14px;border-radius:8px;margin-bottom:14px;
+  }
+  .modal-price .mp-coin{font-size:17px}
+  .modal-gratuit{
+    display:inline-flex;align-items:center;gap:6px;
+    background:#e7ecdf;color:#2D4A2D;border:1.5px solid #b5ccb5;
+    font-family:'Oswald';font-weight:600;font-size:13px;
+    padding:5px 14px;border-radius:8px;margin-bottom:14px;
+  }
 </style>
 </head>
 <body>
@@ -832,22 +856,42 @@
 
   <div class="tarif-grid">
     <div class="tarif-card">
-      <div class="tarif-price">1 €<small>par activité</small></div>
-      <ul class="tarif-items">
-        <li>À compléter</li>
-      </ul>
+      <div class="tarif-head">
+        <div class="tarif-price">1 €<small>par activité</small></div>
+      </div>
+      <div class="tarif-body">
+        <ul class="tarif-items">
+          <li><b>34</b> Parcours Cdo enfant</li>
+          <li><b>46</b> Parcours Cdo ados</li>
+          <li><b>47</b> Tir grenade factice</li>
+          <li><b>72</b> Course d'orientation</li>
+        </ul>
+      </div>
     </div>
     <div class="tarif-card">
-      <div class="tarif-price">2 €<small>par activité</small></div>
-      <ul class="tarif-items">
-        <li>À compléter</li>
-      </ul>
+      <div class="tarif-head">
+        <div class="tarif-price">2 €<small>par activité</small></div>
+      </div>
+      <div class="tarif-body">
+        <ul class="tarif-items">
+          <li><b>31</b> Tir air soft</li>
+          <li><b>33</b> Parcours OB / évasion</li>
+          <li><b>36</b> Parcours évasion</li>
+          <li><b>49</b> Parcours PLO</li>
+          <li><b>71</b> Pistolet laser</li>
+        </ul>
+      </div>
     </div>
     <div class="tarif-card">
-      <div class="tarif-price">4 €<small>par activité</small></div>
-      <ul class="tarif-items">
-        <li>À compléter</li>
-      </ul>
+      <div class="tarif-head">
+        <div class="tarif-price">3 €<small>par activité</small></div>
+      </div>
+      <div class="tarif-body">
+        <ul class="tarif-items">
+          <li><b>41</b> Parcours VBL</li>
+          <li><b>51</b> Challenge VBS</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -1003,47 +1047,65 @@ const CATLABEL = {ceremonie:'Cérémonie',demo:'Démonstration',expo:'Exposition
 
 /* ---- PROGRAMME : SAMEDI 13 JUIN ---- */
 const PROG_SAM = [
-  {h:'10:00', t:"Ouverture des portes & cérémonie des couleurs", cat:'ceremonie',
-   desc:"Hissage solennel des couleurs du régiment en présence des autorités militaires et civiles. Coup d'envoi officiel des journées portes ouvertes."},
-  {h:'10:30', t:"Démonstration de combat débarqué", cat:'demo',
-   desc:"Mise en scène d'une action de combat par les fantassins du RICM. Tirs à blanc, fumigènes et techniques d'assaut présentés par les soldats du régiment."},
-  {h:'11:00', t:"Exposition de véhicules blindés (Jaguar, VBCI)", cat:'expo',
-   desc:"Découvrez en statique le Jaguar (EBRC) et le VBCI (Véhicule Blindé de Combat d'Infanterie). Montée à bord possible, présentation par les équipages."},
-  {h:'11:30', t:"Mini-parcours du combattant pour les enfants", cat:'enfants',
-   desc:"Parcours d'obstacles adapté aux enfants : ramping, franchissement de palissade et tyrolienne. Encadré par des soldats du régiment."},
-  {h:'12:00', t:"Visite guidée des stands & traditions du régiment", cat:'visite',
-   desc:"Tour commenté de l'esplanade des traditions avec présentation des fanions, médailles et emblèmes du RICM. Guides disponibles en continu."},
-  {h:'14:00', t:"Démonstration cynotechnique (équipes maître-chien)", cat:'demo',
-   desc:"Démonstration des équipes cynophiles du régiment : pistage, mordant et fouille de zone. Présentation et rencontre avec les chiens en service."},
-  {h:'15:00', t:"Présentation des matériels & simulateur de tir", cat:'expo',
-   desc:"Prise en main des équipements du fantassin moderne et session sur simulateur de tir. Accessible à partir de 12 ans, sur inscription au stand."},
-  {h:'16:00', t:"Concert de la Musique des Troupes de Marine", cat:'musique',
-   desc:"Concert gratuit sur la place d'armes. La Musique des Troupes de Marine interprète un répertoire militaire et populaire. Accès libre, places debout."},
-  {h:'17:30', t:"Démonstration finale interarmes", cat:'demo',
-   desc:"Clou du spectacle : coordination infanterie-blindés, appuis feu, fumigènes et manœuvres tactiques à grande échelle. Ne pas manquer."},
-  {h:'18:00', t:"Fermeture des portes", cat:'ceremonie',
-   desc:"Fin de la journée du samedi. Merci de rejoindre la sortie. Rendez-vous demain dès 10h pour la dernière journée des portes ouvertes."},
+  {h:'10:00', t:"Ouverture du régiment au public & Haka", cat:'ceremonie', zone:2,
+   desc:"Ouverture officielle des portes du régiment, suivie d'un Haka exécuté par les soldats des Troupes de Marine sur la place d'armes. Coup d'envoi des journées portes ouvertes."},
+  {h:'10:30', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
+   desc:"Démonstration du Groupement de Cavalerie Aéromobile et des équipes cynotechniques (maître-chien). Techniques de pistage, mordant et appui au sol présentés en situation réelle."},
+  {h:'11:00', t:"Dépose moteur", cat:'expo', zone:3,
+   desc:"Démonstration technique de dépose et repose de moteur sur véhicule blindé par les mécaniciens du régiment. Une opération de maintenance spectaculaire réalisée en conditions réelles."},
+  {h:'11:30', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
+   desc:"Démonstration dynamique des véhicules blindés du RICM en manœuvre sur le terrain. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
+  {h:'12:00', t:"Danse tahitienne", cat:'musique', zone:2,
+   desc:"Prestation de danse tahitienne par les soldats et familles du régiment sur la place d'armes. Un moment convivial qui célèbre l'identité des Troupes de Marine et leur lien avec l'Outre-mer."},
+  {h:'13:00', t:"Présentation C4", cat:'demo', zone:4,
+   desc:"Démonstration des équipes de Combat de Contact et de Close Combat (C4) du RICM. Techniques de combat rapproché, neutralisation de menace et gestion de zone présentées par les instructeurs."},
+  {h:'13:30', t:"Haka", cat:'ceremonie', zone:2,
+   desc:"Second Haka de la journée sur la place d'armes. Rituel guerrier des Troupes de Marine, symbole de cohésion et de puissance, exécuté par les soldats du RICM."},
+  {h:'14:00', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
+   desc:"Deuxième séance de démonstration dynamique des blindés. Manœuvres, évolutions tactiques et présentation des capacités opérationnelles des véhicules du régiment."},
+  {h:'14:30', t:"Dépose moteur", cat:'expo', zone:3,
+   desc:"Deuxième démonstration de dépose moteur par les mécaniciens. L'occasion de voir à l'œuvre le savoir-faire technique des maintenanciers du RICM."},
+  {h:'15:00', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
+   desc:"Deuxième présentation des équipes GCA et cynotechniques. Démonstration complète des capacités d'appui et de soutien des unités spécialisées du régiment."},
+  {h:'15:40', t:"Présentation C4", cat:'demo', zone:4,
+   desc:"Deuxième session de démonstration C4. Techniques de combat rapproché et scénarios d'intervention présentés par les instructeurs du RICM."},
+  {h:'16:15', t:"Danse tahitienne", cat:'musique', zone:2,
+   desc:"Dernière prestation de danse tahitienne de la journée. Un spectacle coloré et festif pour clôturer l'après-midi en musique sur la place d'armes."},
+  {h:'17:00', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
+   desc:"Dernière démonstration dynamique de la journée. Grand final avec les blindés du RICM en action. Le clou du spectacle avant la fermeture des portes."},
+  {h:'18:00', t:"Fermeture du régiment au public", cat:'ceremonie', zone:1,
+   desc:"Fin de la journée du samedi. Merci de rejoindre les sorties. Rendez-vous demain dès 10h pour la dernière journée des portes ouvertes du RICM."},
 ];
 
 /* ---- PROGRAMME : DIMANCHE 14 JUIN ---- */
 const PROG_DIM = [
-  {h:'10:00', t:"Ouverture des portes", cat:'ceremonie',
-   desc:"Ouverture des portes du quartier Aboville. Récupérez le plan du site au point information à l'entrée et profitez dès l'ouverture des premiers ateliers."},
-  {h:'10:30', t:"Atelier découverte pour les familles", cat:'enfants',
-   desc:"Ateliers interactifs pour petits et grands : camouflage facial, déchiffrage de cartes topographiques et initiation au code morse. Tout le monde est bienvenu."},
-  {h:'11:00', t:"Démonstration de franchissement & génie", cat:'demo',
-   desc:"Mise en œuvre de ponts de fortune et de techniques de franchissement d'obstacle par les sapeurs. Présentation du matériel de génie en action."},
-  {h:'11:30', t:"Exposition matériels & véhicules de reconnaissance", cat:'expo',
-   desc:"Présentation statique des véhicules de reconnaissance légers, dont le VBL et ses variantes. Explication des missions par les équipages."},
-  {h:'12:30', t:"Visite guidée — histoire et traditions du RICM", cat:'visite',
-   desc:"Visite commentée de la salle d'honneur et des traditions du régiment. Retour sur l'histoire du RICM depuis sa création, ses campagnes et décorations."},
-  {h:'14:00', t:"Démonstration de combat & appui feu", cat:'demo',
-   desc:"Démonstration dynamique avec appui des éléments blindés. Coordination feu et mouvement en terrain varié. Accès restreint aux abords de la zone de tir."},
-  {h:'15:00', t:"Aubade de la Musique des Troupes de Marine", cat:'musique',
-   desc:"Défilé musical et aubade de clôture par la Musique des Troupes de Marine sur la place d'armes. Dernier concert des journées portes ouvertes."},
-  {h:'16:00', t:"Cérémonie de clôture & remise des prix", cat:'ceremonie',
-   desc:"Cérémonie officielle de clôture avec remise des prix aux vainqueurs des jeux et challenges. Mot du colonel commandant le régiment."},
-  {h:'17:00', t:"Fermeture des portes", cat:'ceremonie',
+  {h:'10:00', t:"Ouverture du régiment au public", cat:'ceremonie', zone:1,
+   desc:"Ouverture officielle des portes du régiment pour la deuxième journée. Récupérez le plan au point information à l'entrée et profitez des ateliers dès l'ouverture."},
+  {h:'10:30', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
+   desc:"Démonstration du Groupement de Cavalerie Aéromobile et des équipes cynotechniques. Techniques de pistage, mordant et appui au sol en situation réelle."},
+  {h:'11:00', t:"Dépose moteur", cat:'expo', zone:3,
+   desc:"Démonstration technique de dépose et repose de moteur sur véhicule blindé par les mécaniciens du régiment. Savoir-faire et précision à l'œuvre."},
+  {h:'11:30', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
+   desc:"Démonstration dynamique des véhicules blindés du RICM en manœuvre. Évolutions à grande vitesse, franchissements d'obstacles et coordination des équipages."},
+  {h:'12:00', t:"Présentation C4", cat:'demo', zone:4,
+   desc:"Démonstration des équipes de Combat de Contact et de Close Combat. Techniques de combat rapproché et neutralisation de menace présentées par les instructeurs."},
+  {h:'13:00', t:"Danse tahitienne", cat:'musique', zone:2,
+   desc:"Prestation de danse tahitienne par les soldats et familles du régiment. Un moment convivial célébrant l'identité des Troupes de Marine et leur lien avec l'Outre-mer."},
+  {h:'13:30', t:"Haka", cat:'ceremonie', zone:2,
+   desc:"Rituel guerrier des Troupes de Marine, symbole de cohésion et de puissance, exécuté par les soldats du RICM sur la place d'armes."},
+  {h:'14:00', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
+   desc:"Deuxième démonstration dynamique des blindés. Manœuvres et évolutions tactiques des véhicules du régiment en terrain varié."},
+  {h:'14:30', t:"Dépose moteur", cat:'expo', zone:3,
+   desc:"Deuxième démonstration de dépose moteur. L'occasion de voir une seconde fois le savoir-faire technique des maintenanciers du RICM."},
+  {h:'15:00', t:"Présentation GCA & Cyno", cat:'demo', zone:4,
+   desc:"Deuxième présentation des équipes GCA et cynotechniques. Démonstration complète des capacités d'appui des unités spécialisées du régiment."},
+  {h:'15:30', t:"Présentation C4", cat:'demo', zone:4,
+   desc:"Deuxième session de démonstration C4. Scénarios de combat rapproché et techniques d'intervention présentés par les instructeurs du RICM."},
+  {h:'16:00', t:"Danse tahitienne", cat:'musique', zone:2,
+   desc:"Deuxième prestation de danse tahitienne. Un spectacle festif qui célèbre la richesse culturelle des Troupes de Marine."},
+  {h:'16:30', t:"Présentation Dynamique Blindé", cat:'demo', zone:4,
+   desc:"Dernière démonstration dynamique du week-end. Grand final avec les blindés du RICM en action avant la fermeture des portes."},
+  {h:'18:00', t:"Fermeture du régiment au public", cat:'ceremonie', zone:1,
    desc:"Fermeture définitive du site pour cette édition 2026. Merci pour votre visite et à la prochaine édition des portes ouvertes du RICM."},
 ];
 
@@ -1162,23 +1224,23 @@ const ATELIERS = [
    desc:"Découvrez les drones militaires légers utilisés par le RICM pour la reconnaissance et l'observation. Présentation des capacités, démonstration de vol et initiation au pilotage encadrée par les opérateurs du régiment."},
   {n:'22', name:'Atelier photo / vidéos',                cat:'public', featured:true,
    desc:"Réalisez vos photos et vidéos souvenirs dans un décor militaire authentique. Soldats en tenue, véhicules et matériels à disposition. Les clichés les plus réussis seront partagés sur les réseaux du régiment."},
-  {n:'31', name:'Tir air soft',                          cat:'public', featured:false,
+  {n:'31', price:2, name:'Tir air soft',                          cat:'public', featured:false,
    desc:"Initiez-vous aux techniques de tir avec des répliques d'armes en air soft. Posture, visée et sécurité armement sont présentés par les instructeurs du régiment avant chaque session sur cibles."},
   {n:'32', name:'Présentation petits matériels',         cat:'public', featured:false,
    desc:"Découvrez et manipulez l'équipement individuel du fantassin : gilet pare-éclats, casque, radio CONTACT, jumelles et matériel de soin de combat. Présentation commentée par les soldats du régiment."},
-  {n:'33', name:'Parcours OB / évasion',                 cat:'public', featured:true,
+  {n:'33', price:2, name:'Parcours OB / évasion',                 cat:'public', featured:true,
    desc:"Testez-vous sur ce parcours d'obstacles et d'évasion inspiré de l'entraînement commando. Ramping, franchissement de palissade, portage et défis physiques dans un dispositif entièrement sécurisé."},
-  {n:'34', name:'Parcours Cdo enfant',                   cat:'kids',   featured:true,
+  {n:'34', price:1, name:'Parcours Cdo enfant',                   cat:'kids',   featured:true,
    desc:"Version ludique du parcours commando, spécialement conçue pour les enfants. Obstacles colorés, sauts, ramping et tyrolienne adaptés. Encadrement permanent par les soldats du régiment. À partir de 6 ans."},
   {n:'35', name:'Atelier DRI',                           cat:'public', featured:false,
    desc:"Découverte des techniques de Défense Rapprochée en Intervention. Démonstrations de prises de contrôle, de désarmement et de techniques de protection par les instructeurs qualifiés du RICM."},
-  {n:'36', name:'Parcours évasion',                      cat:'public', featured:false,
+  {n:'36', price:2, name:'Parcours évasion',                      cat:'public', featured:false,
    desc:"Parcours à obstacles chronométré pour tester votre résistance physique et votre agilité. Chaque passage est encadré par les soldats du régiment, avec classement en temps réel affiché sur le site."},
   {n:'37', name:'Démonstration RRI / BLD',               cat:'demo',   featured:true,
    desc:"Démonstration en situation des équipes de Renseignement et de Recherche en Infanterie en coordination avec les blindés légers. Présentation des tactiques d'engagement et de la coordination interarmes."},
   {n:'38', name:'Présentations Vhls récents',            cat:'public', featured:false,
    desc:"Découvrez les derniers véhicules blindés en dotation au RICM : Griffon, Jaguar et leurs variantes. Présentation statique par les équipages avec explication des missions, capacités et anecdotes de terrain."},
-  {n:'41', name:'Parcours VBL',                          cat:'public',   featured:false,
+  {n:'41', price:3, name:'Parcours VBL',                          cat:'public',   featured:false,
    desc:"Montez à bord d'un Véhicule Blindé Léger et explorez son habitacle. Simulation de poste de conduite et découverte des équipements d'observation et de communication. Encadré par l'équipage."},
   {n:'42', name:'Atelier camouflage',                    cat:'kids', featured:false,
    desc:"Apprenez les techniques de camouflage utilisées par les fantassins : maquillage tactique, intégration au terrain naturel et confection de filets de camouflage. Atelier pratique, pour tous les âges."},
@@ -1188,19 +1250,19 @@ const ATELIERS = [
    desc:"Présentation dynamique des capacités de la compagnie de commandement, de combat et de soutien. Matériels, modes d'action et techniques d'engagement présentés par les soldats de la compagnie."},
   {n:'45', name:'Atelier SC1',                           cat:'kids', featured:false,
    desc:"Initiation aux gestes de premier secours en situation de combat : pose de garrot, pansement compressif et mise en position d'attente. Formateurs militaires qualifiés. Accessible à partir de 12 ans."},
-  {n:'46', name:'Parcours Cdo 2 (adolescents)',          cat:'kids',   featured:false,
+  {n:'46', price:1, name:'Parcours Cdo 2 (adolescents)',          cat:'kids',   featured:false,
    desc:"Parcours commando niveau 2, conçu pour les adolescents. Obstacles plus techniques, épreuves en équipe et défis d'endurance pour tester vos limites dans un cadre encadré et bienveillant. À partir de 12 ans."},
-  {n:'47', name:'Tir à la grenade factice',              cat:'public', featured:false,
+  {n:'47', price:1, name:'Tir à la grenade factice',              cat:'public', featured:false,
    desc:"Initiez-vous au lancer de grenade d'exercice sur cibles à différentes distances. Technique de lancer, prise en main et consignes de sécurité expliquées par les instructeurs. À partir de 14 ans."},
   {n:'48', name:'Atelier vision nocturne',               cat:'public', featured:true,
    desc:"Plongez dans l'obscurité et découvrez les équipements optroniques du fantassin moderne : lunettes de vision nocturne, désignateurs laser et caméras thermiques. Démonstration en espace obscurci sur le site."},
-  {n:'49', name:'Parcours PLO',                          cat:'public', featured:false,
+  {n:'49', price:2, name:'Parcours PLO',                          cat:'public', featured:false,
    desc:"Initiation aux techniques de Premiers Secours en milieu opérationnel. Gestes d'urgence, conditionnement du blessé et simulation d'évacuation sous contrainte, animés par les secouristes militaires du régiment."},
-  {n:'71', name:'Atelier pistolet laser',                cat:'public', featured:false,
+  {n:'71', price:2, name:'Atelier pistolet laser',                cat:'public', featured:false,
    desc:"Entraînement au tir de précision avec système laser sur cibles réactives. Les instructeurs du régiment vous transmettent postures, gestion du stress et maîtrise du geste technique. Sessions de 5 minutes."},
-  {n:'72', name:'Course d\'orientation',                 cat:'kids', featured:true,
+  {n:'72', price:1, name:'Course d\'orientation',                 cat:'kids', featured:true,
    desc:"Navigation à la carte et à la boussole dans l'enceinte du quartier Aboville. Retrouvez les balises disséminées sur le site, seul ou en équipe. Matériel fourni, briefing navigation assuré au départ."},
-  {n:'51', name:'Challenge VBS',                         cat:'public', featured:true,
+  {n:'51', price:3, name:'Challenge VBS',                         cat:'public', featured:true,
    desc:"Immergez-vous dans le simulateur de combat virtuel VBS (Virtual Battle Space). Missions tactiques en coopération, prise de décision sous pression et coordination d'unité dans un environnement numérique haute-fidélité."},
   {n:'52', name:'Présentation CO / PC',                  cat:'public', featured:false,
    desc:"Découverte du poste de commandement opérationnel et des outils de coordination au combat. Cartes opérationnelles, systèmes de communication numérique et processus de décision présentés par les officiers du RICM."},
@@ -1259,6 +1321,7 @@ function openModal(idx){
     <div class="modal-title">${a.name}${a.tbc ? ' <span class="tbc-pill" style="font-size:13px">TBC</span>' : ''}</div>
     <span class="modal-badge" style="background:${m.bg};color:${m.fg}">${m.label}</span>
     ${a.featured ? '<div style="color:var(--red);font-size:13px;font-weight:600;margin-bottom:14px">★ Atelier incontournable</div>' : ''}
+    ${a.price ? `<div class="modal-price"><span class="mp-coin">🎫</span>${a.price} €</div>` : '<div class="modal-gratuit">✓ Accès gratuit</div>'}
     <div class="modal-info-box">
       <p>${a.desc || ''}</p>
     </div>`;
