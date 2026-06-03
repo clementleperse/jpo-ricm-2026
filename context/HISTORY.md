@@ -7,6 +7,32 @@
 
 ---
 
+## 2026-06-03
+
+### Site web JPO RICM 2026 — livraison et itérations
+
+Travail intensif sur le site vitrine des Journées Portes Ouvertes du RICM (13 et 14 juin 2026), déployé sur Netlify à l'adresse `jpo-ricm-2026.netlify.app`. Le site est un fichier HTML unique hébergé sur GitHub (`clementleperse/jpo-ricm-2026`).
+
+**Fonctionnalités livrées :**
+- Programme des deux journées avec accordéon, détection automatique du jour J et badge "En cours" inline sur l'activité active
+- Plan interactif des ateliers avec carte photo zoomable, marqueurs cliquables et filtres par catégorie (tout public, démonstrations, enfants)
+- Modale par atelier avec description détaillée et prix en euros
+- Billetterie : 3 emplacements de banques, carnets de popotte (5/10/20/30 €), moyens de paiement
+- Tarifs des activités : grille 1/2/3 € avec forfait -18 ans à 10 €
+- Restauration : menu du jour avec tarifs à la carte
+- Infos pratiques : horaires, adresse, accès, PMR, parking, contact
+- Footer avec icônes LinkedIn et Instagram du RICM
+- Countdown avant ouverture, navigation sticky avec scroll spy, bouton retour en haut
+
+**Travail technique :**
+- Refonte UX complète (zones supprimées, modales centrées, typographie, eyebrows avec lignes)
+- Corrections orthographiques (combat rapproché, DDémonstration, balise HTML)
+- QR code généré en Python (vert RICM) pointant vers le site Netlify
+- Gestion de deux dépôts git imbriqués (jarvis-starter-kit outer + jpo-ricm-2026 inner)
+- Incident git résolu : rebase incorrect ayant aplati la structure, restauré via `git reset --hard`
+
+---
+
 ## 2026-05-29
 
 ### Installation initiale du Jarvis
