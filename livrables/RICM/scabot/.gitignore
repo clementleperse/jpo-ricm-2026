@@ -1,0 +1,8 @@
+.env
+credentials/
+output/
+journal.xlsx
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
