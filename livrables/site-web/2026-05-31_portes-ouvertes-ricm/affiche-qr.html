@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Affiche QR Code — JPO RICM 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap');
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#1a1a1a;
+    display:flex;align-items:center;justify-content:center;
+    min-height:100vh;padding:40px 20px;
+    font-family:'Barlow',sans-serif;
+  }
+
+  /* ---- CARTE AFFICHE ---- */
+  .affiche{
+    width:520px;
+    background:#1F3520;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+    position:relative;
+  }
+
+  /* Fond texturé subtil */
+  .affiche::before{
+    content:"";position:absolute;inset:0;
+    background:url('images/ricm-07.png') center/cover no-repeat;
+    opacity:.06;pointer-events:none;z-index:0;
+  }
+
+  /* ---- HEADER ---- */
+  .top{
+    position:relative;z-index:1;
+    padding:32px 32px 24px;
+    text-align:center;
+    border-bottom:2px solid rgba(200,184,154,.2);
+  }
+  .insigne{
+    width:110px;height:110px;object-fit:contain;
+    display:block;margin:0 auto 16px;
+    filter:drop-shadow(0 4px 18px rgba(0,0,0,.5));
+  }
+  .regiment{
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(200,184,154,.7);margin-bottom:6px;
+  }
+  .titre{
+    font-family:'Oswald',sans-serif;font-weight:700;
+    font-size:36px;line-height:1;letter-spacing:.02em;
+    text-transform:uppercase;color:#fff;
+  }
+  .titre .accent{color:#C8B89A}
+  .sous-titre{
+    font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;
+    letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(255,255,255,.55);margin-top:6px;
+  }
+
+  /* ---- DATES ---- */
+  .dates-band{
+    position:relative;z-index:1;
+    background:rgba(200,16,46,.88);
+    padding:12px 32px;
+    display:flex;align-items:center;justify-content:center;gap:14px;
+  }
+  .dates-band svg{flex:none;color:#fff;opacity:.85}
+  .dates-text{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;
+    text-transform:uppercase;letter-spacing:.08em;color:#fff;
+  }
+
+  /* ---- CORPS ---- */
+  .corps{
+    position:relative;z-index:1;
+    padding:32px 32px 28px;
+    display:flex;flex-direction:column;align-items:center;gap:24px;
+  }
+
+  .invite{
+    font-family:'Oswald',sans-serif;font-weight:500;font-size:14px;
+    text-transform:uppercase;letter-spacing:.14em;
+    color:rgba(200,184,154,.75);text-align:center;
+  }
+
+  /* ---- QR CODE ---- */
+  .qr-wrap{
+    background:#fff;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,.4);
+    position:relative;
+  }
+  .qr-wrap canvas{display:block;border-radius:6px}
+
+  /* Insigne centré sur le QR */
+  .qr-logo{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:52px;height:52px;
+    background:#fff;
+    border-radius:50%;
+    padding:4px;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+  }
+  .qr-logo img{width:100%;height:100%;object-fit:contain}
+
+  /* ---- URL ---- */
+  .url-pill{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(200,184,154,.25);
+    border-radius:10px;
+    padding:10px 20px;
+    font-family:'Oswald',sans-serif;font-weight:500;font-size:14px;
+    letter-spacing:.04em;color:rgba(200,184,154,.85);
+    text-align:center;
+  }
+  .url-pill span{color:#fff;font-weight:600}
+
+  /* ---- INFOS ---- */
+  .infos{
+    display:flex;gap:12px;width:100%;
+  }
+  .info-item{
+    flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(200,184,154,.15);
+    border-radius:10px;padding:12px 14px;text-align:center;
+  }
+  .info-item .ic{font-size:18px;margin-bottom:4px}
+  .info-item .il{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:rgba(200,184,154,.6);display:block}
+  .info-item .iv{font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;
+    color:#fff;display:block;margin-top:2px}
+
+  /* ---- FOOTER ---- */
+  .pied{
+    position:relative;z-index:1;
+    border-top:1px solid rgba(200,184,154,.15);
+    padding:14px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .pied-left{
+    font-family:'Oswald',sans-serif;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(255,255,255,.3);
+  }
+  .troupes{
+    display:flex;align-items:center;gap:6px;
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;
+    letter-spacing:.12em;text-transform:uppercase;color:rgba(200,184,154,.5);
+  }
+  .troupes::before{content:"";width:20px;height:1px;background:rgba(200,184,154,.3)}
+</style>
+</head>
+<body>
+
+<div class="affiche" id="affiche">
+
+  <div class="top">
+    <img src="images/insigne-ricm.png" class="insigne" alt="Insigne RICM" />
+    <div class="regiment">Régiment d'Infanterie-Chars de Marine</div>
+    <div class="titre">Portes<br /><span class="accent">Ouvertes</span></div>
+    <div class="sous-titre">RICM — Poitiers</div>
+  </div>
+
+  <div class="dates-band">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <path d="M3 9h18M8 2v4M16 2v4"/>
+    </svg>
+    <div class="dates-text">13 &amp; 14 juin 2026 — 10h à 18h</div>
+  </div>
+
+  <div class="corps">
+    <div class="invite">Scannez pour accéder au programme complet</div>
+
+    <div class="qr-wrap">
+      <canvas id="qrCanvas"></canvas>
+    </div>
+
+    <div class="infos">
+      <div class="info-item">
+        <div class="ic">🗺️</div>
+        <span class="il">Adresse</span>
+        <span class="iv">46 bis rue Jean Mermoz</span>
+      </div>
+      <div class="info-item">
+        <div class="ic">🎟️</div>
+        <span class="il">Entrée</span>
+        <span class="iv">Libre &amp; gratuite</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <div class="pied-left">Quartier Aboville — Poitiers</div>
+    <div class="troupes">Régiment d'Infanterie-Chars de Marine</div>
+  </div>
+
+</div>
+
+<script>
+QRCode.toCanvas(document.getElementById('qrCanvas'), 'https://jpo-ricm-2026.netlify.app/', {
+  width: 240,
+  margin: 1,
+  color: {
+    dark: '#1F3520',
+    light: '#FFFFFF'
+  },
+  errorCorrectionLevel: 'H'
+}, function(err){ if(err) console.error(err); });
+</script>
+</body>
+</html>
