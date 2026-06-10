@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu JPO RICM 2026 — V1 Livret</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2D4A2D;
+      --green-d: #1F3520;
+      --green-l: #3E6340;
+      --sand: #C8B89A;
+      --sand-l: #EFE9DD;
+      --sand-bg: #F6F2EA;
+      --red: #C8102E;
+      --red-d: #A50B24;
+      --white: #FFFFFF;
+      --ink: #1C211C;
+      --ink-soft: #4A5249;
+      --line: #E3DCCD;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--green-d);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .card {
+      background: var(--sand-bg);
+      width: 100%;
+      max-width: 420px;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+
+    /* TOP BAND */
+    .top-band {
+      background: var(--green);
+      padding: 22px 28px 18px;
+      text-align: center;
+      border-bottom: 4px solid var(--red);
+    }
+
+    .top-band .surtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 6px;
+    }
+
+    .top-band h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .top-band h1 span {
+      color: var(--sand);
+      font-size: 16px;
+      display: block;
+      letter-spacing: .3em;
+      margin-top: 2px;
+    }
+
+    /* MENU COMPLET */
+    .menu-bloc {
+      background: var(--red);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .menu-bloc .left .tag {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 4px;
+    }
+
+    .menu-bloc .left .titre {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .menu-bloc .left .compo {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .menu-bloc .left .compo span {
+      font-size: 12px;
+      color: rgba(255,255,255,.85);
+      font-weight: 500;
+    }
+
+    .menu-bloc .left .compo span::before {
+      content: "— ";
+      opacity: .6;
+    }
+
+    .menu-bloc .prix {
+      font-family: 'Oswald', sans-serif;
+      font-size: 58px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* BODY */
+    .body {
+      padding: 24px 28px 20px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-head .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    .section-head h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .section-head .line {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .item:last-child { border-bottom: none; }
+
+    .item-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .item-detail {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-top: 1px;
+    }
+
+    .item-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--green);
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+
+    /* ECOCUP */
+    .ecocup {
+      margin: 0 28px 24px;
+      background: var(--green-d);
+      border-radius: 2px;
+      padding: 11px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .ecocup .badge {
+      background: var(--sand);
+      color: var(--green-d);
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer .ricm {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .footer .date {
+      font-size: 11px;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="top-band">
+      <div class="surtitle">Journées Portes Ouvertes · Poitiers</div>
+      <h1>Restauration<span>13 & 14 juin 2026</span></h1>
+    </div>
+
+    <div class="menu-bloc">
+      <div class="left">
+        <div class="tag">Menu du jour</div>
+        <div class="titre">Menu Complet</div>
+        <div class="compo">
+          <span>Sandwich pané</span>
+          <span>Barquette de frites</span>
+          <span>Bouteille d'eau</span>
+          <span>Glace</span>
+        </div>
+      </div>
+      <div class="prix">7€</div>
+    </div>
+
+    <div class="body">
+
+      <div class="section">
+        <div class="section-head">
+          <div class="dot"></div>
+          <h2>Sandwichs</h2>
+          <div class="line"></div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="item-name">Sandwich pané</div>
+          </div>
+          <div class="item-price">4 €</div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="item-name">Sandwich triangle</div>
+          </div>
+          <div class="item-price">3 €</div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="item-name">Barquette de frites</div>
+            <div class="item-detail">250 g</div>
+          </div>
+          <div class="item-price">2 €</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div class="dot"></div>
+          <h2>Boissons</h2>
+          <div class="line"></div>
+        </div>
+        <div class="item">
+          <div class="item-name">Soda</div>
+          <div class="item-price">2 €</div>
+        </div>
+        <div class="item">
+          <div class="item-name">Bière</div>
+          <div class="item-price">2 €</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div class="dot"></div>
+          <h2>Desserts</h2>
+          <div class="line"></div>
+        </div>
+        <div class="item">
+          <div class="item-name">Glace</div>
+          <div class="item-price">2 €</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ecocup">
+      <div class="badge">1 €</div>
+      <div>Consigne écocup — remboursée à la restitution</div>
+    </div>
+
+    <div class="footer">
+      <div class="ricm">RICM · Poitiers</div>
+      <div class="date">Paiement en espèces<br>ou carte bancaire</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -10,7 +10,8 @@
       "Bash(mkdir -p /Users/hanser/.bibi)",
       "Bash(cp /Users/hanser/Desktop/jarvis-starter-kit/scripts/veille_financiere.sh /Users/hanser/.bibi/veille_financiere.sh)",
       "Bash(chmod +x /Users/hanser/.bibi/veille_financiere.sh)",
-      "Bash(launchctl unload *)"
+      "Bash(launchctl unload *)",
+      "WebFetch(domain:unpkg.com)"
     ]
   },
   "hooks": {

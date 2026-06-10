@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparatif icônes — Menu JPO RICM</title>
+
+  <!-- Font Awesome 6 Solid (Cloudflare CDN — très fiable) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Material Symbols Rounded (Google Fonts CDN) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,1,0">
+
+  <!-- Typo -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Barlow:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green:    #2D4A2D;
+      --green-d:  #1F3520;
+      --sand:     #C8B89A;
+      --sand-bg:  #F6F2EA;
+      --red:      #C8102E;
+      --white:    #FFFFFF;
+      --ink:      #1C211C;
+      --ink-soft: #4A5249;
+      --line:     #E3DCCD;
+      --warm:     #7a5020;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1f1a;
+      font-family: 'Barlow', sans-serif;
+      padding: 28px 20px 48px;
+    }
+
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 11px;
+      color: rgba(200,184,154,.45);
+      text-align: center;
+      letter-spacing: .08em;
+      margin-bottom: 28px;
+    }
+
+    /* ── Grille 5 colonnes ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .col { display: flex; flex-direction: column; gap: 7px; }
+
+    /* En-tête colonne */
+    .col-head {
+      background: var(--green-d);
+      border-radius: 4px 4px 0 0;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .col-head .num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--white); line-height: 1;
+    }
+    .col-head .lib {
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--sand); margin-top: 3px;
+    }
+    .col-head .desc {
+      font-size: 8.5px; color: rgba(255,255,255,.38);
+      margin-top: 2px; letter-spacing: .04em;
+    }
+
+    /* Carte item */
+    .icard {
+      background: var(--white);
+      border: 1.5px solid var(--line);
+      border-top: 3px solid var(--green);
+      border-radius: 3px;
+      padding: 14px 8px 12px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+      text-align: center;
+    }
+    .icard.drink   { border-top-color: var(--ink-soft); }
+    .icard.dessert { border-top-color: var(--warm); }
+
+    .ico-wrap {
+      height: 54px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Material Symbols */
+    .material-symbols-rounded {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;
+      font-size: 48px; line-height: 1;
+      display: block;
+    }
+
+    /* Font Awesome */
+    .ico-wrap i { font-size: 42px; }
+
+    /* Emoji */
+    .ico-wrap .em { font-size: 46px; line-height: 1; }
+
+    /* Tabler / Phosphor SVG */
+    .ico-wrap svg { width: 50px; height: 50px; }
+
+    .icard-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink); line-height: 1.2;
+    }
+    .icard-detail {
+      font-size: 9.5px; color: var(--ink-soft);
+      margin-top: -3px;
+    }
+    .icard-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--green); line-height: 1;
+    }
+    .icard.drink .icard-price   { color: var(--ink-soft); }
+    .icard.dessert .icard-price { color: var(--warm); }
+
+    /* Note bas */
+    .note {
+      max-width: 1100px; margin: 20px auto 0;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(200,184,154,.12);
+      border-radius: 4px; padding: 10px 14px;
+      font-size: 10.5px; color: rgba(200,184,154,.5);
+      line-height: 1.6;
+    }
+    .note strong { color: var(--sand); }
+  </style>
+</head>
+<body>
+
+  <h1>Comparatif · 5 styles d'icônes</h1>
+  <p class="subtitle">Menu JPO RICM 2026 — dis-moi ton numéro, j'intègre directement</p>
+
+  <div class="grid">
+
+    <!-- ══════════════════════════════════
+         1 · TABLER — Trait fin, inline SVG
+    ══════════════════════════════════ -->
+    <div class="col">
+      <div class="col-head">
+        <div class="num">1</div>
+        <div class="lib">Tabler Icons</div>
+        <div class="desc">Trait fin · Géométrique · B&W</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D4A2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4c3.783 0 6.953 2.133 7.786 5h-15.572c.833 -2.867 4.003 -5 7.786 -5z"/><path d="M4 15h16a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"/><path d="M5 12h14"/>
+          </svg>
+        </div>
+        <div class="icard-name">Sandwich pané</div>
+        <div class="icard-price">4 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D4A2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 4a3 3 0 0 1 2 5.235v8.765a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-8.764a3 3 0 0 1 1.824 -5.231h12.176v-.005z"/>
+          </svg>
+        </div>
+        <div class="icard-name">Sandwich triangle</div>
+        <div class="icard-price">3 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D4A2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"/><path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z"/><path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121"/>
+          </svg>
+        </div>
+        <div class="icard-name">Frites</div>
+        <div class="icard-detail">250 g</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4A5249" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 11h14v-3h-14z"/><path d="M17.5 11l-1.5 10h-8l-1.5 -10"/><path d="M6 8v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1"/><path d="M15 5v-2"/>
+          </svg>
+        </div>
+        <div class="icard-name">Soda</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4A5249" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21h6a1 1 0 0 0 1 -1v-3.625c0 -1.397 .29 -2.775 .845 -4.025l.31 -.7c.556 -1.25 .845 -2.253 .845 -3.65v-4a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v4c0 1.397 .29 2.4 .845 3.65l.31 .7a9.931 9.931 0 0 1 .845 4.025v3.625a1 1 0 0 0 1 1z"/><path d="M6 8h12"/>
+          </svg>
+        </div>
+        <div class="icard-name">Bière</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard dessert">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7a5020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21.5v-4.5"/><path d="M8 17h8v-10a4 4 0 1 0 -8 0v10z"/><path d="M8 10.5l8 -3.5"/><path d="M8 14.5l8 -3.5"/>
+          </svg>
+        </div>
+        <div class="icard-name">Glace</div>
+        <div class="icard-price">2 €</div>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════
+         2 · PHOSPHOR — Plein, riche, inline SVG
+    ══════════════════════════════════ -->
+    <div class="col">
+      <div class="col-head">
+        <div class="num">2</div>
+        <div class="lib">Phosphor Icons</div>
+        <div class="desc">Rempli · Détaillé · B&W</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 256 256" fill="#2D4A2D">
+            <path d="M48.07,104H207.93a16,16,0,0,0,15.72-19.38C216.22,49.5,176,24,128,24S39.78,49.5,32.35,84.62A16,16,0,0,0,48.07,104ZM128,40c39.82,0,74.21,20.61,79.93,48H48.07L48,87.93C53.79,60.61,88.18,40,128,40ZM229.26,152.48l-41.13,15L151,152.57a8,8,0,0,0-5.94,0l-37,14.81L71,152.57a8,8,0,0,0-5.7-.09l-44,16a8,8,0,0,0,5.47,15L40,178.69V184a40,40,0,0,0,40,40h96a40,40,0,0,0,40-40v-9.67l18.73-6.81a8,8,0,1,0-5.47-15ZM200,184a24,24,0,0,1-24,24H80a24,24,0,0,1-24-24V172.88l11.87-4.32L105,183.43a8,8,0,0,0,5.94,0l37-14.81,37,14.81a8,8,0,0,0,5.7.09l9.27-3.37ZM16,128a8,8,0,0,1,8-8H232a8,8,0,0,1,0,16H24A8,8,0,0,1,16,128Z"/>
+          </svg>
+        </div>
+        <div class="icard-name">Sandwich pané</div>
+        <div class="icard-price">4 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 256 256" fill="#2D4A2D">
+            <path d="M48.07,104H207.93a16,16,0,0,0,15.72-19.38C216.22,49.5,176,24,128,24S39.78,49.5,32.35,84.62A16,16,0,0,0,48.07,104ZM128,40c39.82,0,74.21,20.61,79.93,48H48.07L48,87.93C53.79,60.61,88.18,40,128,40ZM229.26,152.48l-41.13,15L151,152.57a8,8,0,0,0-5.94,0l-37,14.81L71,152.57a8,8,0,0,0-5.7-.09l-44,16a8,8,0,0,0,5.47,15L40,178.69V184a40,40,0,0,0,40,40h96a40,40,0,0,0,40-40v-9.67l18.73-6.81a8,8,0,1,0-5.47-15ZM200,184a24,24,0,0,1-24,24H80a24,24,0,0,1-24-24V172.88l11.87-4.32L105,183.43a8,8,0,0,0,5.94,0l37-14.81,37,14.81a8,8,0,0,0,5.7.09l9.27-3.37ZM16,128a8,8,0,0,1,8-8H232a8,8,0,0,1,0,16H24A8,8,0,0,1,16,128Z"/>
+          </svg>
+        </div>
+        <div class="icard-name">Sandwich triangle</div>
+        <div class="icard-price">3 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 256 256" fill="#2D4A2D">
+            <path d="M88,48V16a8,8,0,0,1,16,0V48a8,8,0,0,1-16,0Zm40,8a8,8,0,0,0,8-8V16a8,8,0,0,0-16,0V48A8,8,0,0,0,128,56Zm32,0a8,8,0,0,0,8-8V16a8,8,0,0,0-16,0V48A8,8,0,0,0,160,56Zm92.8,46.4L224,124v60a32,32,0,0,1-32,32H64a32,32,0,0,1-32-32V124L3.2,102.4a8,8,0,0,1,9.6-12.8L32,104V80a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8v24l19.2-14.4a8,8,0,0,1,9.6,12.8ZM208,88H48v96a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16Z"/>
+          </svg>
+        </div>
+        <div class="icard-name">Frites</div>
+        <div class="icard-detail">250 g</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 256 256" fill="#4A5249">
+            <path d="M205.33,103.67,183.56,29.74A8,8,0,0,0,175.89,24H80.11a8,8,0,0,0-7.67,5.74L50.67,103.67a63.46,63.46,0,0,0,17.42,64.67A87.39,87.39,0,0,0,120,191.63V232H88a8,8,0,1,0,0,16h80a8,8,0,1,0,0-16H136V191.63a87.41,87.41,0,0,0,51.91-23.29A63.46,63.46,0,0,0,205.33,103.67ZM86.09,40h83.82L190,108.19c.09.3.17.6.25.9-21.42,7.68-45.54-1.6-58.63-8.23C106.43,88.11,86.43,86.49,71.68,88.93ZM177,156.65a71.69,71.69,0,0,1-98,0,47.55,47.55,0,0,1-13-48.46l.45-1.52c12-4.06,31.07-5.14,57.93,8.47,11.15,5.65,29.16,12.85,48.43,12.85a68.64,68.64,0,0,0,19.05-2.6A47.2,47.2,0,0,1,177,156.65Z"/>
+          </svg>
+        </div>
+        <div class="icard-name">Soda</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 256 256" fill="#4A5249">
+            <path d="M104,104v80a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm40-8a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V104A8,8,0,0,0,144,96Zm96,16v64a24,24,0,0,1-24,24H200v8a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V72c0-30.88,28.71-56,64-56,16.77,0,32.91,5.8,44.82,16H160a40,40,0,0,1,40,40V88h16A24,24,0,0,1,240,112ZM57,64H182.62A24,24,0,0,0,160,48H145.74a8,8,0,0,1-5.53-2.22C131.06,37,117.87,32,104,32,80.82,32,61.43,45.76,57,64ZM184,208V80H56V208H184Zm40-96a8,8,0,0,0-8-8H200v80h16a8,8,0,0,0,8-8Z"/>
+          </svg>
+        </div>
+        <div class="icard-name">Bière</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard dessert">
+        <div class="ico-wrap">
+          <svg viewBox="0 0 256 256" fill="#7a5020">
+            <path d="M208,97.37V96A80,80,0,0,0,48,96v1.37A24,24,0,0,0,56,144h3.29l54.82,95.94a16,16,0,0,0,27.78,0L196.71,144H200a24,24,0,0,0,8-46.63ZM77.71,144H97.07l40.61,71.06L128,232Zm57.08,0,21.75,38.06-9.65,16.88L115.5,144Zm31,21.94L153.21,144h25.08ZM200,128H56a8,8,0,0,1,0-16,8,8,0,0,0,8-8V96a64,64,0,0,1,128,0v8a8,8,0,0,0,8,8,8,8,0,0,1,0,16Z"/>
+          </svg>
+        </div>
+        <div class="icard-name">Glace</div>
+        <div class="icard-price">2 €</div>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════
+         3 · FONT AWESOME 6 SOLID — CSS CDN
+    ══════════════════════════════════ -->
+    <div class="col">
+      <div class="col-head">
+        <div class="num">3</div>
+        <div class="lib">Font Awesome 6</div>
+        <div class="desc">Solid · Gras · Classique</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <i class="fa-solid fa-burger" style="color:#2D4A2D"></i>
+        </div>
+        <div class="icard-name">Sandwich pané</div>
+        <div class="icard-price">4 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <i class="fa-solid fa-hotdog" style="color:#2D4A2D"></i>
+        </div>
+        <div class="icard-name">Sandwich triangle</div>
+        <div class="icard-price">3 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <i class="fa-solid fa-bowl-food" style="color:#2D4A2D"></i>
+        </div>
+        <div class="icard-name">Frites</div>
+        <div class="icard-detail">250 g</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <i class="fa-solid fa-mug-soda" style="color:#4A5249"></i>
+        </div>
+        <div class="icard-name">Soda</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <i class="fa-solid fa-beer-mug-empty" style="color:#4A5249"></i>
+        </div>
+        <div class="icard-name">Bière</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard dessert">
+        <div class="ico-wrap">
+          <i class="fa-solid fa-ice-cream" style="color:#7a5020"></i>
+        </div>
+        <div class="icard-name">Glace</div>
+        <div class="icard-price">2 €</div>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════
+         4 · MATERIAL SYMBOLS — Google Font
+    ══════════════════════════════════ -->
+    <div class="col">
+      <div class="col-head">
+        <div class="num">4</div>
+        <div class="lib">Material Symbols</div>
+        <div class="desc">Arrondi · Plein · Google</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <span class="material-symbols-rounded" style="color:#2D4A2D">fastfood</span>
+        </div>
+        <div class="icard-name">Sandwich pané</div>
+        <div class="icard-price">4 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <span class="material-symbols-rounded" style="color:#2D4A2D">lunch_dining</span>
+        </div>
+        <div class="icard-name">Sandwich triangle</div>
+        <div class="icard-price">3 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <span class="material-symbols-rounded" style="color:#2D4A2D">set_meal</span>
+        </div>
+        <div class="icard-name">Frites</div>
+        <div class="icard-detail">250 g</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <span class="material-symbols-rounded" style="color:#4A5249">local_drink</span>
+        </div>
+        <div class="icard-name">Soda</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <span class="material-symbols-rounded" style="color:#4A5249">sports_bar</span>
+        </div>
+        <div class="icard-name">Bière</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard dessert">
+        <div class="ico-wrap">
+          <span class="material-symbols-rounded" style="color:#7a5020">icecream</span>
+        </div>
+        <div class="icard-name">Glace</div>
+        <div class="icard-price">2 €</div>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════
+         5 · EMOJI NATIFS — Aucun CDN
+    ══════════════════════════════════ -->
+    <div class="col">
+      <div class="col-head">
+        <div class="num">5</div>
+        <div class="lib">Emoji Natifs</div>
+        <div class="desc">Coloré · Festif · 0 CDN</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <span class="em">🍔</span>
+        </div>
+        <div class="icard-name">Sandwich pané</div>
+        <div class="icard-price">4 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <span class="em">🥪</span>
+        </div>
+        <div class="icard-name">Sandwich triangle</div>
+        <div class="icard-price">3 €</div>
+      </div>
+
+      <div class="icard">
+        <div class="ico-wrap">
+          <span class="em">🍟</span>
+        </div>
+        <div class="icard-name">Frites</div>
+        <div class="icard-detail">250 g</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <span class="em">🥤</span>
+        </div>
+        <div class="icard-name">Soda</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard drink">
+        <div class="ico-wrap">
+          <span class="em">🍺</span>
+        </div>
+        <div class="icard-name">Bière</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <div class="icard dessert">
+        <div class="ico-wrap">
+          <span class="em">🍦</span>
+        </div>
+        <div class="icard-name">Glace</div>
+        <div class="icard-price">2 €</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <strong>1 Tabler</strong> — trait fin, minimaliste, noir &amp; blanc optimal ·
+    <strong>2 Phosphor</strong> — rempli, plus de détail, noir &amp; blanc ·
+    <strong>3 Font Awesome</strong> — solid classique, très reconnaissable ·
+    <strong>4 Material Symbols</strong> — arrondi Google, épais, lisible à distance ·
+    <strong>5 Emoji</strong> — natif OS, coloré, festif, impression couleur recommandée.
+    Connexion internet requise pour charger les propositions 3 et 4.
+  </div>
+
+</body>
+</html>

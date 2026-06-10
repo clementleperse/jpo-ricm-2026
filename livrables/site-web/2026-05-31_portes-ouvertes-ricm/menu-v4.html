@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Restauration — JPO RICM 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:    #2D4A2D;
+      --green-d:  #1F3520;
+      --green-l:  #3E6340;
+      --sand:     #C8B89A;
+      --sand-l:   #EFE9DD;
+      --sand-bg:  #F6F2EA;
+      --red:      #C8102E;
+      --red-d:    #A50B24;
+      --white:    #FFFFFF;
+      --ink:      #1C211C;
+      --ink-soft: #4A5249;
+      --line:     #E3DCCD;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--ink);
+      font-family: 'Barlow', sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      width: 100%;
+      max-width: 720px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 300px;
+      background-image:
+        url('https://images.pexels.com/photos/10941231/pexels-photo-10941231.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop');
+      background-size: cover;
+      background-position: center 40%;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        155deg,
+        rgba(31,53,32,.88) 0%,
+        rgba(31,53,32,.6)  55%,
+        rgba(200,16,46,.5) 100%
+      );
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 32px;
+    }
+
+    .hero-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 54px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+    }
+
+    .hero-chip .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--white);
+      animation: blink 2s ease infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .35; }
+    }
+
+    /* ── MENU COMPLET ── */
+    .menu-feat {
+      position: relative;
+      background-image:
+        url('https://images.pexels.com/photos/11256670/pexels-photo-11256670.jpeg?auto=compress&cs=tinysrgb&w=1200&h=480&fit=crop');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .menu-feat::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(200,16,46,.95) 0%,
+        rgba(200,16,46,.82) 55%,
+        rgba(160,11,36,.45) 100%
+      );
+    }
+
+    .menu-feat-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 32px;
+      gap: 20px;
+    }
+
+    .mf-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 5px;
+    }
+
+    .mf-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 14px;
+    }
+
+    .mf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .mf-list li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.88);
+    }
+
+    .mf-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.55);
+      flex-shrink: 0;
+    }
+
+    .mf-price-block {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .mf-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 96px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .mf-price-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-top: 2px;
+    }
+
+    /* ── BARRE VERTE ── */
+    .green-bar { background: var(--green); height: 4px; }
+
+    /* ── À LA CARTE ── */
+    .carte {
+      background: var(--sand-bg);
+      padding: 24px 24px 20px;
+    }
+
+    .carte-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    .carte-eyebrow::before,
+    .carte-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* Grille 3 colonnes */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    /* Carte photo individuelle */
+    .pcard {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 3px 12px rgba(31,53,32,.10);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .pcard:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(31,53,32,.18);
+    }
+
+    .pcard img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+
+    .pcard:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Overlay gradient bas */
+    .pcard::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .pcard.green::after {
+      background: linear-gradient(to top,
+        rgba(31,53,32,.88) 0%,
+        rgba(31,53,32,.22) 55%,
+        transparent 100%);
+    }
+
+    .pcard.dark::after {
+      background: linear-gradient(to top,
+        rgba(15,18,28,.88) 0%,
+        rgba(15,18,28,.22) 55%,
+        transparent 100%);
+    }
+
+    .pcard.warm::after {
+      background: linear-gradient(to top,
+        rgba(70,30,8,.88) 0%,
+        rgba(70,30,8,.22) 55%,
+        transparent 100%);
+    }
+
+    .pcard-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 10px 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .pcard-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      line-height: 1.15;
+    }
+
+    .pcard-sub {
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(255,255,255,.55);
+      font-family: 'Barlow', sans-serif;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-top: 2px;
+    }
+
+    .pcard-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* ── FOOTER ── */
+    .footer-wrap { background: var(--green-d); }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      gap: 16px;
+    }
+
+    .eco {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .eco-badge {
+      background: var(--sand);
+      color: var(--green-d);
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .eco-text {
+      line-height: 1.4;
+    }
+
+    .eco-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .eco-text span {
+      font-size: 11px;
+      color: rgba(255,255,255,.55);
+      font-weight: 500;
+    }
+
+    .ricm {
+      text-align: right;
+    }
+
+    .ricm-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .ricm-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,.35);
+      margin-top: 2px;
+      letter-spacing: .04em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      body { padding: 0; }
+      .page { border-radius: 0; box-shadow: none; }
+      .hero { height: 240px; }
+      .hero h1 { font-size: 40px; }
+      .hero-inner { padding: 20px; }
+      .menu-feat-inner { flex-direction: column; padding: 22px 20px; gap: 14px; }
+      .mf-price { font-size: 72px; }
+      .mf-price-block { display: flex; align-items: center; gap: 10px; }
+      .carte { padding: 20px 14px 16px; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; padding: 16px 20px; }
+      .ricm { text-align: left; }
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .page { box-shadow: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">Régiment d'Infanterie-Chars de Marine · Poitiers</div>
+      <h1>Restauration</h1>
+      <div class="hero-chip">
+        <span class="pulse"></span>
+        JPO 2026 · 13 &amp; 14 Juin
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU COMPLET -->
+  <div class="menu-feat">
+    <div class="menu-feat-inner">
+      <div>
+        <div class="mf-tag">Menu du jour</div>
+        <div class="mf-title">Menu Complet</div>
+        <ul class="mf-list">
+          <li>Sandwich pané</li>
+          <li>Barquette de frites</li>
+          <li>Bouteille d'eau</li>
+          <li>Glace</li>
+        </ul>
+      </div>
+      <div class="mf-price-block">
+        <div class="mf-price">7€</div>
+        <div class="mf-price-label">Tout compris</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="green-bar"></div>
+
+  <!-- À LA CARTE -->
+  <div class="carte">
+    <div class="carte-eyebrow">À la carte</div>
+    <div class="photo-grid">
+
+      <div class="pcard green">
+        <img
+          src="https://images.pexels.com/photos/28396784/pexels-photo-28396784.jpeg?auto=compress&cs=tinysrgb&w=500&h=375&fit=crop"
+          alt="Sandwich pané" loading="lazy">
+        <div class="pcard-info">
+          <div>
+            <div class="pcard-name">Sandwich pané</div>
+          </div>
+          <div class="pcard-price">4 €</div>
+        </div>
+      </div>
+
+      <div class="pcard green">
+        <img
+          src="https://images.pexels.com/photos/19202829/pexels-photo-19202829.jpeg?auto=compress&cs=tinysrgb&w=500&h=375&fit=crop"
+          alt="Sandwich triangle" loading="lazy">
+        <div class="pcard-info">
+          <div>
+            <div class="pcard-name">Sandwich triangle</div>
+          </div>
+          <div class="pcard-price">3 €</div>
+        </div>
+      </div>
+
+      <div class="pcard green">
+        <img
+          src="https://images.pexels.com/photos/5779487/pexels-photo-5779487.jpeg?auto=compress&cs=tinysrgb&w=500&h=375&fit=crop"
+          alt="Frites" loading="lazy">
+        <div class="pcard-info">
+          <div>
+            <div class="pcard-name">Frites</div>
+            <div class="pcard-sub">250 g</div>
+          </div>
+          <div class="pcard-price">2 €</div>
+        </div>
+      </div>
+
+      <div class="pcard dark">
+        <img
+          src="https://images.pexels.com/photos/4113632/pexels-photo-4113632.jpeg?auto=compress&cs=tinysrgb&w=500&h=375&fit=crop"
+          alt="Soda" loading="lazy">
+        <div class="pcard-info">
+          <div>
+            <div class="pcard-name">Soda</div>
+          </div>
+          <div class="pcard-price">2 €</div>
+        </div>
+      </div>
+
+      <div class="pcard dark">
+        <img
+          src="https://images.pexels.com/photos/33287155/pexels-photo-33287155.jpeg?auto=compress&cs=tinysrgb&w=500&h=375&fit=crop"
+          alt="Bière" loading="lazy">
+        <div class="pcard-info">
+          <div>
+            <div class="pcard-name">Bière</div>
+          </div>
+          <div class="pcard-price">2 €</div>
+        </div>
+      </div>
+
+      <div class="pcard warm">
+        <img
+          src="https://images.pexels.com/photos/1683546/pexels-photo-1683546.jpeg?auto=compress&cs=tinysrgb&w=500&h=375&fit=crop"
+          alt="Glace" loading="lazy">
+        <div class="pcard-info">
+          <div>
+            <div class="pcard-name">Glace</div>
+          </div>
+          <div class="pcard-price">2 €</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-wrap">
+    <div class="footer-inner">
+      <div class="eco">
+        <div class="eco-badge">1 €</div>
+        <div class="eco-text">
+          <strong>Consigne écocup</strong>
+          <span>Remboursée à la restitution du gobelet</span>
+        </div>
+      </div>
+      <div class="ricm">
+        <div class="ricm-name">RICM · Poitiers</div>
+        <div class="ricm-sub">Régiment d'Infanterie-Chars de Marine</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu JPO RICM 2026 — V2 Tableau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2D4A2D;
+      --green-d: #1F3520;
+      --green-l: #3E6340;
+      --sand: #C8B89A;
+      --sand-l: #EFE9DD;
+      --sand-bg: #F6F2EA;
+      --red: #C8102E;
+      --red-d: #A50B24;
+      --white: #FFFFFF;
+      --ink: #1C211C;
+      --ink-soft: #4A5249;
+      --line: #E3DCCD;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--sand-bg);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-bottom: 28px;
+      border: 2px solid var(--green);
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .header-left {
+      background: var(--green);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .header-left .label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 5px;
+    }
+
+    .header-left h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      line-height: 1.1;
+    }
+
+    .header-right {
+      background: var(--red);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+    }
+
+    .header-right .date-top {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 3px;
+    }
+
+    .header-right .date {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* MENU COMPLET */
+    .menu-hero {
+      border: 2px solid var(--green);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .menu-hero-head {
+      background: var(--green);
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-hero-head span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      font-weight: 500;
+    }
+
+    .menu-hero-head .prix-tag {
+      background: var(--red);
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      padding: 3px 12px;
+      border-radius: 2px;
+    }
+
+    .menu-hero-body {
+      background: var(--sand-l);
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .menu-item-pill {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .menu-item-pill .icon {
+      font-size: 22px;
+    }
+
+    .menu-item-pill .name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* GRILLE À LA CARTE */
+    .carte-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .carte-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .grid-cell {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 4px solid var(--green);
+    }
+
+    .grid-cell.drinks {
+      border-left-color: var(--ink-soft);
+    }
+
+    .grid-cell.dessert {
+      border-left-color: var(--sand);
+    }
+
+    .grid-cell .cell-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .grid-cell .cell-detail {
+      font-size: 10px;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    .grid-cell .cell-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green);
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .grid-cell.drinks .cell-price { color: var(--ink-soft); }
+    .grid-cell.dessert .cell-price { color: var(--ink-soft); }
+
+    /* ECOCUP + FOOTER */
+    .bottom {
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .ecocup-box {
+      background: var(--green-d);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .ecocup-box .eco-badge {
+      background: var(--sand);
+      color: var(--green-d);
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .ecocup-box .eco-text {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+      opacity: .9;
+    }
+
+    .ecocup-box .eco-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .ricm-box {
+      background: var(--green);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ricm-box span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 520px) {
+      .menu-hero-body { grid-template-columns: repeat(2, 1fr); }
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="header">
+      <div class="header-left">
+        <div class="label">RICM · Poitiers</div>
+        <h1>Restauration<br>sur le site</h1>
+      </div>
+      <div class="header-right">
+        <div class="date-top">JPO</div>
+        <div class="date">13 & 14<br>Juin 2026</div>
+      </div>
+    </div>
+
+    <div class="menu-hero">
+      <div class="menu-hero-head">
+        <span>Menu Complet</span>
+        <div class="prix-tag">7 €</div>
+      </div>
+      <div class="menu-hero-body">
+        <div class="menu-item-pill">
+          <div class="icon">🥪</div>
+          <div class="name">Sandwich pané</div>
+        </div>
+        <div class="menu-item-pill">
+          <div class="icon">🍟</div>
+          <div class="name">Barquette de frites</div>
+        </div>
+        <div class="menu-item-pill">
+          <div class="icon">💧</div>
+          <div class="name">Bouteille d'eau</div>
+        </div>
+        <div class="menu-item-pill">
+          <div class="icon">🍦</div>
+          <div class="name">Glace</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="carte-title">À la carte</div>
+
+    <div class="grid">
+      <div class="grid-cell">
+        <div>
+          <div class="cell-name">Sandwich pané</div>
+        </div>
+        <div class="cell-price">4 €</div>
+      </div>
+      <div class="grid-cell">
+        <div>
+          <div class="cell-name">Sandwich triangle</div>
+        </div>
+        <div class="cell-price">3 €</div>
+      </div>
+      <div class="grid-cell">
+        <div>
+          <div class="cell-name">Frites</div>
+          <div class="cell-detail">250 g</div>
+        </div>
+        <div class="cell-price">2 €</div>
+      </div>
+      <div class="grid-cell drinks">
+        <div class="cell-name">Soda</div>
+        <div class="cell-price">2 €</div>
+      </div>
+      <div class="grid-cell drinks">
+        <div class="cell-name">Bière</div>
+        <div class="cell-price">2 €</div>
+      </div>
+      <div class="grid-cell dessert">
+        <div class="cell-name">Glace</div>
+        <div class="cell-price">2 €</div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="ecocup-box">
+        <div class="eco-badge">1 €</div>
+        <div class="eco-text">
+          <strong>Consigne écocup</strong>
+          Remboursée à la restitution
+        </div>
+      </div>
+      <div class="ricm-box">
+        <span>RICM<br>Poitiers</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Restauration — JPO RICM 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:    #2D4A2D;
+      --green-d:  #1F3520;
+      --green-l:  #3E6340;
+      --sand:     #C8B89A;
+      --sand-l:   #EFE9DD;
+      --sand-bg:  #F6F2EA;
+      --red:      #C8102E;
+      --red-d:    #A50B24;
+      --white:    #FFFFFF;
+      --ink:      #1C211C;
+      --ink-soft: #4A5249;
+      --line:     #E3DCCD;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page { size: A4 portrait; margin: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: #1a1f1a;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    /* ─────────────────────────────
+       PAGE (A4 : 794 × 1123 px)
+    ───────────────────────────── */
+    .page {
+      width: 740px;
+      background: var(--sand-bg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.55);
+    }
+
+    /* ─────────────────────────────
+       HEADER
+    ───────────────────────────── */
+    .header {
+      position: relative;
+      background-color: var(--green-d);
+      background-image: url('images/ricm-03.png');
+      background-size: cover;
+      background-position: center 25%;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(31,53,32,.96) 0%,
+        rgba(31,53,32,.90) 55%,
+        rgba(31,53,32,.80) 100%
+      );
+    }
+
+    /* bande rouge haut */
+    .header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--red);
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      padding: 30px 34px 26px;
+    }
+
+    /* Insigne dans cercle blanc */
+    .insigne-ring {
+      flex-shrink: 0;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.10);
+      border: 1.5px solid rgba(255,255,255,.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .insigne-ring img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+
+    .header-text {}
+
+    .header-regiment {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 5px;
+    }
+
+    .header-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 50px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      line-height: 1;
+      margin-bottom: 11px;
+    }
+
+    .header-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+    }
+
+    /* ─────────────────────────────
+       BARRES SÉPARATRICES
+    ───────────────────────────── */
+    .bar { height: 4px; }
+    .bar-red   { background: var(--red); }
+    .bar-green { background: var(--green); }
+
+    /* ─────────────────────────────
+       MENU COMPLET
+    ───────────────────────────── */
+    .menu-feat {
+      background: var(--red);
+      padding: 22px 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .mf-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 4px;
+    }
+
+    .mf-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 14px;
+    }
+
+    .mf-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mf-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,.88);
+    }
+
+    .mf-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.5);
+      flex-shrink: 0;
+    }
+
+    .mf-price-col {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .mf-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 100px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: .95;
+    }
+
+    .mf-price-sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-top: 4px;
+    }
+
+    /* ─────────────────────────────
+       À LA CARTE
+    ───────────────────────────── */
+    .carte {
+      background: var(--sand-bg);
+      padding: 22px 28px 26px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* Grille 3 colonnes */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .icard {
+      background: var(--white);
+      border: 1.5px solid var(--line);
+      border-top: 4px solid var(--green);
+      border-radius: 3px;
+      padding: 18px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .icard.boisson { border-top-color: var(--ink-soft); }
+    .icard.dessert  { border-top-color: var(--sand); }
+
+    /* Icône SVG */
+    .icard .ico {
+      width: 56px;
+      height: 56px;
+      color: var(--green);
+    }
+
+    .icard.boisson .ico { color: var(--ink-soft); }
+    .icard.dessert  .ico { color: #7a5020; }
+
+    .icard-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .icard-detail {
+      font-size: 10.5px;
+      color: var(--ink-soft);
+      margin-top: -4px;
+    }
+
+    .icard-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .icard.boisson .icard-price { color: var(--ink-soft); }
+    .icard.dessert  .icard-price { color: #7a5020; }
+
+    /* ─────────────────────────────
+       FOOTER
+    ───────────────────────────── */
+    .footer {
+      position: relative;
+      background-color: var(--green-d);
+      background-image: url('images/ricm-01.png');
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(31,53,32,.92);
+    }
+
+    .footer::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--red);
+    }
+
+    .footer-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 34px;
+      gap: 16px;
+    }
+
+    .eco {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .eco-badge {
+      background: var(--sand);
+      color: var(--green-d);
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .eco-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .eco-text span {
+      font-size: 11px;
+      color: rgba(255,255,255,.45);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      opacity: .80;
+    }
+
+    .footer-brand-text .name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-align: right;
+    }
+
+    .footer-brand-text .sub {
+      font-size: 9.5px;
+      color: rgba(255,255,255,.35);
+      text-align: right;
+      letter-spacing: .03em;
+    }
+
+    /* ─────────────────────────────
+       IMPRESSION
+    ───────────────────────────── */
+    @media print {
+      body { background: white; padding: 0; }
+      .page { width: 100%; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ╔══ HEADER ══╗ -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="insigne-ring">
+        <img src="images/insigne-ricm.png" alt="Insigne RICM">
+      </div>
+      <div class="header-text">
+        <div class="header-regiment">Régiment d'Infanterie-Chars de Marine · Poitiers</div>
+        <div class="header-title">Restauration</div>
+        <div class="header-chip">JPO 2026 &nbsp;·&nbsp; 13 &amp; 14 Juin</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar bar-red"></div>
+
+  <!-- ╔══ MENU COMPLET ══╗ -->
+  <div class="menu-feat">
+    <div>
+      <div class="mf-tag">Menu du jour</div>
+      <div class="mf-title">Menu Complet</div>
+      <ul class="mf-list">
+        <li>Sandwich pané</li>
+        <li>Barquette de frites</li>
+        <li>Bouteille d'eau</li>
+        <li>Glace</li>
+      </ul>
+    </div>
+    <div class="mf-price-col">
+      <div class="mf-price">7€</div>
+      <div class="mf-price-sub">Tout compris</div>
+    </div>
+  </div>
+
+  <div class="bar bar-green"></div>
+
+  <!-- ╔══ À LA CARTE ══╗ -->
+  <div class="carte">
+    <div class="eyebrow">À la carte</div>
+    <div class="icon-grid">
+
+      <!-- Sandwich pané -->
+      <div class="icard">
+        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+          <!-- Chapeau arrondi -->
+          <path d="M8 33 C8 18 16 10 32 10 C48 10 56 18 56 33 L56 37 L8 37 Z"/>
+          <!-- Garniture -->
+          <rect x="8" y="37" width="48" height="7" rx="1" opacity=".5"/>
+          <!-- Semelle -->
+          <rect x="8" y="44" width="48" height="12" rx="6"/>
+        </svg>
+        <div class="icard-name">Sandwich pané</div>
+        <div class="icard-price">4 €</div>
+      </div>
+
+      <!-- Sandwich triangle -->
+      <div class="icard">
+        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+          <!-- Triangle -->
+          <path d="M32 7 L57 53 L7 53 Z"/>
+          <!-- Lignes garniture (blanc semi-transparent) -->
+          <line x1="20" y1="41" x2="44" y2="41" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+          <line x1="24" y1="48" x2="40" y2="48" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+          <!-- Base -->
+          <rect x="7" y="53" width="50" height="7" rx="3.5"/>
+        </svg>
+        <div class="icard-name">Sandwich triangle</div>
+        <div class="icard-price">3 €</div>
+      </div>
+
+      <!-- Frites -->
+      <div class="icard">
+        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+          <!-- Bâtonnets -->
+          <rect x="12" y="6" width="8" height="28" rx="4"/>
+          <rect x="28" y="2" width="8" height="32" rx="4"/>
+          <rect x="44" y="6" width="8" height="28" rx="4"/>
+          <!-- Cornet -->
+          <path d="M16 34 L18 57 L46 57 L48 34 Z" opacity=".65"/>
+        </svg>
+        <div class="icard-name">Frites</div>
+        <div class="icard-detail">250 g</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <!-- Soda -->
+      <div class="icard boisson">
+        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+          <!-- Couvercle -->
+          <rect x="13" y="16" width="38" height="7" rx="3.5"/>
+          <!-- Corps -->
+          <path d="M15 23 L18 57 L46 57 L49 23 Z"/>
+          <!-- Paille -->
+          <rect x="29" y="3" width="8" height="17" rx="4"/>
+        </svg>
+        <div class="icard-name">Soda</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <!-- Bière -->
+      <div class="icard boisson">
+        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+          <!-- Corps chope -->
+          <rect x="9" y="19" width="34" height="36" rx="4"/>
+          <!-- Mousse -->
+          <ellipse cx="26" cy="19" rx="17" ry="7" opacity=".65"/>
+          <!-- Anse -->
+          <path d="M43 25 Q56 25 56 37 Q56 49 43 49"
+                fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+        </svg>
+        <div class="icard-name">Bière</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+      <!-- Glace -->
+      <div class="icard dessert">
+        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+          <!-- Boule -->
+          <circle cx="32" cy="22" r="16" opacity=".88"/>
+          <!-- Gaufre -->
+          <path d="M17 35 L32 60 L47 35 Z"/>
+          <!-- Quadrillage gaufre -->
+          <line x1="32" y1="35" x2="24.5" y2="58" stroke="white" stroke-width="1.5" opacity=".35"/>
+          <line x1="32" y1="35" x2="39.5" y2="58" stroke="white" stroke-width="1.5" opacity=".35"/>
+          <line x1="21" y1="44" x2="43" y2="44" stroke="white" stroke-width="1.5" opacity=".35"/>
+        </svg>
+        <div class="icard-name">Glace</div>
+        <div class="icard-price">2 €</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ╔══ FOOTER ══╗ -->
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="eco">
+        <div class="eco-badge">1 €</div>
+        <div class="eco-text">
+          <strong>Consigne écocup</strong>
+          <span>Remboursée à la restitution du gobelet</span>
+        </div>
+      </div>
+      <div class="footer-brand">
+        <div class="footer-brand-text">
+          <div class="name">RICM · Poitiers</div>
+          <div class="sub">Rgt d'Infanterie-Chars de Marine</div>
+        </div>
+        <img src="images/insigne-ricm.png" alt="">
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

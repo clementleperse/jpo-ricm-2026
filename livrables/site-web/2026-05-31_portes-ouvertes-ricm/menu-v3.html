@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu JPO RICM 2026 — V3 Affiche</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2D4A2D;
+      --green-d: #1F3520;
+      --green-l: #3E6340;
+      --sand: #C8B89A;
+      --sand-l: #EFE9DD;
+      --sand-bg: #F6F2EA;
+      --red: #C8102E;
+      --red-d: #A50B24;
+      --white: #FFFFFF;
+      --ink: #1C211C;
+      --ink-soft: #4A5249;
+      --line: #E3DCCD;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--ink);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* STRIPE TOP */
+    .stripe {
+      background: var(--red);
+      height: 6px;
+    }
+
+    /* HERO SPLIT */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 200px;
+    }
+
+    .hero-left {
+      background: var(--green-d);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-left .ricm {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+      font-weight: 500;
+    }
+
+    .hero-left h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      line-height: .95;
+    }
+
+    .hero-left h1 em {
+      font-style: normal;
+      color: var(--sand);
+      font-size: 20px;
+      letter-spacing: .15em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .hero-left .dates {
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      font-weight: 500;
+      letter-spacing: .08em;
+    }
+
+    .hero-right {
+      background: var(--red);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-right .menu-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 6px;
+    }
+
+    .hero-right .big-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero-right .menu-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.9);
+      margin-top: 4px;
+    }
+
+    .hero-right .compo {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      width: 100%;
+    }
+
+    .hero-right .compo span {
+      background: rgba(0,0,0,.15);
+      color: rgba(255,255,255,.88);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    /* SEPARATOR */
+    .sep {
+      background: var(--green);
+      height: 3px;
+    }
+
+    /* CARTE BODY */
+    .carte {
+      background: var(--sand-bg);
+      padding: 24px 24px 20px;
+    }
+
+    .carte-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+
+    .rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      gap: 12px;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .row .cat {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cat-food { background: var(--green); }
+    .cat-drink { background: var(--ink-soft); }
+    .cat-dessert { background: var(--sand); }
+
+    .row .name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .row .detail {
+      font-size: 11px;
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+
+    .row .price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green-d);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--green-d);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer .eco {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer .eco .pill {
+      background: var(--sand);
+      color: var(--green-d);
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .footer .eco .eco-label {
+      font-size: 11px;
+      color: rgba(255,255,255,.75);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .footer .eco .eco-label strong {
+      display: block;
+      color: var(--white);
+      font-size: 12px;
+    }
+
+    .footer .poitiers {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      text-align: right;
+    }
+
+    /* STRIPE BOTTOM */
+    .stripe-b {
+      background: var(--red);
+      height: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+
+    <div class="stripe"></div>
+
+    <div class="hero">
+      <div class="hero-left">
+        <div class="ricm">RICM · Poitiers</div>
+        <h1><em>Menu</em>Restau&shy;ration</h1>
+        <div class="dates">13 & 14 JUIN 2026</div>
+      </div>
+      <div class="hero-right">
+        <div class="menu-label">Menu complet</div>
+        <div class="big-price">7€</div>
+        <div class="menu-title">Tout compris</div>
+        <div class="compo">
+          <span>Sandwich pané</span>
+          <span>Barquette de frites</span>
+          <span>Bouteille d'eau</span>
+          <span>Glace</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="carte">
+      <div class="carte-label">À la carte</div>
+      <div class="rows">
+        <div class="row">
+          <div class="cat cat-food"></div>
+          <div class="name">Sandwich pané</div>
+          <div class="price">4 €</div>
+        </div>
+        <div class="row">
+          <div class="cat cat-food"></div>
+          <div class="name">Sandwich triangle</div>
+          <div class="price">3 €</div>
+        </div>
+        <div class="row">
+          <div class="cat cat-food"></div>
+          <div class="name">Frites <span class="detail">250 g</span></div>
+          <div class="price">2 €</div>
+        </div>
+        <div class="row">
+          <div class="cat cat-drink"></div>
+          <div class="name">Soda</div>
+          <div class="price">2 €</div>
+        </div>
+        <div class="row">
+          <div class="cat cat-drink"></div>
+          <div class="name">Bière</div>
+          <div class="price">2 €</div>
+        </div>
+        <div class="row">
+          <div class="cat cat-dessert"></div>
+          <div class="name">Glace</div>
+          <div class="price">2 €</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="eco">
+        <div class="pill">1 €</div>
+        <div class="eco-label">
+          <strong>Consigne écocup</strong>
+          Remboursée à la restitution
+        </div>
+      </div>
+      <div class="poitiers">Régiment<br>d'Infanterie-<br>Chars de Marine</div>
+    </div>
+
+    <div class="stripe-b"></div>
+
+  </div>
+</body>
+</html>

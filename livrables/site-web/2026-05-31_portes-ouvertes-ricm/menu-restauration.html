@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Restauration — JPO RICM 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Nunito:wght@400;700;900&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f0e9c8;
+      font-family: 'Nunito', sans-serif;
+      color: #3a1a08;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .page {
+      background: #f5f0d8;
+      width: 100%;
+      max-width: 680px;
+      border: 3px solid #c94d0a;
+      border-radius: 4px;
+      padding: 40px 36px 36px;
+      position: relative;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid #c94d0a;
+    }
+
+    .header .eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #3a1a08;
+      margin-bottom: 6px;
+    }
+
+    .header h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: 72px;
+      line-height: 1;
+      color: #c94d0a;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .header h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: 36px;
+      letter-spacing: 6px;
+      color: #3a1a08;
+      text-transform: uppercase;
+    }
+
+    /* MENU HERO */
+    .menu-hero {
+      background: #c94d0a;
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .menu-hero .label {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: #f5f0d8;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .menu-hero .badge {
+      font-family: 'Anton', sans-serif;
+      font-size: 52px;
+      color: #f5f0d8;
+      white-space: nowrap;
+    }
+
+    .menu-hero .items {
+      font-size: 13px;
+      color: rgba(245, 240, 216, 0.85);
+      font-weight: 700;
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
+    .menu-hero .items span {
+      display: block;
+    }
+
+    .menu-hero .items span::before {
+      content: "✦ ";
+      font-size: 10px;
+    }
+
+    /* SECTIONS */
+    .sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: #3a1a08;
+      text-transform: uppercase;
+      border-bottom: 2px solid #3a1a08;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 4px 0;
+      border-bottom: 1px dashed #c9b98a;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3a1a08;
+    }
+
+    .item-price {
+      font-family: 'Anton', sans-serif;
+      font-size: 18px;
+      color: #c94d0a;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+
+    /* CONSIGNE */
+    .consigne {
+      margin-top: 28px;
+      background: #3a1a08;
+      color: #f5f0d8;
+      border-radius: 4px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .consigne .icon {
+      font-size: 22px;
+    }
+
+    .consigne strong {
+      font-size: 15px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 2px solid #c94d0a;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7a4520;
+    }
+
+    .footer .regiment {
+      font-family: 'Anton', sans-serif;
+      font-size: 18px;
+      color: #3a1a08;
+      letter-spacing: 3px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* PRINT */
+    @media print {
+      body { background: white; padding: 0; }
+      .page { border: 2px solid #c94d0a; max-width: 100%; }
+    }
+
+    @media (max-width: 500px) {
+      .sections { grid-template-columns: 1fr; }
+      .header h1 { font-size: 52px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="header">
+      <div class="eyebrow">Journées Portes Ouvertes · 13 & 14 juin 2026</div>
+      <h1>MENU</h1>
+      <h2>Restauration</h2>
+    </div>
+
+    <!-- MENU DU JOUR -->
+    <div class="menu-hero">
+      <div>
+        <div class="label">Menu complet</div>
+        <div class="items">
+          <span>Sandwich pané</span>
+          <span>Barquette de frites</span>
+          <span>Bouteille d'eau</span>
+          <span>Glace</span>
+        </div>
+      </div>
+      <div class="badge">7 €</div>
+    </div>
+
+    <!-- À LA CARTE -->
+    <div class="sections">
+
+      <div class="section">
+        <div class="section-title">Sandwichs</div>
+        <div class="item">
+          <span class="item-name">Sandwich pané</span>
+          <span class="item-price">4 €</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Sandwich triangle</span>
+          <span class="item-price">3 €</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Barquette de frites (250g)</span>
+          <span class="item-price">2 €</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Boissons</div>
+        <div class="item">
+          <span class="item-name">Soda</span>
+          <span class="item-price">2 €</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Bière</span>
+          <span class="item-price">2 €</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Desserts</div>
+        <div class="item">
+          <span class="item-name">Glace</span>
+          <span class="item-price">2 €</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONSIGNE ECOCUP -->
+    <div class="consigne">
+      <span class="icon">♻️</span>
+      <div>
+        <strong>Consigne écocup : 1 €</strong>
+        Remboursée à la restitution du gobelet
+      </div>
+    </div>
+
+    <div class="footer">
+      <span class="regiment">RICM — Poitiers</span>
+      Régiment d'Infanterie-Chars de Marine
+    </div>
+
+  </div>
+</body>
+</html>
