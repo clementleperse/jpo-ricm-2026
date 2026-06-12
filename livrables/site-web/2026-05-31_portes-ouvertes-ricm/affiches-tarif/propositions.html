@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propositions Affiche Tarif — JPO RICM 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:   #2D4A2D;
+    --green-d: #1F3520;
+    --green-l: #3E6340;
+    --sand:    #C8B89A;
+    --sand-l:  #EFE9DD;
+    --sand-bg: #F6F2EA;
+    --red:     #C8102E;
+    --red-d:   #A50B24;
+    --white:   #FFFFFF;
+    --ink:     #1C211C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #111;
+    font-family: 'Barlow', sans-serif;
+    padding: 40px 20px 60px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--sand);
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    text-align: center;
+    color: rgba(255,255,255,.45);
+    font-size: 13px;
+    margin-bottom: 40px;
+  }
+
+  .grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: .7;
+  }
+
+  /* ── Proportions A4 : 210×297 → scale 0.44 → ~390×550 ── */
+  .poster {
+    width: 390px;
+    height: 551px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.7);
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+
+  /* ═══════════════════════════════════════════
+     VERSION 1 — "IMPACTE MILITAIRE"
+     Fond sombre, prix en or monumental
+  ═══════════════════════════════════════════ */
+  .v1 {
+    background: var(--green-d);
+  }
+
+  .v1 .bg-texture {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,.015) 0px,
+      rgba(255,255,255,.015) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+    pointer-events: none;
+  }
+
+  .v1 .stripe-top {
+    height: 8px;
+    background: var(--red);
+    position: relative; z-index: 1;
+  }
+
+  .v1 .header {
+    position: relative; z-index: 1;
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid rgba(200,184,154,.2);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .v1 .regiment-badge {
+    width: 48px; height: 48px;
+    border: 2px solid rgba(200,184,154,.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .v1 .regiment-badge svg { width: 24px; height: 24px; }
+  .v1 .header-text { flex: 1; }
+  .v1 .regiment-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: var(--sand);
+    opacity: .7;
+    text-transform: uppercase;
+  }
+  .v1 .event-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+
+  .v1 .body {
+    position: relative; z-index: 1;
+    padding: 30px 32px 0;
+    text-align: center;
+  }
+  .v1 .activite-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: .6;
+    margin-bottom: 10px;
+  }
+  .v1 .activite-nom {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    margin-bottom: 32px;
+  }
+
+  .v1 .separator {
+    width: 60px;
+    height: 2px;
+    background: var(--sand);
+    margin: 0 auto 32px;
+    opacity: .4;
+  }
+
+  .v1 .prix-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: .7;
+    margin-bottom: 8px;
+  }
+  .v1 .prix-bloc {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .v1 .prix-montant {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 140px;
+    color: var(--sand);
+    line-height: .9;
+  }
+  .v1 .prix-devise {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    color: var(--sand);
+    margin-top: 20px;
+    opacity: .8;
+  }
+  .v1 .prix-unit {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: rgba(200,184,154,.55);
+    letter-spacing: .1em;
+  }
+
+  .v1 .footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 1;
+    padding: 20px 32px 24px;
+    background: rgba(0,0,0,.35);
+    border-top: 1px solid rgba(200,184,154,.12);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .v1 .footer-icon {
+    width: 32px; height: 32px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .v1 .footer-icon svg { width: 16px; height: 16px; fill: #fff; }
+  .v1 .footer-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,.6);
+    line-height: 1.4;
+  }
+  .v1 .footer-text strong {
+    color: rgba(255,255,255,.9);
+    font-weight: 600;
+  }
+
+
+  /* ═══════════════════════════════════════════
+     VERSION 2 — "SIGNAL CLAIR"
+     Fond sable, badge prix rouge accrocheur
+  ═══════════════════════════════════════════ */
+  .v2 {
+    background: var(--sand-bg);
+  }
+
+  .v2 .top-band {
+    background: var(--green-d);
+    padding: 22px 28px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .v2 .top-band::after {
+    content: '';
+    position: absolute;
+    bottom: -24px; left: 0; right: 0;
+    height: 24px;
+    background: var(--green-d);
+    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+  }
+  .v2 .top-regiment {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: var(--sand);
+    opacity: .7;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .v2 .top-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  .v2 .body {
+    padding: 48px 28px 24px;
+    text-align: center;
+  }
+
+  .v2 .tag-payante {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 18px;
+  }
+
+  .v2 .activite-nom {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 1;
+    color: var(--green-d);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    margin-bottom: 28px;
+  }
+
+  .v2 .divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--sand), transparent);
+    margin-bottom: 32px;
+  }
+
+  .v2 .prix-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .v2 .prix-ring {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 40px rgba(200,16,46,.35), 0 0 0 8px rgba(200,16,46,.12);
+  }
+  .v2 .prix-top-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 2px;
+  }
+  .v2 .prix-amount {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    color: #fff;
+    line-height: 1;
+  }
+  .v2 .prix-bottom-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.65);
+    margin-top: 2px;
+  }
+
+  .v2 .note {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    color: var(--green-d);
+    opacity: .55;
+    letter-spacing: .05em;
+    margin-bottom: 0;
+  }
+
+  .v2 .footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--green-d);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .v2 .footer-left {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: var(--sand);
+    opacity: .7;
+    text-transform: uppercase;
+  }
+  .v2 .footer-right {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,.4);
+  }
+
+
+  /* ═══════════════════════════════════════════
+     VERSION 3 — "GRAPHIQUE / DYNAMIQUE"
+     Diagonale verte, prix en grand
+  ═══════════════════════════════════════════ */
+  .v3 {
+    background: var(--white);
+  }
+
+  .v3 .diagonal-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 260px;
+    background: var(--green);
+    clip-path: polygon(0 0, 100% 0, 100% 65%, 0 100%);
+    z-index: 0;
+  }
+
+  .v3 .red-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 10px;
+    height: 260px;
+    background: var(--red);
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 0 90%);
+    z-index: 1;
+  }
+
+  .v3 .header {
+    position: relative; z-index: 2;
+    padding: 22px 28px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .v3 .header-line {
+    width: 32px; height: 3px;
+    background: var(--red);
+  }
+  .v3 .header-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: .2em;
+    color: var(--sand);
+    text-transform: uppercase;
+    opacity: .8;
+  }
+
+  .v3 .activite-section {
+    position: relative; z-index: 2;
+    padding: 28px 28px 0;
+    text-align: center;
+  }
+  .v3 .activite-nom {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: .95;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    margin-bottom: 12px;
+  }
+  .v3 .activite-sous {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,.55);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .v3 .prix-section {
+    position: relative; z-index: 2;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .v3 .prix-card {
+    display: inline-block;
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 16px 50px rgba(0,0,0,.2);
+    padding: 22px 44px 18px;
+    border-top: 5px solid var(--red);
+  }
+  .v3 .prix-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 2px;
+  }
+  .v3 .prix-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 96px;
+    line-height: .9;
+    color: var(--ink);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+  }
+  .v3 .prix-number .currency {
+    font-size: 40px;
+    margin-top: 14px;
+    color: var(--green-d);
+  }
+  .v3 .prix-unit {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: var(--ink);
+    opacity: .45;
+    letter-spacing: .1em;
+    margin-top: 4px;
+  }
+
+  .v3 .bottom-section {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 28px 28px;
+    z-index: 2;
+  }
+
+  .v3 .info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--sand-bg);
+    border-left: 4px solid var(--green);
+    border-radius: 0 3px 3px 0;
+    margin-bottom: 12px;
+  }
+  .v3 .info-icon { font-size: 18px; }
+  .v3 .info-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: var(--green-d);
+    line-height: 1.4;
+  }
+  .v3 .info-text strong { font-weight: 700; }
+
+  .v3 .footer-band {
+    background: var(--green-d);
+    margin: 0 -28px -28px;
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .v3 .footer-band span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: .18em;
+    color: var(--sand);
+    opacity: .6;
+    text-transform: uppercase;
+  }
+  .v3 .footer-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+</style>
+</head>
+<body>
+
+<h1>Propositions — Affiche Activité Payante</h1>
+<p class="subtitle">Format A4 · Charte JPO RICM 2026 · Tarif 1 € (modifiable)</p>
+
+<div class="grid">
+
+  <!-- ─────────────────────────────────────────
+       PROPOSITION 1 — IMPACTE MILITAIRE
+  ───────────────────────────────────────── -->
+  <div class="card-wrap">
+    <span class="label">Proposition 1 — Impacte militaire</span>
+    <div class="poster v1">
+      <div class="bg-texture"></div>
+      <div class="stripe-top"></div>
+
+      <div class="header">
+        <div class="regiment-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C8B89A" stroke-width="1.5">
+            <path d="M12 2L3 7v10l9 5 9-5V7L12 2z"/>
+          </svg>
+        </div>
+        <div class="header-text">
+          <div class="regiment-name">RICM · Portes Ouvertes 2026</div>
+          <div class="event-name">Journée Portes Ouvertes</div>
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="activite-label">Activité</div>
+        <div class="activite-nom">Initiation<br>Tir Laser</div>
+        <div class="separator"></div>
+        <div class="prix-label">Tarif participation</div>
+        <div class="prix-bloc">
+          <span class="prix-montant">1</span>
+          <span class="prix-devise">€</span>
+        </div>
+        <div class="prix-unit">par personne · espèces uniquement</div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <div class="footer-text">
+          <strong>Paiement sur place</strong> à l'arrivée de l'activité.<br>
+          Monnaie souhaitée. Merci de votre compréhension.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─────────────────────────────────────────
+       PROPOSITION 2 — SIGNAL CLAIR
+  ───────────────────────────────────────── -->
+  <div class="card-wrap">
+    <span class="label">Proposition 2 — Signal clair</span>
+    <div class="poster v2">
+
+      <div class="top-band">
+        <div class="top-regiment">RICM · Portes Ouvertes 2026</div>
+        <div class="top-title">Journée Portes Ouvertes</div>
+      </div>
+
+      <div class="body">
+        <div class="tag-payante">Activité payante</div>
+        <div class="activite-nom">Initiation<br>Tir Laser</div>
+        <div class="divider"></div>
+
+        <div class="prix-wrapper">
+          <div class="prix-ring">
+            <div class="prix-top-label">Tarif</div>
+            <div class="prix-amount">1€</div>
+            <div class="prix-bottom-label">par personne</div>
+          </div>
+        </div>
+
+        <p class="note" style="margin-top:20px">Espèces uniquement · Monnaie souhaitée</p>
+      </div>
+
+      <div class="footer">
+        <span class="footer-left">RICM · JPO 2026</span>
+        <span class="footer-right">Paiement à l'entrée de l'activité</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─────────────────────────────────────────
+       PROPOSITION 3 — GRAPHIQUE / DYNAMIQUE
+  ───────────────────────────────────────── -->
+  <div class="card-wrap">
+    <span class="label">Proposition 3 — Graphique & moderne</span>
+    <div class="poster v3">
+
+      <div class="diagonal-bg"></div>
+
+      <div class="activite-section" style="padding-top:52px">
+        <div class="activite-nom">Initiation<br>Tir Laser</div>
+        <div class="activite-sous">Activité proposée par le RICM</div>
+      </div>
+
+      <div class="prix-section">
+        <div class="prix-card">
+          <div class="prix-eyebrow">Tarif participation</div>
+          <div class="prix-number">
+            1<span class="currency">€</span>
+          </div>
+          <div class="prix-unit">PAR PERSONNE</div>
+        </div>
+      </div>
+
+      <div class="bottom-section">
+        <div class="footer-band">
+          <span>RICM</span>
+          <div class="footer-dot"></div>
+          <span>Journée Portes Ouvertes</span>
+          <div class="footer-dot"></div>
+          <span>2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

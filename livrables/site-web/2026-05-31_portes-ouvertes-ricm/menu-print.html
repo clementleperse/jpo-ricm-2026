@@ -261,6 +261,8 @@
       gap: 10px;
     }
 
+    .icard.wide { grid-column: span 2; }
+
     .icard {
       background: var(--white);
       border: 1.5px solid var(--line);
@@ -424,9 +426,6 @@
   <!-- ╔══ HEADER ══╗ -->
   <div class="header">
     <div class="header-inner">
-      <div class="insigne-ring">
-        <img src="images/insigne-ricm.png" alt="Insigne RICM">
-      </div>
       <div class="header-text">
         <div class="header-regiment">Régiment d'Infanterie-Chars de Marine · Poitiers</div>
         <div class="header-title">Restauration</div>
@@ -440,17 +439,16 @@
   <!-- ╔══ MENU COMPLET ══╗ -->
   <div class="menu-feat">
     <div>
-      <div class="mf-tag">Menu du jour</div>
       <div class="mf-title">Menu Complet</div>
       <ul class="mf-list">
-        <li>Sandwich pané</li>
+        <li>Sandwich poulet pané</li>
         <li>Barquette de frites</li>
         <li>Bouteille d'eau</li>
         <li>Glace</li>
       </ul>
     </div>
     <div class="mf-price-col">
-      <div class="mf-price">7€</div>
+      <div class="mf-price">6€</div>
       <div class="mf-price-sub">Tout compris</div>
     </div>
   </div>
@@ -462,44 +460,25 @@
     <div class="eyebrow">À la carte</div>
     <div class="icon-grid">
 
-      <!-- Sandwich pané -->
-      <div class="icard">
+      <!-- Sandwich -->
+      <div class="icard wide">
         <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
           <!-- Chapeau arrondi -->
-          <path d="M8 33 C8 18 16 10 32 10 C48 10 56 18 56 33 L56 37 L8 37 Z"/>
-          <!-- Garniture -->
-          <rect x="8" y="37" width="48" height="7" rx="1" opacity=".5"/>
+          <path d="M8 30 C8 15 16 8 32 8 C48 8 56 15 56 30 L56 34 L8 34 Z"/>
+          <!-- Garniture laitue -->
+          <rect x="6" y="34" width="52" height="6" rx="1" opacity=".45"/>
           <!-- Semelle -->
-          <rect x="8" y="44" width="48" height="12" rx="6"/>
+          <rect x="8" y="40" width="48" height="11" rx="5.5"/>
         </svg>
-        <div class="icard-name">Sandwich pané</div>
-        <div class="icard-price">4 €</div>
-      </div>
-
-      <!-- Sandwich triangle -->
-      <div class="icard">
-        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-          <!-- Triangle -->
-          <path d="M32 7 L57 53 L7 53 Z"/>
-          <!-- Lignes garniture (blanc semi-transparent) -->
-          <line x1="20" y1="41" x2="44" y2="41" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
-          <line x1="24" y1="48" x2="40" y2="48" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
-          <!-- Base -->
-          <rect x="7" y="53" width="50" height="7" rx="3.5"/>
-        </svg>
-        <div class="icard-name">Sandwich triangle</div>
+        <div class="icard-name">Sandwich</div>
+        <div class="icard-detail">poulet pané &nbsp;·&nbsp; jambon beurre</div>
         <div class="icard-price">3 €</div>
       </div>
 
       <!-- Frites -->
       <div class="icard">
-        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-          <!-- Bâtonnets -->
-          <rect x="12" y="6" width="8" height="28" rx="4"/>
-          <rect x="28" y="2" width="8" height="32" rx="4"/>
-          <rect x="44" y="6" width="8" height="28" rx="4"/>
-          <!-- Cornet -->
-          <path d="M16 34 L18 57 L46 57 L48 34 Z" opacity=".65"/>
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18 11V6h-3V4h-3V2H8v3H6v6H5l2 11h10l2-11zm-2.14 0c-.16.61-.46 1.16-.86 1.62v-4l2 1V11zM17 7v1.5l-2-1V7zm-5-2h2v3.5l-2 1zm0 5.62l2-1v3.83c-.59.35-1.27.55-2 .55zm-1 3.24c-.79-.21-1.5-.64-2-1.24v-3l2-1zM9 3h2v4.5L10 8V5H9zM7 6h2v2.5L8 9v2H7z"/>
         </svg>
         <div class="icard-name">Frites</div>
         <div class="icard-detail">250 g</div>
@@ -507,7 +486,7 @@
       </div>
 
       <!-- Soda -->
-      <div class="icard boisson">
+      <div class="icard">
         <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
           <!-- Couvercle -->
           <rect x="13" y="16" width="38" height="7" rx="3.5"/>
@@ -516,12 +495,13 @@
           <!-- Paille -->
           <rect x="29" y="3" width="8" height="17" rx="4"/>
         </svg>
-        <div class="icard-name">Soda</div>
+        <div class="icard-name">Boissons</div>
+        <div class="icard-detail">Coca-Cola · Orangina · Fuze Tea · Oasis · Perrier · Eau plate</div>
         <div class="icard-price">2 €</div>
       </div>
 
       <!-- Bière -->
-      <div class="icard boisson">
+      <div class="icard">
         <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
           <!-- Corps chope -->
           <rect x="9" y="19" width="34" height="36" rx="4"/>
@@ -536,18 +516,12 @@
       </div>
 
       <!-- Glace -->
-      <div class="icard dessert">
-        <svg class="ico" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-          <!-- Boule -->
-          <circle cx="32" cy="22" r="16" opacity=".88"/>
-          <!-- Gaufre -->
-          <path d="M17 35 L32 60 L47 35 Z"/>
-          <!-- Quadrillage gaufre -->
-          <line x1="32" y1="35" x2="24.5" y2="58" stroke="white" stroke-width="1.5" opacity=".35"/>
-          <line x1="32" y1="35" x2="39.5" y2="58" stroke="white" stroke-width="1.5" opacity=".35"/>
-          <line x1="21" y1="44" x2="43" y2="44" stroke="white" stroke-width="1.5" opacity=".35"/>
+      <div class="icard">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" aria-hidden="true">
+          <path d="M12 21.5V17m-4 0h8V7a4 4 0 1 0-8 0zm0-6.5L16 7m-8 7.5l8-3.5"/>
         </svg>
-        <div class="icard-name">Glace</div>
+        <div class="icard-name">Dessert glacé</div>
+        <div class="icard-detail">Snickers · Mars · Bounty · Twix · Cône glacé</div>
         <div class="icard-price">2 €</div>
       </div>
 
@@ -560,14 +534,13 @@
       <div class="eco">
         <div class="eco-badge">1 €</div>
         <div class="eco-text">
-          <strong>Consigne écocup</strong>
+          <strong>Consigne écocup bière</strong>
           <span>Remboursée à la restitution du gobelet</span>
         </div>
       </div>
       <div class="footer-brand">
         <div class="footer-brand-text">
           <div class="name">RICM · Poitiers</div>
-          <div class="sub">Rgt d'Infanterie-Chars de Marine</div>
         </div>
         <img src="images/insigne-ricm.png" alt="">
       </div>
