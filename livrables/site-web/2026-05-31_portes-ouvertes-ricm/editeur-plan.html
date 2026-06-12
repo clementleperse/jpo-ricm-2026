@@ -6,28 +6,54 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Arial, sans-serif; background: #1a1a2e; color: #fff; }
+
 #toolbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: #16213e; padding: 10px 16px;
-  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: #16213e;
   box-shadow: 0 2px 8px rgba(0,0,0,.5);
 }
-#toolbar h1 { font-size: 15px; color: #e2b714; margin-right: 8px; }
+#toolbar-main {
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+#toolbar h1 { font-size: 15px; color: #e2b714; margin-right: 4px; }
 .btn {
   padding: 7px 14px; border: none; border-radius: 6px;
   font-size: 13px; font-weight: 600; cursor: pointer;
 }
+.btn-add    { background: #1a6b3a; color: #fff; }
+.btn-add.active { background: #27ae60; outline: 2px solid #fff; }
 .btn-export { background: #2D4A2D; color: #fff; }
 .btn-reset  { background: #555; color: #fff; }
-.btn-help   { background: #333; color: #aaa; }
-#info { font-size: 12px; color: #aaa; }
-#selected-info { font-size: 13px; color: #e2b714; font-weight: 600; min-width: 180px; }
+.btn-delete { background: #C8102E; color: #fff; }
+.btn-dup    { background: #1a4a7a; color: #fff; }
+
+#selection-panel {
+  display: none; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: #0d1b34; border-top: 1px solid #333;
+  padding: 8px 16px;
+}
+#selection-panel.visible { display: flex; }
+#selection-panel label { font-size: 13px; color: #aaa; }
+#selection-panel input[type=text] {
+  width: 60px; padding: 5px 8px; border-radius: 5px;
+  border: 1px solid #555; background: #1a1a2e; color: #fff;
+  font-size: 14px; font-weight: 700; text-align: center;
+}
+#selection-panel select {
+  padding: 5px 8px; border-radius: 5px;
+  border: 1px solid #555; background: #1a1a2e; color: #fff;
+  font-size: 13px;
+}
+#sel-name { font-size: 13px; color: #e2b714; font-weight: 600; }
+#hint { font-size: 12px; color: #777; margin-left: auto; }
 
 #canvas-wrap {
-  margin-top: 52px;
+  margin-top: 90px;
   position: relative; display: inline-block;
   cursor: default;
 }
+#canvas-wrap.add-mode { cursor: crosshair; }
 #map-img { display: block; max-width: 100vw; }
 #overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -43,9 +69,10 @@ body { font-family: Arial, sans-serif; background: #1a1a2e; color: #fff; }
   box-shadow: 0 2px 6px rgba(0,0,0,.6);
   transition: transform .1s, box-shadow .1s;
 }
-.marker:hover { transform: translate(-50%,-50%) scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,.8); }
+.marker:hover { transform: translate(-50%,-50%) scale(1.15); }
 .marker.dragging { cursor: grabbing; transform: translate(-50%,-50%) scale(1.2); z-index: 50; }
-.marker.selected { outline: 3px solid #e2b714; outline-offset: 2px; }
+.marker.selected { outline: 3px solid #e2b714; outline-offset: 3px; transform: translate(-50%,-50%) scale(1.1); }
+.marker.hidden { opacity: 0.2; }
 
 #export-box {
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,.8);
@@ -63,18 +90,35 @@ body { font-family: Arial, sans-serif; background: #1a1a2e; color: #fff; }
   border: 1px solid #333; border-radius: 6px; padding: 10px;
   font-family: monospace; font-size: 11px; resize: vertical;
 }
-.btn-copy { background: #e2b714; color: #000; margin-top: 10px; }
+.btn-copy  { background: #e2b714; color: #000; margin-top: 10px; }
 .btn-close { background: #444; color: #fff; margin-top: 10px; margin-left: 8px; }
 </style>
 </head>
 <body>
 
 <div id="toolbar">
-  <h1>✏️ Éditeur Plan JPO RICM</h1>
-  <span id="selected-info">Glisse un cercle pour le repositionner</span>
-  <button class="btn btn-export" onclick="exportCoords()">📋 Exporter les coordonnées</button>
-  <button class="btn btn-reset" onclick="resetAll()">↩ Réinitialiser</button>
-  <span id="info">Clic droit sur un cercle pour le cacher | Double-clic pour le remettre</span>
+  <div id="toolbar-main">
+    <h1>✏️ Éditeur Plan JPO RICM</h1>
+    <button class="btn btn-add" id="btn-add" onclick="toggleAddMode()">+ Ajouter un point</button>
+    <button class="btn btn-export" onclick="exportCoords()">📋 Exporter</button>
+    <button class="btn btn-reset" onclick="resetAll()">↩ Réinitialiser</button>
+    <span id="hint">Clic sur un marqueur pour le sélectionner · Clic droit pour masquer</span>
+  </div>
+  <div id="selection-panel">
+    <span id="sel-name">—</span>
+    <label>N°
+      <input type="text" id="sel-num" maxlength="4" oninput="updateSelectedNum(this.value)"/>
+    </label>
+    <label>Catégorie
+      <select id="sel-cat" onchange="updateSelectedCat(this.value)">
+        <option value="public">Public (vert)</option>
+        <option value="demo">Démo (rouge)</option>
+        <option value="kids">Enfants (orange)</option>
+      </select>
+    </label>
+    <button class="btn btn-dup" onclick="duplicateSelected()">⧉ Dupliquer</button>
+    <button class="btn btn-delete" onclick="deleteSelected()">🗑 Supprimer</button>
+  </div>
 </div>
 
 <div id="canvas-wrap">
@@ -94,43 +138,42 @@ body { font-family: Arial, sans-serif; background: #1a1a2e; color: #fff; }
 </div>
 
 <script>
-const ATELIERS = [
-  {n:'21',name:'Parcours drone',cat:'public'},
-  {n:'22',name:'Atelier photo/vidéos ★',cat:'public'},
-  {n:'31',name:'Tir air soft',cat:'public'},
-  {n:'32',name:'Présentation petits matériels',cat:'public'},
-  {n:'33',name:'Parcours OB/évasion ★',cat:'public'},
-  {n:'34',name:'Parcours Cdo enfant',cat:'kids'},
-  {n:'35',name:'Atelier DRI',cat:'public'},
-  {n:'36',name:'Parcours évasion',cat:'public'},
-  {n:'37',name:'Démonstration RRI/BLD',cat:'demo'},
-  {n:'38',name:'Présentations Vhls récents',cat:'public'},
-  {n:'41',name:'Parcours VBL',cat:'kids'},
-  {n:'42',name:'Atelier camouflage',cat:'public'},
-  {n:'43',name:'Parcours C4',cat:'public'},
-  {n:'44',name:'Démonstration C4',cat:'demo'},
-  {n:'45',name:'Atelier SC1',cat:'public'},
-  {n:'46',name:'Parcours Cdo 2 (ados)',cat:'kids'},
-  {n:'47',name:'Tir à la grenade factice',cat:'public'},
-  {n:'48',name:'Atelier vision nocturne ★',cat:'public'},
-  {n:'49',name:'Parcours PLO',cat:'public'},
-  {n:'51',name:'Challenge VBS ★',cat:'public'},
-  {n:'52',name:'Présentation CO/PC',cat:'public'},
-  {n:'53',name:'Démonstration Cdo+Cyno',cat:'demo'},
-  {n:'54',name:'Démonstrations AKA+Danse',cat:'public'},
-  {n:'55',name:'Présentations dépannage',cat:'public'},
-  {n:'56',name:'Atelier salle d\'honneur ★',cat:'public'},
-  {n:'57',name:'Structures gonflables ★',cat:'kids'},
-  {n:'71',name:'Atelier pistolet laser',cat:'public'},
-  {n:'72',name:'Course d\'orientation',cat:'public'},
-  {n:'00',name:'Présentation Vhls anciens',cat:'public'},
-  {n:'01',name:'Cage à drone',cat:'public'},
-  {n:'02',name:'Parcours détermination',cat:'public'},
-];
-
 const CAT_COLOR = {demo:'#C8102E', public:'#2D4A2D', kids:'#C9842A'};
 
-// Positions initiales (cx, cy en pixels sur l'image originale 1034x764)
+// Chaque atelier a un id interne unique + un n (numéro affiché, peut être dupliqué)
+let ateliers = [
+  {id:'GSC1',n:'GSC1',name:'Matériels du commissariat',cat:'public'},
+  {id:'GSC2',n:'GSC2',name:'Vente foyer, amicales',cat:'public'},
+  {id:'00',n:'00',name:'Présentation de véhicules anciens',cat:'public'},
+  {id:'21',n:'21',name:'Présentation drone',cat:'public'},
+  {id:'22',n:'22',name:'Photos / traditions du régiment',cat:'public'},
+  {id:'31',n:'31',name:'Tir air soft',cat:'public'},
+  {id:'32',n:'32',name:'Présentation armement, optique',cat:'public'},
+  {id:'33',n:'33',name:'Parcours OB / évasion',cat:'public'},
+  {id:'34',n:'34',name:'Parcours Cdo enfant',cat:'kids'},
+  {id:'35',n:'35',name:'Bataille terrestre',cat:'public'},
+  {id:'37',n:'37',name:'Démonstration combat blindé',cat:'demo'},
+  {id:'38',n:'38',name:'Présentation de blindés récents',cat:'public'},
+  {id:'41',n:'41',name:'Parcours VBL',cat:'kids'},
+  {id:'42',n:'42',name:'Camouflage enfant',cat:'kids'},
+  {id:'43',n:'43',name:'Parcours C4 (corps à corps)',cat:'public'},
+  {id:'44',n:'44',name:'Démonstration C4',cat:'demo'},
+  {id:'45',n:'45',name:'Atelier SC1 secourisme de combat',cat:'public'},
+  {id:'46',n:'46',name:'Parcours Cdo ados',cat:'kids'},
+  {id:'47',n:'47',name:'Tir grenade factice',cat:'public'},
+  {id:'48',n:'48',name:'Vision nocturne / missile',cat:'public'},
+  {id:'49',n:'49',name:'Parcours PLO',cat:'public'},
+  {id:'51',n:'51',name:'Challenge VBS',cat:'public'},
+  {id:'52',n:'52',name:'Présentation du PC régimentaire',cat:'public'},
+  {id:'53',n:'53',name:'Démonstration commando + chiens',cat:'demo'},
+  {id:'54',n:'54',name:'Démonstration de danse tahitienne et haka',cat:'public'},
+  {id:'55',n:'55',name:'Démonstration de dépose moteur de Jaguar',cat:'public'},
+  {id:'56',n:'56',name:'Présentation de la salle d\'honneur du régiment',cat:'public'},
+  {id:'57',n:'57',name:'Château gonflable enfant',cat:'kids'},
+  {id:'71',n:'71',name:'Pistolet laser',cat:'public'},
+  {id:'72',n:'72',name:'Course d\'orientation',cat:'public'},
+];
+
 const DEFAULT_POS = {
   '37':[148,254],'41':[153,332],
   '31':[524,141],'36':[544,146],
@@ -151,9 +194,17 @@ const DEFAULT_POS = {
   '38':[684,468],
 };
 
-let positions = JSON.parse(JSON.stringify(DEFAULT_POS));
+// positions indexées par id interne
+let positions = {};
+ateliers.forEach(a => { positions[a.id] = DEFAULT_POS[a.n] ? [...DEFAULT_POS[a.n]] : [100,100]; });
+
 let imgW = 1034, imgH = 764;
-let markers = {};
+let markerEls = {}; // id -> DOM element
+let addMode = false;
+let selectedId = null;
+let _idCounter = 1000;
+
+function uid() { return 'p' + (++_idCounter); }
 
 function getScale() {
   const img = document.getElementById('map-img');
@@ -161,91 +212,178 @@ function getScale() {
 }
 
 function createMarkers() {
-  const overlay = document.getElementById('overlay');
-  overlay.innerHTML = '';
-  markers = {};
-
-  ATELIERS.forEach(a => {
-    const div = document.createElement('div');
-    div.className = 'marker';
-    div.id = 'marker-' + a.n;
-    div.dataset.n = a.n;
-    div.textContent = a.n;
-    div.style.background = CAT_COLOR[a.cat];
-    div.title = a.name;
-
-    makeDraggable(div, a.n);
-    div.addEventListener('contextmenu', e => {
-      e.preventDefault();
-      div.style.opacity = div.style.opacity === '0.2' ? '1' : '0.2';
-    });
-
-    overlay.appendChild(div);
-    markers[a.n] = div;
-  });
+  document.getElementById('overlay').innerHTML = '';
+  markerEls = {};
+  ateliers.forEach(a => buildMarker(a));
   updatePositions();
+}
+
+function buildMarker(a) {
+  const overlay = document.getElementById('overlay');
+  const div = document.createElement('div');
+  div.className = 'marker';
+  div.dataset.id = a.id;
+  div.textContent = a.n;
+  div.style.background = CAT_COLOR[a.cat] || CAT_COLOR.public;
+  div.title = a.name;
+
+  div.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    e.stopPropagation();
+    selectMarker(a.id);
+    startDrag(e, div, a.id);
+  });
+  div.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    div.classList.toggle('hidden');
+  });
+
+  overlay.appendChild(div);
+  markerEls[a.id] = div;
+}
+
+function startDrag(e, el, id) {
+  e.preventDefault();
+  el.classList.add('dragging');
+  const {sx, sy} = getScale();
+  const startX = e.clientX, startY = e.clientY;
+  const [px, py] = positions[id] || [100,100];
+  let startLeft = px * sx, startTop = py * sy;
+
+  function onMove(e2) {
+    const newLeft = startLeft + e2.clientX - startX;
+    const newTop  = startTop  + e2.clientY - startY;
+    el.style.left = newLeft + 'px';
+    el.style.top  = newTop  + 'px';
+    const {sx, sy} = getScale();
+    positions[id] = [Math.round(newLeft / sx), Math.round(newTop / sy)];
+  }
+  function onUp() {
+    el.classList.remove('dragging');
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
 }
 
 function updatePositions() {
   const {sx, sy} = getScale();
-  ATELIERS.forEach(a => {
-    const el = markers[a.n];
+  ateliers.forEach(a => {
+    const el = markerEls[a.id];
     if (!el) return;
-    const [x, y] = positions[a.n] || [100, 100];
+    const [x, y] = positions[a.id] || [100, 100];
     el.style.left = (x * sx) + 'px';
     el.style.top  = (y * sy) + 'px';
   });
 }
 
-function makeDraggable(el, n) {
-  let startX, startY, startLeft, startTop;
+function selectMarker(id) {
+  if (selectedId && markerEls[selectedId]) markerEls[selectedId].classList.remove('selected');
+  selectedId = id;
+  const el = markerEls[id];
+  if (el) el.classList.add('selected');
+  const a = ateliers.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('sel-name').textContent = a.name;
+  document.getElementById('sel-num').value = a.n;
+  document.getElementById('sel-cat').value = a.cat || 'public';
+  document.getElementById('selection-panel').classList.add('visible');
+}
 
-  el.addEventListener('mousedown', e => {
-    e.preventDefault();
-    el.classList.add('dragging');
-    document.getElementById('selected-info').textContent =
-      `${n} — ${ATELIERS.find(a=>a.n===n)?.name||''}`;
+function deselectAll() {
+  if (selectedId && markerEls[selectedId]) markerEls[selectedId].classList.remove('selected');
+  selectedId = null;
+  document.getElementById('selection-panel').classList.remove('visible');
+}
 
-    const rect = el.parentElement.getBoundingClientRect();
-    startX = e.clientX;
-    startY = e.clientY;
-    const {sx, sy} = getScale();
-    startLeft = positions[n][0] * sx;
-    startTop  = positions[n][1] * sy;
+function updateSelectedNum(val) {
+  if (!selectedId) return;
+  const a = ateliers.find(x => x.id === selectedId);
+  if (!a) return;
+  a.n = val;
+  if (markerEls[selectedId]) markerEls[selectedId].textContent = val;
+}
 
-    function onMove(e2) {
-      const dx = e2.clientX - startX;
-      const dy = e2.clientY - startY;
-      const newLeft = startLeft + dx;
-      const newTop  = startTop  + dy;
-      el.style.left = newLeft + 'px';
-      el.style.top  = newTop  + 'px';
-      const {sx, sy} = getScale();
-      positions[n] = [Math.round(newLeft / sx), Math.round(newTop / sy)];
-    }
+function updateSelectedCat(val) {
+  if (!selectedId) return;
+  const a = ateliers.find(x => x.id === selectedId);
+  if (!a) return;
+  a.cat = val;
+  if (markerEls[selectedId]) markerEls[selectedId].style.background = CAT_COLOR[val] || CAT_COLOR.public;
+}
 
-    function onUp() {
-      el.classList.remove('dragging');
-      document.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseup', onUp);
-    }
+function duplicateSelected() {
+  if (!selectedId) return;
+  const src = ateliers.find(x => x.id === selectedId);
+  if (!src) return;
+  const newId = uid();
+  const [sx2, sy2] = positions[selectedId] || [100,100];
+  const newA = { id: newId, n: src.n, name: src.name, cat: src.cat };
+  ateliers.push(newA);
+  positions[newId] = [sx2 + 20, sy2 + 20];
+  buildMarker(newA);
+  const {sx, sy} = getScale();
+  markerEls[newId].style.left = (positions[newId][0] * sx) + 'px';
+  markerEls[newId].style.top  = (positions[newId][1] * sy) + 'px';
+  selectMarker(newId);
+}
 
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup', onUp);
-  });
+function deleteSelected() {
+  if (!selectedId) return;
+  const a = ateliers.find(x => x.id === selectedId);
+  if (!confirm(`Supprimer le point ${a ? a.n : selectedId} ?`)) return;
+  ateliers = ateliers.filter(x => x.id !== selectedId);
+  delete positions[selectedId];
+  if (markerEls[selectedId]) { markerEls[selectedId].remove(); delete markerEls[selectedId]; }
+  deselectAll();
+}
+
+function toggleAddMode() {
+  addMode = !addMode;
+  document.getElementById('btn-add').classList.toggle('active', addMode);
+  document.getElementById('canvas-wrap').classList.toggle('add-mode', addMode);
+  if (addMode) deselectAll();
+}
+
+function handleMapClick(e) {
+  if (!addMode) return;
+  if (e.target.classList.contains('marker')) return;
+  const wrap = document.getElementById('canvas-wrap');
+  const rect = wrap.getBoundingClientRect();
+  const {sx, sy} = getScale();
+  const x = Math.round((e.clientX - rect.left) / sx);
+  const y = Math.round((e.clientY - rect.top) / sy);
+
+  const newId = uid();
+  const newA = { id: newId, n: '?', name: 'Nouveau point', cat: 'public' };
+  ateliers.push(newA);
+  positions[newId] = [x, y];
+  buildMarker(newA);
+  markerEls[newId].style.left = (x * sx) + 'px';
+  markerEls[newId].style.top  = (y * sy) + 'px';
+
+  toggleAddMode();
+  selectMarker(newId);
+  setTimeout(() => {
+    const inp = document.getElementById('sel-num');
+    inp.select();
+  }, 50);
 }
 
 function resetAll() {
   if (confirm('Réinitialiser toutes les positions ?')) {
-    positions = JSON.parse(JSON.stringify(DEFAULT_POS));
+    ateliers.forEach(a => {
+      if (DEFAULT_POS[a.n]) positions[a.id] = [...DEFAULT_POS[a.n]];
+    });
     updatePositions();
   }
 }
 
 function exportCoords() {
   let lines = [];
-  ATELIERS.forEach(a => {
-    const [cx, cy] = positions[a.n] || [0, 0];
+  ateliers.forEach(a => {
+    const [cx, cy] = positions[a.id] || [0,0];
     lines.push(`${a.n}:${cx},${cy}`);
   });
   document.getElementById('export-code').value = lines.join('\n');
@@ -269,6 +407,15 @@ window.addEventListener('load', () => {
   imgH = img.naturalHeight || 764;
   createMarkers();
   window.addEventListener('resize', updatePositions);
+  document.getElementById('canvas-wrap').addEventListener('click', handleMapClick);
+  document.getElementById('overlay').addEventListener('mousedown', e => {
+    if (!e.target.classList.contains('marker')) deselectAll();
+  });
+  document.addEventListener('keydown', e => {
+    if ((e.key === 'Delete' || e.key === 'Backspace') && selectedId &&
+        document.activeElement.tagName !== 'INPUT') deleteSelected();
+    if (e.key === 'Escape') { deselectAll(); if (addMode) toggleAddMode(); }
+  });
 });
 </script>
 </body>

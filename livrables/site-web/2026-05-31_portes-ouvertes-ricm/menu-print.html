@@ -42,7 +42,11 @@
       background: var(--sand-bg);
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,.55);
+      display: flex;
+      flex-direction: column;
     }
+
+    .carte { flex: 1; }
 
     /* ─────────────────────────────
        HEADER
@@ -261,7 +265,8 @@
       gap: 10px;
     }
 
-    .icard.wide { grid-column: span 2; }
+    .icard.wide  { grid-column: span 2; }
+    .icard.span3 { grid-column: span 3; }
 
     .icard {
       background: var(--white);
@@ -415,8 +420,16 @@
        IMPRESSION
     ───────────────────────────── */
     @media print {
-      body { background: white; padding: 0; }
-      .page { width: 100%; box-shadow: none; }
+      html, body {
+        margin: 0; padding: 0;
+        width: 210mm; height: 297mm;
+        background: var(--sand-bg);
+        display: block;
+      }
+      .page {
+        width: 210mm; height: 297mm;
+        margin: 0; box-shadow: none;
+      }
     }
   </style>
 </head>
@@ -515,8 +528,18 @@
         <div class="icard-price">2 €</div>
       </div>
 
-      <!-- Glace -->
+      <!-- Eau -->
       <div class="icard">
+        <svg class="ico" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true">
+          <path d="M120 0h80c13.3 0 24 10.7 24 24v40H96V24c0-13.3 10.7-24 24-24M32 167.5c0-19.5 10-37.6 26.6-47.9l15.8-9.9c14.3-9 30.8-13.7 47.7-13.7h75.8c16.9 0 33.4 4.7 47.7 13.7l15.8 9.9C278 129.9 288 148 288 167.5c0 17-7.5 32.3-19.4 42.6c12 11.6 19.4 27.9 19.4 45.9c0 19.1-8.4 36.3-21.7 48c13.3 11.7 21.7 28.9 21.7 48s-8.4 36.3-21.7 48c13.3 11.7 21.7 28.9 21.7 48c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64c0-19.1 8.4-36.3 21.7-48C40.4 388.3 32 371.1 32 352s8.4-36.3 21.7-48C40.4 292.3 32 275.1 32 256c0-18 7.4-34.3 19.4-45.9C39.5 199.7 32 184.5 32 167.5M96 240c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16s-7.2-16-16-16h-96c-8.8 0-16 7.2-16 16m16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16h96c8.8 0 16-7.2 16-16s-7.2-16-16-16z"/>
+        </svg>
+        <div class="icard-name">Eau</div>
+        <div class="icard-detail">Bouteille 33 cl</div>
+        <div class="icard-price">1 €</div>
+      </div>
+
+      <!-- Glace -->
+      <div class="icard span3">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" aria-hidden="true">
           <path d="M12 21.5V17m-4 0h8V7a4 4 0 1 0-8 0zm0-6.5L16 7m-8 7.5l8-3.5"/>
         </svg>

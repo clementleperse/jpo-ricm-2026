@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code A4 — JPO RICM 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    :root {
+      --green:  #2D4A2D;
+      --green-d:#1F3520;
+      --sand:   #C8B89A;
+      --red:    #C8102E;
+      --white:  #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page { size: A4 portrait; margin: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: #1a1f1a;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      background: var(--green-d);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Photo de fond */
+    .page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('images/ricm-03.png') center / cover no-repeat;
+      opacity: .07;
+      pointer-events: none;
+    }
+
+    /* Bande rouge haut */
+    .bar-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: var(--red);
+      z-index: 2;
+    }
+
+    /* Bande rouge bas */
+    .bar-bot {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: var(--red);
+      z-index: 2;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 36px 40px 20px;
+    }
+
+    .regiment {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: rgba(200,184,154,.65);
+      margin-bottom: 10px;
+    }
+
+    .titre {
+      font-family: 'Oswald', sans-serif;
+      font-size: 62px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--white);
+      line-height: .95;
+    }
+
+    .titre .accent { color: var(--sand); }
+
+    .sous-titre {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: rgba(255,255,255,.45);
+      margin-top: 10px;
+    }
+
+    /* ─── DATES ─── */
+    .dates-band {
+      position: relative;
+      z-index: 1;
+      background: var(--red);
+      width: 100%;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .dates-band svg { color: #fff; opacity: .85; flex-shrink: 0; }
+
+    .dates-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #fff;
+    }
+
+    /* ─── CORPS ─── */
+    .corps {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 20px 40px;
+    }
+
+    .invite {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 1px 8px rgba(0,0,0,.6);
+    }
+
+    /* QR */
+    .qr-wrap {
+      background: #fff;
+      border-radius: 32px;
+      padding: 64px;
+      box-shadow: 0 16px 60px rgba(0,0,0,.65);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-wrap canvas { display: block; border-radius: 12px; }
+
+    .qr-logo {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px; height: 90px;
+      background: #fff;
+      border-radius: 50%;
+      padding: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    .qr-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+    /* URL */
+    .url-pill {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(200,184,154,.25);
+      border-radius: 12px;
+      padding: 12px 28px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      letter-spacing: .06em;
+      color: rgba(200,184,154,.8);
+      text-align: center;
+    }
+
+    .url-pill span { color: #fff; font-weight: 700; }
+
+    /* Infos */
+    .infos {
+      display: flex;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .info-item {
+      flex: 1;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(200,184,154,.15);
+      border-radius: 12px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .info-item .ic { font-size: 20px; margin-bottom: 5px; }
+
+    .info-item .il {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(200,184,154,.55);
+      display: block;
+    }
+
+    .info-item .iv {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      display: block;
+      margin-top: 3px;
+      line-height: 1.2;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 16px 40px 26px;
+      border-top: 1px solid rgba(200,184,154,.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.3);
+    }
+
+    .footer-right {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(200,184,154,.4);
+    }
+
+    /* ─── IMPRESSION ─── */
+    @media print {
+      html, body {
+        margin: 0; padding: 0;
+        width: 210mm; height: 297mm;
+        background: var(--green-d);
+        display: block;
+      }
+      .page {
+        width: 210mm; height: 297mm;
+        margin: 0; box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bar-top"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="titre">Journées<br><span class="accent">Portes Ouvertes</span></div>
+    <div class="sous-titre">RICM — Poitiers</div>
+  </div>
+
+  <!-- Bande dates -->
+  <div class="dates-band">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <path d="M3 9h18M8 2v4M16 2v4"/>
+    </svg>
+    <div class="dates-text">13 &amp; 14 juin 2026 — 10h à 18h</div>
+  </div>
+
+  <!-- Corps -->
+  <div class="corps">
+    <div class="invite">Scannez pour accéder au programme complet</div>
+
+    <div class="qr-wrap">
+      <canvas id="qrCanvas"></canvas>
+      <div class="qr-logo">
+        <img src="images/insigne-ricm.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">Quartier Aboville — Poitiers</div>
+    <div class="footer-right">Régiment d'Infanterie-Chars de Marine</div>
+  </div>
+
+  <div class="bar-bot"></div>
+
+</div>
+
+<script>
+QRCode.toCanvas(document.getElementById('qrCanvas'), 'https://jpo-ricm-2026.netlify.app/', {
+  width: 520,
+  margin: 1,
+  color: { dark: '#1F3520', light: '#FFFFFF' },
+  errorCorrectionLevel: 'H'
+}, function(err){ if(err) console.error(err); });
+</script>
+</body>
+</html>
